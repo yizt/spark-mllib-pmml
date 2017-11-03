@@ -8,7 +8,7 @@ target
 .worksheet/
 .tmpBin
 *.log
-out/*
 *.iml
 *.ipr
 *.iws
+tree.txt
