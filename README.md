@@ -3,7 +3,7 @@
 ####1：打包
 mvn clean package -DskipTests
 
-###例子，在192.168.1.218上执行
+###例子，将jar包上传到192.168.1.218的/opt/pmml目录下，并执行如下：
 
 export HDP_VERSION=2.6.0.3-8
 /usr/hdp/2.6.0.3-8/spark2/bin/spark-submit \
