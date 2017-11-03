@@ -8,3 +8,4 @@ target
 .worksheet/
 .tmpBin
 *.log
+out/*
