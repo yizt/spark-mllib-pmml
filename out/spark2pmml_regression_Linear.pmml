@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PMML xmlns="http://www.dmg.org/PMML-4_3" version="4.3">
+    <Header>
+        <Application name="JPMML-SparkML" version="1.2.6"/>
+        <Timestamp>2017-11-03T06:38:21Z</Timestamp>
+    </Header>
+    <DataDictionary>
+        <DataField name="mpg" optype="continuous" dataType="double"/>
+        <DataField name="cylinders" optype="continuous" dataType="double"/>
+        <DataField name="displacement" optype="continuous" dataType="double"/>
+        <DataField name="horsepower" optype="continuous" dataType="double"/>
+        <DataField name="weight" optype="continuous" dataType="double"/>
+        <DataField name="acceleration" optype="continuous" dataType="double"/>
+        <DataField name="model_year" optype="continuous" dataType="double"/>
+        <DataField name="origin" optype="continuous" dataType="double"/>
+    </DataDictionary>
+    <RegressionModel functionName="regression">
+        <MiningSchema>
+            <MiningField name="mpg" usageType="target"/>
+            <MiningField name="cylinders"/>
+            <MiningField name="displacement"/>
+            <MiningField name="horsepower"/>
+            <MiningField name="weight"/>
+            <MiningField name="acceleration"/>
+            <MiningField name="model_year"/>
+            <MiningField name="origin"/>
+        </MiningSchema>
+        <Output>
+            <OutputField name="prediction" optype="continuous" dataType="double" feature="predictedValue"/>
+        </Output>
+        <RegressionTable intercept="-17.218434622000082">
+            <NumericPredictor name="cylinders" coefficient="-0.49337631885894845"/>
+            <NumericPredictor name="displacement" coefficient="0.019895643742025723"/>
+            <NumericPredictor name="horsepower" coefficient="-0.016951144227511417"/>
+            <NumericPredictor name="weight" coefficient="-0.006474043397440566"/>
+            <NumericPredictor name="acceleration" coefficient="0.08057583832484196"/>
+            <NumericPredictor name="model_year" coefficient="0.750772677950118"/>
+            <NumericPredictor name="origin" coefficient="1.4261404954231445"/>
+        </RegressionTable>
+    </RegressionModel>
+</PMML>

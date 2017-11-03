@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PMML xmlns="http://www.dmg.org/PMML-4_3" version="4.3">
+    <Header>
+        <Application name="JPMML-SparkML" version="1.2.6"/>
+        <Timestamp>2017-11-03T06:38:09Z</Timestamp>
+    </Header>
+    <DataDictionary>
+        <DataField name="mpg" optype="continuous" dataType="double"/>
+        <DataField name="cylinders" optype="continuous" dataType="double"/>
+        <DataField name="displacement" optype="continuous" dataType="double"/>
+        <DataField name="horsepower" optype="continuous" dataType="double"/>
+        <DataField name="weight" optype="continuous" dataType="double"/>
+        <DataField name="acceleration" optype="continuous" dataType="double"/>
+        <DataField name="model_year" optype="continuous" dataType="double"/>
+        <DataField name="origin" optype="continuous" dataType="double"/>
+    </DataDictionary>
+    <GeneralRegressionModel modelType="generalizedLinear" functionName="regression" linkFunction="identity" distribution="normal">
+        <MiningSchema>
+            <MiningField name="mpg" usageType="target"/>
+            <MiningField name="cylinders"/>
+            <MiningField name="displacement"/>
+            <MiningField name="horsepower"/>
+            <MiningField name="weight"/>
+            <MiningField name="acceleration"/>
+            <MiningField name="model_year"/>
+            <MiningField name="origin"/>
+        </MiningSchema>
+        <Output>
+            <OutputField name="prediction" optype="continuous" dataType="double" feature="predictedValue"/>
+        </Output>
+        <ParameterList>
+            <Parameter name="p0" label="(intercept)"/>
+            <Parameter name="p1"/>
+            <Parameter name="p2"/>
+            <Parameter name="p3"/>
+            <Parameter name="p4"/>
+            <Parameter name="p5"/>
+            <Parameter name="p6"/>
+            <Parameter name="p7"/>
+        </ParameterList>
+        <CovariateList>
+            <Predictor name="cylinders"/>
+            <Predictor name="displacement"/>
+            <Predictor name="horsepower"/>
+            <Predictor name="weight"/>
+            <Predictor name="acceleration"/>
+            <Predictor name="model_year"/>
+            <Predictor name="origin"/>
+        </CovariateList>
+        <PPMatrix>
+            <PPCell value="1" predictorName="cylinders" parameterName="p1"/>
+            <PPCell value="1" predictorName="displacement" parameterName="p2"/>
+            <PPCell value="1" predictorName="horsepower" parameterName="p3"/>
+            <PPCell value="1" predictorName="weight" parameterName="p4"/>
+            <PPCell value="1" predictorName="acceleration" parameterName="p5"/>
+            <PPCell value="1" predictorName="model_year" parameterName="p6"/>
+            <PPCell value="1" predictorName="origin" parameterName="p7"/>
+        </PPMatrix>
+        <ParamMatrix>
+            <PCell parameterName="p0" beta="-13.779688000677368"/>
+            <PCell parameterName="p1" beta="-0.3512898411037251"/>
+            <PCell parameterName="p2" beta="0.0035180521580028654"/>
+            <PCell parameterName="p3" beta="-0.024551698395480888"/>
+            <PCell parameterName="p4" beta="-0.004637178207318694"/>
+            <PCell parameterName="p5" beta="-0.02298992330209345"/>
+            <PCell parameterName="p6" beta="0.6989316377643424"/>
+            <PCell parameterName="p7" beta="1.3251465382788887"/>
+        </ParamMatrix>
+    </GeneralRegressionModel>
+</PMML>
