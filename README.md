@@ -1,4 +1,5 @@
 # spark-mllib-pmml
+####首先执行src/main/resources/install.txt中相关操作
 
 ####1：打包
 mvn clean package -DskipTests

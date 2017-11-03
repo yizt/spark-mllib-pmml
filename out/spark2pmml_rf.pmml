@@ -1,0 +1,1706 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PMML xmlns="http://www.dmg.org/PMML-4_3" version="4.3">
+    <Header>
+        <Application name="JPMML-SparkML" version="1.2.6"/>
+        <Timestamp>2017-11-03T07:14:25Z</Timestamp>
+    </Header>
+    <DataDictionary>
+        <DataField name="Species" optype="categorical" dataType="string">
+            <Value value="versicolor"/>
+            <Value value="virginica"/>
+            <Value value="setosa"/>
+        </DataField>
+        <DataField name="SepalLength" optype="continuous" dataType="double"/>
+        <DataField name="SepalWidth" optype="continuous" dataType="double"/>
+        <DataField name="PetalLength" optype="continuous" dataType="double"/>
+        <DataField name="PetalWidth" optype="continuous" dataType="double"/>
+    </DataDictionary>
+    <MiningModel functionName="classification">
+        <MiningSchema>
+            <MiningField name="Species" usageType="target"/>
+            <MiningField name="SepalLength"/>
+            <MiningField name="PetalLength"/>
+            <MiningField name="PetalWidth"/>
+            <MiningField name="SepalWidth"/>
+        </MiningSchema>
+        <Output>
+            <OutputField name="pmml(prediction)" optype="categorical" dataType="string" feature="predictedValue"/>
+            <OutputField name="prediction" optype="categorical" dataType="double" feature="transformedValue">
+                <MapValues outputColumn="output">
+                    <FieldColumnPair field="pmml(prediction)" column="input"/>
+                    <InlineTable>
+                        <row>
+                            <input xmlns:ns2="http://www.dmg.org/PMML-4_3" xmlns="">versicolor</input>
+                            <output xmlns:ns2="http://www.dmg.org/PMML-4_3" xmlns="">0</output>
+                        </row>
+                        <row>
+                            <input xmlns:ns2="http://www.dmg.org/PMML-4_3" xmlns="">virginica</input>
+                            <output xmlns:ns2="http://www.dmg.org/PMML-4_3" xmlns="">1</output>
+                        </row>
+                        <row>
+                            <input xmlns:ns2="http://www.dmg.org/PMML-4_3" xmlns="">setosa</input>
+                            <output xmlns:ns2="http://www.dmg.org/PMML-4_3" xmlns="">2</output>
+                        </row>
+                    </InlineTable>
+                </MapValues>
+            </OutputField>
+            <OutputField name="probability(versicolor)" optype="continuous" dataType="double" feature="probability" value="versicolor"/>
+            <OutputField name="probability(virginica)" optype="continuous" dataType="double" feature="probability" value="virginica"/>
+            <OutputField name="probability(setosa)" optype="continuous" dataType="double" feature="probability" value="setosa"/>
+        </Output>
+        <Segmentation multipleModelMethod="average">
+            <Segment id="1">
+                <True/>
+                <TreeModel functionName="classification" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="SepalLength"/>
+                        <MiningField name="SepalWidth"/>
+                        <MiningField name="PetalLength"/>
+                        <MiningField name="PetalWidth"/>
+                    </MiningSchema>
+                    <Node score="virginica" recordCount="147.0">
+                        <True/>
+                        <ScoreDistribution value="versicolor" recordCount="40.0"/>
+                        <ScoreDistribution value="virginica" recordCount="57.0"/>
+                        <ScoreDistribution value="setosa" recordCount="50.0"/>
+                        <Node score="setosa" recordCount="50.0">
+                            <SimplePredicate field="PetalLength" operator="lessOrEqual" value="1.9"/>
+                            <ScoreDistribution value="setosa" recordCount="50.0"/>
+                        </Node>
+                        <Node score="virginica" recordCount="97.0">
+                            <SimplePredicate field="PetalLength" operator="greaterThan" value="1.9"/>
+                            <ScoreDistribution value="versicolor" recordCount="40.0"/>
+                            <ScoreDistribution value="virginica" recordCount="57.0"/>
+                            <Node score="versicolor" recordCount="40.0">
+<SimplePredicate field="PetalLength" operator="lessOrEqual" value="4.8"/>
+<ScoreDistribution value="versicolor" recordCount="38.0"/>
+<ScoreDistribution value="virginica" recordCount="2.0"/>
+<Node score="versicolor" recordCount="2.0">
+    <SimplePredicate field="SepalLength" operator="lessOrEqual" value="4.9"/>
+    <ScoreDistribution value="versicolor" recordCount="1.0"/>
+    <ScoreDistribution value="virginica" recordCount="1.0"/>
+    <Node score="versicolor" recordCount="1.0">
+        <SimplePredicate field="PetalLength" operator="lessOrEqual" value="3.3"/>
+        <ScoreDistribution value="versicolor" recordCount="1.0"/>
+    </Node>
+    <Node score="virginica" recordCount="1.0">
+        <SimplePredicate field="PetalLength" operator="greaterThan" value="3.3"/>
+        <ScoreDistribution value="virginica" recordCount="1.0"/>
+    </Node>
+</Node>
+<Node score="versicolor" recordCount="38.0">
+    <SimplePredicate field="SepalLength" operator="greaterThan" value="4.9"/>
+    <ScoreDistribution value="versicolor" recordCount="37.0"/>
+    <ScoreDistribution value="virginica" recordCount="1.0"/>
+    <Node score="versicolor" recordCount="35.0">
+        <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.5"/>
+        <ScoreDistribution value="versicolor" recordCount="35.0"/>
+    </Node>
+    <Node score="versicolor" recordCount="3.0">
+        <SimplePredicate field="PetalWidth" operator="greaterThan" value="1.5"/>
+        <ScoreDistribution value="versicolor" recordCount="2.0"/>
+        <ScoreDistribution value="virginica" recordCount="1.0"/>
+        <Node score="virginica" recordCount="1.0">
+            <SimplePredicate field="SepalWidth" operator="lessOrEqual" value="2.8"/>
+            <ScoreDistribution value="virginica" recordCount="1.0"/>
+        </Node>
+        <Node score="versicolor" recordCount="2.0">
+            <SimplePredicate field="SepalWidth" operator="greaterThan" value="2.8"/>
+            <ScoreDistribution value="versicolor" recordCount="2.0"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="virginica" recordCount="57.0">
+<SimplePredicate field="PetalLength" operator="greaterThan" value="4.8"/>
+<ScoreDistribution value="versicolor" recordCount="2.0"/>
+<ScoreDistribution value="virginica" recordCount="55.0"/>
+<Node score="virginica" recordCount="6.0">
+    <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.6"/>
+    <ScoreDistribution value="versicolor" recordCount="2.0"/>
+    <ScoreDistribution value="virginica" recordCount="4.0"/>
+    <Node score="virginica" recordCount="5.0">
+        <SimplePredicate field="SepalLength" operator="lessOrEqual" value="6.1"/>
+        <ScoreDistribution value="versicolor" recordCount="1.0"/>
+        <ScoreDistribution value="virginica" recordCount="4.0"/>
+        <Node score="virginica" recordCount="4.0">
+            <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.5"/>
+            <ScoreDistribution value="virginica" recordCount="4.0"/>
+        </Node>
+        <Node score="versicolor" recordCount="1.0">
+            <SimplePredicate field="PetalWidth" operator="greaterThan" value="1.5"/>
+            <ScoreDistribution value="versicolor" recordCount="1.0"/>
+        </Node>
+    </Node>
+    <Node score="versicolor" recordCount="1.0">
+        <SimplePredicate field="SepalLength" operator="greaterThan" value="6.1"/>
+        <ScoreDistribution value="versicolor" recordCount="1.0"/>
+    </Node>
+</Node>
+<Node score="virginica" recordCount="51.0">
+    <SimplePredicate field="PetalWidth" operator="greaterThan" value="1.6"/>
+    <ScoreDistribution value="virginica" recordCount="51.0"/>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="2">
+                <True/>
+                <TreeModel functionName="classification" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="SepalLength"/>
+                        <MiningField name="SepalWidth"/>
+                        <MiningField name="PetalLength"/>
+                        <MiningField name="PetalWidth"/>
+                    </MiningSchema>
+                    <Node score="setosa" recordCount="164.0">
+                        <True/>
+                        <ScoreDistribution value="versicolor" recordCount="52.0"/>
+                        <ScoreDistribution value="virginica" recordCount="49.0"/>
+                        <ScoreDistribution value="setosa" recordCount="63.0"/>
+                        <Node score="setosa" recordCount="63.0">
+                            <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="0.6"/>
+                            <ScoreDistribution value="setosa" recordCount="63.0"/>
+                        </Node>
+                        <Node score="versicolor" recordCount="101.0">
+                            <SimplePredicate field="PetalWidth" operator="greaterThan" value="0.6"/>
+                            <ScoreDistribution value="versicolor" recordCount="52.0"/>
+                            <ScoreDistribution value="virginica" recordCount="49.0"/>
+                            <Node score="versicolor" recordCount="57.0">
+<SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.7"/>
+<ScoreDistribution value="versicolor" recordCount="52.0"/>
+<ScoreDistribution value="virginica" recordCount="5.0"/>
+<Node score="versicolor" recordCount="52.0">
+    <SimplePredicate field="PetalLength" operator="lessOrEqual" value="5"/>
+    <ScoreDistribution value="versicolor" recordCount="51.0"/>
+    <ScoreDistribution value="virginica" recordCount="1.0"/>
+    <Node score="versicolor" recordCount="48.0">
+        <SimplePredicate field="PetalLength" operator="lessOrEqual" value="4.9"/>
+        <ScoreDistribution value="versicolor" recordCount="48.0"/>
+    </Node>
+    <Node score="versicolor" recordCount="4.0">
+        <SimplePredicate field="PetalLength" operator="greaterThan" value="4.9"/>
+        <ScoreDistribution value="versicolor" recordCount="3.0"/>
+        <ScoreDistribution value="virginica" recordCount="1.0"/>
+        <Node score="virginica" recordCount="1.0">
+            <SimplePredicate field="SepalLength" operator="lessOrEqual" value="6"/>
+            <ScoreDistribution value="virginica" recordCount="1.0"/>
+        </Node>
+        <Node score="versicolor" recordCount="3.0">
+            <SimplePredicate field="SepalLength" operator="greaterThan" value="6"/>
+            <ScoreDistribution value="versicolor" recordCount="3.0"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="virginica" recordCount="5.0">
+    <SimplePredicate field="PetalLength" operator="greaterThan" value="5"/>
+    <ScoreDistribution value="versicolor" recordCount="1.0"/>
+    <ScoreDistribution value="virginica" recordCount="4.0"/>
+    <Node score="versicolor" recordCount="2.0">
+        <SimplePredicate field="SepalWidth" operator="lessOrEqual" value="2.7"/>
+        <ScoreDistribution value="versicolor" recordCount="1.0"/>
+        <ScoreDistribution value="virginica" recordCount="1.0"/>
+        <Node score="versicolor" recordCount="1.0">
+            <SimplePredicate field="SepalLength" operator="lessOrEqual" value="6"/>
+            <ScoreDistribution value="versicolor" recordCount="1.0"/>
+        </Node>
+        <Node score="virginica" recordCount="1.0">
+            <SimplePredicate field="SepalLength" operator="greaterThan" value="6"/>
+            <ScoreDistribution value="virginica" recordCount="1.0"/>
+        </Node>
+    </Node>
+    <Node score="virginica" recordCount="3.0">
+        <SimplePredicate field="SepalWidth" operator="greaterThan" value="2.7"/>
+        <ScoreDistribution value="virginica" recordCount="3.0"/>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="virginica" recordCount="44.0">
+<SimplePredicate field="PetalWidth" operator="greaterThan" value="1.7"/>
+<ScoreDistribution value="virginica" recordCount="44.0"/>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="3">
+                <True/>
+                <TreeModel functionName="classification" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="SepalLength"/>
+                        <MiningField name="SepalWidth"/>
+                        <MiningField name="PetalLength"/>
+                        <MiningField name="PetalWidth"/>
+                    </MiningSchema>
+                    <Node score="virginica" recordCount="135.0">
+                        <True/>
+                        <ScoreDistribution value="versicolor" recordCount="46.0"/>
+                        <ScoreDistribution value="virginica" recordCount="47.0"/>
+                        <ScoreDistribution value="setosa" recordCount="42.0"/>
+                        <Node score="setosa" recordCount="42.0">
+                            <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="0.6"/>
+                            <ScoreDistribution value="setosa" recordCount="42.0"/>
+                        </Node>
+                        <Node score="virginica" recordCount="93.0">
+                            <SimplePredicate field="PetalWidth" operator="greaterThan" value="0.6"/>
+                            <ScoreDistribution value="versicolor" recordCount="46.0"/>
+                            <ScoreDistribution value="virginica" recordCount="47.0"/>
+                            <Node score="versicolor" recordCount="37.0">
+<SimplePredicate field="SepalLength" operator="lessOrEqual" value="6.2"/>
+<ScoreDistribution value="versicolor" recordCount="30.0"/>
+<ScoreDistribution value="virginica" recordCount="7.0"/>
+<Node score="versicolor" recordCount="29.0">
+    <SimplePredicate field="PetalLength" operator="lessOrEqual" value="4.7"/>
+    <ScoreDistribution value="versicolor" recordCount="29.0"/>
+</Node>
+<Node score="virginica" recordCount="8.0">
+    <SimplePredicate field="PetalLength" operator="greaterThan" value="4.7"/>
+    <ScoreDistribution value="versicolor" recordCount="1.0"/>
+    <ScoreDistribution value="virginica" recordCount="7.0"/>
+    <Node score="virginica" recordCount="4.0">
+        <SimplePredicate field="SepalLength" operator="lessOrEqual" value="5.8"/>
+        <ScoreDistribution value="virginica" recordCount="4.0"/>
+    </Node>
+    <Node score="virginica" recordCount="4.0">
+        <SimplePredicate field="SepalLength" operator="greaterThan" value="5.8"/>
+        <ScoreDistribution value="versicolor" recordCount="1.0"/>
+        <ScoreDistribution value="virginica" recordCount="3.0"/>
+        <Node score="virginica" recordCount="3.0">
+            <SimplePredicate field="SepalWidth" operator="lessOrEqual" value="3"/>
+            <ScoreDistribution value="virginica" recordCount="3.0"/>
+        </Node>
+        <Node score="versicolor" recordCount="1.0">
+            <SimplePredicate field="SepalWidth" operator="greaterThan" value="3"/>
+            <ScoreDistribution value="versicolor" recordCount="1.0"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="virginica" recordCount="56.0">
+<SimplePredicate field="SepalLength" operator="greaterThan" value="6.2"/>
+<ScoreDistribution value="versicolor" recordCount="16.0"/>
+<ScoreDistribution value="virginica" recordCount="40.0"/>
+<Node score="versicolor" recordCount="18.0">
+    <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.7"/>
+    <ScoreDistribution value="versicolor" recordCount="16.0"/>
+    <ScoreDistribution value="virginica" recordCount="2.0"/>
+    <Node score="versicolor" recordCount="7.0">
+        <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.4"/>
+        <ScoreDistribution value="versicolor" recordCount="7.0"/>
+    </Node>
+    <Node score="versicolor" recordCount="11.0">
+        <SimplePredicate field="PetalWidth" operator="greaterThan" value="1.4"/>
+        <ScoreDistribution value="versicolor" recordCount="9.0"/>
+        <ScoreDistribution value="virginica" recordCount="2.0"/>
+        <Node score="versicolor" recordCount="10.0">
+            <SimplePredicate field="SepalLength" operator="lessOrEqual" value="6.9"/>
+            <ScoreDistribution value="versicolor" recordCount="9.0"/>
+            <ScoreDistribution value="virginica" recordCount="1.0"/>
+        </Node>
+        <Node score="virginica" recordCount="1.0">
+            <SimplePredicate field="SepalLength" operator="greaterThan" value="6.9"/>
+            <ScoreDistribution value="virginica" recordCount="1.0"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="virginica" recordCount="38.0">
+    <SimplePredicate field="PetalWidth" operator="greaterThan" value="1.7"/>
+    <ScoreDistribution value="virginica" recordCount="38.0"/>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="4">
+                <True/>
+                <TreeModel functionName="classification" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="SepalLength"/>
+                        <MiningField name="SepalWidth"/>
+                        <MiningField name="PetalLength"/>
+                        <MiningField name="PetalWidth"/>
+                    </MiningSchema>
+                    <Node score="versicolor" recordCount="143.0">
+                        <True/>
+                        <ScoreDistribution value="versicolor" recordCount="54.0"/>
+                        <ScoreDistribution value="virginica" recordCount="47.0"/>
+                        <ScoreDistribution value="setosa" recordCount="42.0"/>
+                        <Node score="setosa" recordCount="45.0">
+                            <SimplePredicate field="SepalLength" operator="lessOrEqual" value="5.4"/>
+                            <ScoreDistribution value="versicolor" recordCount="8.0"/>
+                            <ScoreDistribution value="setosa" recordCount="37.0"/>
+                            <Node score="setosa" recordCount="37.0">
+<SimplePredicate field="PetalLength" operator="lessOrEqual" value="1.9"/>
+<ScoreDistribution value="setosa" recordCount="37.0"/>
+                            </Node>
+                            <Node score="versicolor" recordCount="8.0">
+<SimplePredicate field="PetalLength" operator="greaterThan" value="1.9"/>
+<ScoreDistribution value="versicolor" recordCount="8.0"/>
+                            </Node>
+                        </Node>
+                        <Node score="virginica" recordCount="98.0">
+                            <SimplePredicate field="SepalLength" operator="greaterThan" value="5.4"/>
+                            <ScoreDistribution value="versicolor" recordCount="46.0"/>
+                            <ScoreDistribution value="virginica" recordCount="47.0"/>
+                            <ScoreDistribution value="setosa" recordCount="5.0"/>
+                            <Node score="versicolor" recordCount="50.0">
+<SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.7"/>
+<ScoreDistribution value="versicolor" recordCount="43.0"/>
+<ScoreDistribution value="virginica" recordCount="2.0"/>
+<ScoreDistribution value="setosa" recordCount="5.0"/>
+<Node score="setosa" recordCount="5.0">
+    <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="0.4"/>
+    <ScoreDistribution value="setosa" recordCount="5.0"/>
+</Node>
+<Node score="versicolor" recordCount="45.0">
+    <SimplePredicate field="PetalWidth" operator="greaterThan" value="0.4"/>
+    <ScoreDistribution value="versicolor" recordCount="43.0"/>
+    <ScoreDistribution value="virginica" recordCount="2.0"/>
+    <Node score="versicolor" recordCount="3.0">
+        <SimplePredicate field="SepalWidth" operator="lessOrEqual" value="2.2"/>
+        <ScoreDistribution value="versicolor" recordCount="2.0"/>
+        <ScoreDistribution value="virginica" recordCount="1.0"/>
+        <Node score="versicolor" recordCount="2.0">
+            <SimplePredicate field="PetalLength" operator="lessOrEqual" value="4"/>
+            <ScoreDistribution value="versicolor" recordCount="2.0"/>
+        </Node>
+        <Node score="virginica" recordCount="1.0">
+            <SimplePredicate field="PetalLength" operator="greaterThan" value="4"/>
+            <ScoreDistribution value="virginica" recordCount="1.0"/>
+        </Node>
+    </Node>
+    <Node score="versicolor" recordCount="42.0">
+        <SimplePredicate field="SepalWidth" operator="greaterThan" value="2.2"/>
+        <ScoreDistribution value="versicolor" recordCount="41.0"/>
+        <ScoreDistribution value="virginica" recordCount="1.0"/>
+        <Node score="versicolor" recordCount="41.0">
+            <SimplePredicate field="SepalLength" operator="lessOrEqual" value="6.7"/>
+            <ScoreDistribution value="versicolor" recordCount="41.0"/>
+        </Node>
+        <Node score="virginica" recordCount="1.0">
+            <SimplePredicate field="SepalLength" operator="greaterThan" value="6.7"/>
+            <ScoreDistribution value="virginica" recordCount="1.0"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="virginica" recordCount="48.0">
+<SimplePredicate field="PetalWidth" operator="greaterThan" value="1.7"/>
+<ScoreDistribution value="versicolor" recordCount="3.0"/>
+<ScoreDistribution value="virginica" recordCount="45.0"/>
+<Node score="versicolor" recordCount="4.0">
+    <SimplePredicate field="PetalLength" operator="lessOrEqual" value="4.8"/>
+    <ScoreDistribution value="versicolor" recordCount="3.0"/>
+    <ScoreDistribution value="virginica" recordCount="1.0"/>
+    <Node score="virginica" recordCount="1.0">
+        <SimplePredicate field="SepalWidth" operator="lessOrEqual" value="3"/>
+        <ScoreDistribution value="virginica" recordCount="1.0"/>
+    </Node>
+    <Node score="versicolor" recordCount="3.0">
+        <SimplePredicate field="SepalWidth" operator="greaterThan" value="3"/>
+        <ScoreDistribution value="versicolor" recordCount="3.0"/>
+    </Node>
+</Node>
+<Node score="virginica" recordCount="44.0">
+    <SimplePredicate field="PetalLength" operator="greaterThan" value="4.8"/>
+    <ScoreDistribution value="virginica" recordCount="44.0"/>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="5">
+                <True/>
+                <TreeModel functionName="classification" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="SepalLength"/>
+                        <MiningField name="PetalLength"/>
+                        <MiningField name="PetalWidth"/>
+                    </MiningSchema>
+                    <Node score="virginica" recordCount="126.0">
+                        <True/>
+                        <ScoreDistribution value="versicolor" recordCount="42.0"/>
+                        <ScoreDistribution value="virginica" recordCount="50.0"/>
+                        <ScoreDistribution value="setosa" recordCount="34.0"/>
+                        <Node score="versicolor" recordCount="78.0">
+                            <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.7"/>
+                            <ScoreDistribution value="versicolor" recordCount="42.0"/>
+                            <ScoreDistribution value="virginica" recordCount="2.0"/>
+                            <ScoreDistribution value="setosa" recordCount="34.0"/>
+                            <Node score="setosa" recordCount="34.0">
+<SimplePredicate field="PetalLength" operator="lessOrEqual" value="1.9"/>
+<ScoreDistribution value="setosa" recordCount="34.0"/>
+                            </Node>
+                            <Node score="versicolor" recordCount="44.0">
+<SimplePredicate field="PetalLength" operator="greaterThan" value="1.9"/>
+<ScoreDistribution value="versicolor" recordCount="42.0"/>
+<ScoreDistribution value="virginica" recordCount="2.0"/>
+<Node score="virginica" recordCount="1.0">
+    <SimplePredicate field="SepalLength" operator="lessOrEqual" value="4.9"/>
+    <ScoreDistribution value="virginica" recordCount="1.0"/>
+</Node>
+<Node score="versicolor" recordCount="43.0">
+    <SimplePredicate field="SepalLength" operator="greaterThan" value="4.9"/>
+    <ScoreDistribution value="versicolor" recordCount="42.0"/>
+    <ScoreDistribution value="virginica" recordCount="1.0"/>
+    <Node score="versicolor" recordCount="24.0">
+        <SimplePredicate field="SepalLength" operator="lessOrEqual" value="6"/>
+        <ScoreDistribution value="versicolor" recordCount="24.0"/>
+    </Node>
+    <Node score="versicolor" recordCount="19.0">
+        <SimplePredicate field="SepalLength" operator="greaterThan" value="6"/>
+        <ScoreDistribution value="versicolor" recordCount="18.0"/>
+        <ScoreDistribution value="virginica" recordCount="1.0"/>
+        <Node score="versicolor" recordCount="18.0">
+            <SimplePredicate field="PetalLength" operator="lessOrEqual" value="5"/>
+            <ScoreDistribution value="versicolor" recordCount="18.0"/>
+        </Node>
+        <Node score="virginica" recordCount="1.0">
+            <SimplePredicate field="PetalLength" operator="greaterThan" value="5"/>
+            <ScoreDistribution value="virginica" recordCount="1.0"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                        <Node score="virginica" recordCount="48.0">
+                            <SimplePredicate field="PetalWidth" operator="greaterThan" value="1.7"/>
+                            <ScoreDistribution value="virginica" recordCount="48.0"/>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="6">
+                <True/>
+                <TreeModel functionName="classification" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="SepalLength"/>
+                        <MiningField name="SepalWidth"/>
+                        <MiningField name="PetalLength"/>
+                        <MiningField name="PetalWidth"/>
+                    </MiningSchema>
+                    <Node score="virginica" recordCount="139.0">
+                        <True/>
+                        <ScoreDistribution value="versicolor" recordCount="41.0"/>
+                        <ScoreDistribution value="virginica" recordCount="54.0"/>
+                        <ScoreDistribution value="setosa" recordCount="44.0"/>
+                        <Node score="setosa" recordCount="44.0">
+                            <SimplePredicate field="PetalLength" operator="lessOrEqual" value="1.7"/>
+                            <ScoreDistribution value="setosa" recordCount="44.0"/>
+                        </Node>
+                        <Node score="virginica" recordCount="95.0">
+                            <SimplePredicate field="PetalLength" operator="greaterThan" value="1.7"/>
+                            <ScoreDistribution value="versicolor" recordCount="41.0"/>
+                            <ScoreDistribution value="virginica" recordCount="54.0"/>
+                            <Node score="versicolor" recordCount="46.0">
+<SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.7"/>
+<ScoreDistribution value="versicolor" recordCount="41.0"/>
+<ScoreDistribution value="virginica" recordCount="5.0"/>
+<Node score="versicolor" recordCount="21.0">
+    <SimplePredicate field="SepalWidth" operator="lessOrEqual" value="2.6"/>
+    <ScoreDistribution value="versicolor" recordCount="16.0"/>
+    <ScoreDistribution value="virginica" recordCount="5.0"/>
+    <Node score="versicolor" recordCount="13.0">
+        <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.3"/>
+        <ScoreDistribution value="versicolor" recordCount="13.0"/>
+    </Node>
+    <Node score="virginica" recordCount="8.0">
+        <SimplePredicate field="PetalWidth" operator="greaterThan" value="1.3"/>
+        <ScoreDistribution value="versicolor" recordCount="3.0"/>
+        <ScoreDistribution value="virginica" recordCount="5.0"/>
+        <Node score="virginica" recordCount="5.0">
+            <SimplePredicate field="SepalLength" operator="lessOrEqual" value="6.1"/>
+            <ScoreDistribution value="virginica" recordCount="5.0"/>
+        </Node>
+        <Node score="versicolor" recordCount="3.0">
+            <SimplePredicate field="SepalLength" operator="greaterThan" value="6.1"/>
+            <ScoreDistribution value="versicolor" recordCount="3.0"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="versicolor" recordCount="25.0">
+    <SimplePredicate field="SepalWidth" operator="greaterThan" value="2.6"/>
+    <ScoreDistribution value="versicolor" recordCount="25.0"/>
+</Node>
+                            </Node>
+                            <Node score="virginica" recordCount="49.0">
+<SimplePredicate field="PetalWidth" operator="greaterThan" value="1.7"/>
+<ScoreDistribution value="virginica" recordCount="49.0"/>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="7">
+                <True/>
+                <TreeModel functionName="classification" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="SepalLength"/>
+                        <MiningField name="SepalWidth"/>
+                        <MiningField name="PetalLength"/>
+                        <MiningField name="PetalWidth"/>
+                    </MiningSchema>
+                    <Node score="versicolor" recordCount="163.0">
+                        <True/>
+                        <ScoreDistribution value="versicolor" recordCount="60.0"/>
+                        <ScoreDistribution value="virginica" recordCount="50.0"/>
+                        <ScoreDistribution value="setosa" recordCount="53.0"/>
+                        <Node score="setosa" recordCount="53.0">
+                            <SimplePredicate field="PetalLength" operator="lessOrEqual" value="1.9"/>
+                            <ScoreDistribution value="setosa" recordCount="53.0"/>
+                        </Node>
+                        <Node score="versicolor" recordCount="110.0">
+                            <SimplePredicate field="PetalLength" operator="greaterThan" value="1.9"/>
+                            <ScoreDistribution value="versicolor" recordCount="60.0"/>
+                            <ScoreDistribution value="virginica" recordCount="50.0"/>
+                            <Node score="versicolor" recordCount="57.0">
+<SimplePredicate field="PetalLength" operator="lessOrEqual" value="4.8"/>
+<ScoreDistribution value="versicolor" recordCount="53.0"/>
+<ScoreDistribution value="virginica" recordCount="4.0"/>
+<Node score="versicolor" recordCount="52.0">
+    <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.6"/>
+    <ScoreDistribution value="versicolor" recordCount="52.0"/>
+</Node>
+<Node score="virginica" recordCount="5.0">
+    <SimplePredicate field="PetalWidth" operator="greaterThan" value="1.6"/>
+    <ScoreDistribution value="versicolor" recordCount="1.0"/>
+    <ScoreDistribution value="virginica" recordCount="4.0"/>
+    <Node score="virginica" recordCount="4.0">
+        <SimplePredicate field="SepalWidth" operator="lessOrEqual" value="3"/>
+        <ScoreDistribution value="virginica" recordCount="4.0"/>
+    </Node>
+    <Node score="versicolor" recordCount="1.0">
+        <SimplePredicate field="SepalWidth" operator="greaterThan" value="3"/>
+        <ScoreDistribution value="versicolor" recordCount="1.0"/>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="virginica" recordCount="53.0">
+<SimplePredicate field="PetalLength" operator="greaterThan" value="4.8"/>
+<ScoreDistribution value="versicolor" recordCount="7.0"/>
+<ScoreDistribution value="virginica" recordCount="46.0"/>
+<Node score="versicolor" recordCount="14.0">
+    <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.6"/>
+    <ScoreDistribution value="versicolor" recordCount="7.0"/>
+    <ScoreDistribution value="virginica" recordCount="7.0"/>
+    <Node score="virginica" recordCount="6.0">
+        <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.5"/>
+        <ScoreDistribution value="virginica" recordCount="6.0"/>
+    </Node>
+    <Node score="versicolor" recordCount="8.0">
+        <SimplePredicate field="PetalWidth" operator="greaterThan" value="1.5"/>
+        <ScoreDistribution value="versicolor" recordCount="7.0"/>
+        <ScoreDistribution value="virginica" recordCount="1.0"/>
+        <Node score="versicolor" recordCount="7.0">
+            <SimplePredicate field="SepalLength" operator="lessOrEqual" value="6"/>
+            <ScoreDistribution value="versicolor" recordCount="7.0"/>
+        </Node>
+        <Node score="virginica" recordCount="1.0">
+            <SimplePredicate field="SepalLength" operator="greaterThan" value="6"/>
+            <ScoreDistribution value="virginica" recordCount="1.0"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="virginica" recordCount="39.0">
+    <SimplePredicate field="PetalWidth" operator="greaterThan" value="1.6"/>
+    <ScoreDistribution value="virginica" recordCount="39.0"/>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="8">
+                <True/>
+                <TreeModel functionName="classification" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="SepalLength"/>
+                        <MiningField name="SepalWidth"/>
+                        <MiningField name="PetalLength"/>
+                        <MiningField name="PetalWidth"/>
+                    </MiningSchema>
+                    <Node score="setosa" recordCount="156.0">
+                        <True/>
+                        <ScoreDistribution value="versicolor" recordCount="46.0"/>
+                        <ScoreDistribution value="virginica" recordCount="53.0"/>
+                        <ScoreDistribution value="setosa" recordCount="57.0"/>
+                        <Node score="setosa" recordCount="57.0">
+                            <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="0.6"/>
+                            <ScoreDistribution value="setosa" recordCount="57.0"/>
+                        </Node>
+                        <Node score="virginica" recordCount="99.0">
+                            <SimplePredicate field="PetalWidth" operator="greaterThan" value="0.6"/>
+                            <ScoreDistribution value="versicolor" recordCount="46.0"/>
+                            <ScoreDistribution value="virginica" recordCount="53.0"/>
+                            <Node score="versicolor" recordCount="45.0">
+<SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.6"/>
+<ScoreDistribution value="versicolor" recordCount="44.0"/>
+<ScoreDistribution value="virginica" recordCount="1.0"/>
+<Node score="versicolor" recordCount="41.0">
+    <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.5"/>
+    <ScoreDistribution value="versicolor" recordCount="41.0"/>
+</Node>
+<Node score="versicolor" recordCount="4.0">
+    <SimplePredicate field="PetalWidth" operator="greaterThan" value="1.5"/>
+    <ScoreDistribution value="versicolor" recordCount="3.0"/>
+    <ScoreDistribution value="virginica" recordCount="1.0"/>
+    <Node score="virginica" recordCount="1.0">
+        <SimplePredicate field="SepalWidth" operator="lessOrEqual" value="3"/>
+        <ScoreDistribution value="virginica" recordCount="1.0"/>
+    </Node>
+    <Node score="versicolor" recordCount="3.0">
+        <SimplePredicate field="SepalWidth" operator="greaterThan" value="3"/>
+        <ScoreDistribution value="versicolor" recordCount="3.0"/>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="virginica" recordCount="54.0">
+<SimplePredicate field="PetalWidth" operator="greaterThan" value="1.6"/>
+<ScoreDistribution value="versicolor" recordCount="2.0"/>
+<ScoreDistribution value="virginica" recordCount="52.0"/>
+<Node score="virginica" recordCount="5.0">
+    <SimplePredicate field="PetalLength" operator="lessOrEqual" value="4.8"/>
+    <ScoreDistribution value="versicolor" recordCount="2.0"/>
+    <ScoreDistribution value="virginica" recordCount="3.0"/>
+    <Node score="versicolor" recordCount="2.0">
+        <SimplePredicate field="SepalLength" operator="lessOrEqual" value="5.9"/>
+        <ScoreDistribution value="versicolor" recordCount="2.0"/>
+    </Node>
+    <Node score="virginica" recordCount="3.0">
+        <SimplePredicate field="SepalLength" operator="greaterThan" value="5.9"/>
+        <ScoreDistribution value="virginica" recordCount="3.0"/>
+    </Node>
+</Node>
+<Node score="virginica" recordCount="49.0">
+    <SimplePredicate field="PetalLength" operator="greaterThan" value="4.8"/>
+    <ScoreDistribution value="virginica" recordCount="49.0"/>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="9">
+                <True/>
+                <TreeModel functionName="classification" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="SepalLength"/>
+                        <MiningField name="SepalWidth"/>
+                        <MiningField name="PetalLength"/>
+                        <MiningField name="PetalWidth"/>
+                    </MiningSchema>
+                    <Node score="setosa" recordCount="145.0">
+                        <True/>
+                        <ScoreDistribution value="versicolor" recordCount="48.0"/>
+                        <ScoreDistribution value="virginica" recordCount="48.0"/>
+                        <ScoreDistribution value="setosa" recordCount="49.0"/>
+                        <Node score="setosa" recordCount="49.0">
+                            <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="0.6"/>
+                            <ScoreDistribution value="setosa" recordCount="49.0"/>
+                        </Node>
+                        <Node score="versicolor" recordCount="96.0">
+                            <SimplePredicate field="PetalWidth" operator="greaterThan" value="0.6"/>
+                            <ScoreDistribution value="versicolor" recordCount="48.0"/>
+                            <ScoreDistribution value="virginica" recordCount="48.0"/>
+                            <Node score="versicolor" recordCount="53.0">
+<SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.7"/>
+<ScoreDistribution value="versicolor" recordCount="45.0"/>
+<ScoreDistribution value="virginica" recordCount="8.0"/>
+<Node score="versicolor" recordCount="48.0">
+    <SimplePredicate field="PetalLength" operator="lessOrEqual" value="5"/>
+    <ScoreDistribution value="versicolor" recordCount="44.0"/>
+    <ScoreDistribution value="virginica" recordCount="4.0"/>
+    <Node score="versicolor" recordCount="19.0">
+        <SimplePredicate field="SepalWidth" operator="lessOrEqual" value="2.5"/>
+        <ScoreDistribution value="versicolor" recordCount="15.0"/>
+        <ScoreDistribution value="virginica" recordCount="4.0"/>
+        <Node score="versicolor" recordCount="11.0">
+            <SimplePredicate field="PetalLength" operator="lessOrEqual" value="4.4"/>
+            <ScoreDistribution value="versicolor" recordCount="11.0"/>
+        </Node>
+        <Node score="versicolor" recordCount="8.0">
+            <SimplePredicate field="PetalLength" operator="greaterThan" value="4.4"/>
+            <ScoreDistribution value="versicolor" recordCount="4.0"/>
+            <ScoreDistribution value="virginica" recordCount="4.0"/>
+        </Node>
+    </Node>
+    <Node score="versicolor" recordCount="29.0">
+        <SimplePredicate field="SepalWidth" operator="greaterThan" value="2.5"/>
+        <ScoreDistribution value="versicolor" recordCount="29.0"/>
+    </Node>
+</Node>
+<Node score="virginica" recordCount="5.0">
+    <SimplePredicate field="PetalLength" operator="greaterThan" value="5"/>
+    <ScoreDistribution value="versicolor" recordCount="1.0"/>
+    <ScoreDistribution value="virginica" recordCount="4.0"/>
+    <Node score="versicolor" recordCount="2.0">
+        <SimplePredicate field="PetalLength" operator="lessOrEqual" value="5.1"/>
+        <ScoreDistribution value="versicolor" recordCount="1.0"/>
+        <ScoreDistribution value="virginica" recordCount="1.0"/>
+        <Node score="versicolor" recordCount="1.0">
+            <SimplePredicate field="SepalLength" operator="lessOrEqual" value="6"/>
+            <ScoreDistribution value="versicolor" recordCount="1.0"/>
+        </Node>
+        <Node score="virginica" recordCount="1.0">
+            <SimplePredicate field="SepalLength" operator="greaterThan" value="6"/>
+            <ScoreDistribution value="virginica" recordCount="1.0"/>
+        </Node>
+    </Node>
+    <Node score="virginica" recordCount="3.0">
+        <SimplePredicate field="PetalLength" operator="greaterThan" value="5.1"/>
+        <ScoreDistribution value="virginica" recordCount="3.0"/>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="virginica" recordCount="43.0">
+<SimplePredicate field="PetalWidth" operator="greaterThan" value="1.7"/>
+<ScoreDistribution value="versicolor" recordCount="3.0"/>
+<ScoreDistribution value="virginica" recordCount="40.0"/>
+<Node score="virginica" recordCount="29.0">
+    <SimplePredicate field="SepalWidth" operator="lessOrEqual" value="3.1"/>
+    <ScoreDistribution value="virginica" recordCount="29.0"/>
+</Node>
+<Node score="virginica" recordCount="14.0">
+    <SimplePredicate field="SepalWidth" operator="greaterThan" value="3.1"/>
+    <ScoreDistribution value="versicolor" recordCount="3.0"/>
+    <ScoreDistribution value="virginica" recordCount="11.0"/>
+    <Node score="versicolor" recordCount="3.0">
+        <SimplePredicate field="SepalLength" operator="lessOrEqual" value="5.9"/>
+        <ScoreDistribution value="versicolor" recordCount="3.0"/>
+    </Node>
+    <Node score="virginica" recordCount="11.0">
+        <SimplePredicate field="SepalLength" operator="greaterThan" value="5.9"/>
+        <ScoreDistribution value="virginica" recordCount="11.0"/>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="10">
+                <True/>
+                <TreeModel functionName="classification" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="SepalLength"/>
+                        <MiningField name="SepalWidth"/>
+                        <MiningField name="PetalLength"/>
+                        <MiningField name="PetalWidth"/>
+                    </MiningSchema>
+                    <Node score="setosa" recordCount="149.0">
+                        <True/>
+                        <ScoreDistribution value="versicolor" recordCount="46.0"/>
+                        <ScoreDistribution value="virginica" recordCount="44.0"/>
+                        <ScoreDistribution value="setosa" recordCount="59.0"/>
+                        <Node score="setosa" recordCount="59.0">
+                            <SimplePredicate field="PetalLength" operator="lessOrEqual" value="1.9"/>
+                            <ScoreDistribution value="setosa" recordCount="59.0"/>
+                        </Node>
+                        <Node score="versicolor" recordCount="90.0">
+                            <SimplePredicate field="PetalLength" operator="greaterThan" value="1.9"/>
+                            <ScoreDistribution value="versicolor" recordCount="46.0"/>
+                            <ScoreDistribution value="virginica" recordCount="44.0"/>
+                            <Node score="versicolor" recordCount="44.0">
+<SimplePredicate field="PetalLength" operator="lessOrEqual" value="4.7"/>
+<ScoreDistribution value="versicolor" recordCount="43.0"/>
+<ScoreDistribution value="virginica" recordCount="1.0"/>
+<Node score="versicolor" recordCount="2.0">
+    <SimplePredicate field="SepalLength" operator="lessOrEqual" value="4.9"/>
+    <ScoreDistribution value="versicolor" recordCount="1.0"/>
+    <ScoreDistribution value="virginica" recordCount="1.0"/>
+    <Node score="versicolor" recordCount="1.0">
+        <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1"/>
+        <ScoreDistribution value="versicolor" recordCount="1.0"/>
+    </Node>
+    <Node score="virginica" recordCount="1.0">
+        <SimplePredicate field="PetalWidth" operator="greaterThan" value="1"/>
+        <ScoreDistribution value="virginica" recordCount="1.0"/>
+    </Node>
+</Node>
+<Node score="versicolor" recordCount="42.0">
+    <SimplePredicate field="SepalLength" operator="greaterThan" value="4.9"/>
+    <ScoreDistribution value="versicolor" recordCount="42.0"/>
+</Node>
+                            </Node>
+                            <Node score="virginica" recordCount="46.0">
+<SimplePredicate field="PetalLength" operator="greaterThan" value="4.7"/>
+<ScoreDistribution value="versicolor" recordCount="3.0"/>
+<ScoreDistribution value="virginica" recordCount="43.0"/>
+<Node score="virginica" recordCount="7.0">
+    <SimplePredicate field="PetalLength" operator="lessOrEqual" value="5"/>
+    <ScoreDistribution value="versicolor" recordCount="3.0"/>
+    <ScoreDistribution value="virginica" recordCount="4.0"/>
+    <Node score="versicolor" recordCount="4.0">
+        <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.7"/>
+        <ScoreDistribution value="versicolor" recordCount="3.0"/>
+        <ScoreDistribution value="virginica" recordCount="1.0"/>
+        <Node score="virginica" recordCount="1.0">
+            <SimplePredicate field="SepalWidth" operator="lessOrEqual" value="2.2"/>
+            <ScoreDistribution value="virginica" recordCount="1.0"/>
+        </Node>
+        <Node score="versicolor" recordCount="3.0">
+            <SimplePredicate field="SepalWidth" operator="greaterThan" value="2.2"/>
+            <ScoreDistribution value="versicolor" recordCount="3.0"/>
+        </Node>
+    </Node>
+    <Node score="virginica" recordCount="3.0">
+        <SimplePredicate field="PetalWidth" operator="greaterThan" value="1.7"/>
+        <ScoreDistribution value="virginica" recordCount="3.0"/>
+    </Node>
+</Node>
+<Node score="virginica" recordCount="39.0">
+    <SimplePredicate field="PetalLength" operator="greaterThan" value="5"/>
+    <ScoreDistribution value="virginica" recordCount="39.0"/>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="11">
+                <True/>
+                <TreeModel functionName="classification" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="SepalLength"/>
+                        <MiningField name="SepalWidth"/>
+                        <MiningField name="PetalLength"/>
+                        <MiningField name="PetalWidth"/>
+                    </MiningSchema>
+                    <Node score="virginica" recordCount="152.0">
+                        <True/>
+                        <ScoreDistribution value="versicolor" recordCount="46.0"/>
+                        <ScoreDistribution value="virginica" recordCount="60.0"/>
+                        <ScoreDistribution value="setosa" recordCount="46.0"/>
+                        <Node score="setosa" recordCount="46.0">
+                            <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="0.4"/>
+                            <ScoreDistribution value="setosa" recordCount="46.0"/>
+                        </Node>
+                        <Node score="virginica" recordCount="106.0">
+                            <SimplePredicate field="PetalWidth" operator="greaterThan" value="0.4"/>
+                            <ScoreDistribution value="versicolor" recordCount="46.0"/>
+                            <ScoreDistribution value="virginica" recordCount="60.0"/>
+                            <Node score="versicolor" recordCount="43.0">
+<SimplePredicate field="PetalLength" operator="lessOrEqual" value="4.7"/>
+<ScoreDistribution value="versicolor" recordCount="42.0"/>
+<ScoreDistribution value="virginica" recordCount="1.0"/>
+<Node score="versicolor" recordCount="42.0">
+    <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.6"/>
+    <ScoreDistribution value="versicolor" recordCount="42.0"/>
+</Node>
+<Node score="virginica" recordCount="1.0">
+    <SimplePredicate field="PetalWidth" operator="greaterThan" value="1.6"/>
+    <ScoreDistribution value="virginica" recordCount="1.0"/>
+</Node>
+                            </Node>
+                            <Node score="virginica" recordCount="63.0">
+<SimplePredicate field="PetalLength" operator="greaterThan" value="4.7"/>
+<ScoreDistribution value="versicolor" recordCount="4.0"/>
+<ScoreDistribution value="virginica" recordCount="59.0"/>
+<Node score="virginica" recordCount="10.0">
+    <SimplePredicate field="SepalLength" operator="lessOrEqual" value="6"/>
+    <ScoreDistribution value="versicolor" recordCount="2.0"/>
+    <ScoreDistribution value="virginica" recordCount="8.0"/>
+    <Node score="virginica" recordCount="9.0">
+        <SimplePredicate field="SepalWidth" operator="lessOrEqual" value="3"/>
+        <ScoreDistribution value="versicolor" recordCount="1.0"/>
+        <ScoreDistribution value="virginica" recordCount="8.0"/>
+        <Node score="virginica" recordCount="6.0">
+            <SimplePredicate field="PetalLength" operator="lessOrEqual" value="5"/>
+            <ScoreDistribution value="virginica" recordCount="6.0"/>
+        </Node>
+        <Node score="virginica" recordCount="3.0">
+            <SimplePredicate field="PetalLength" operator="greaterThan" value="5"/>
+            <ScoreDistribution value="versicolor" recordCount="1.0"/>
+            <ScoreDistribution value="virginica" recordCount="2.0"/>
+        </Node>
+    </Node>
+    <Node score="versicolor" recordCount="1.0">
+        <SimplePredicate field="SepalWidth" operator="greaterThan" value="3"/>
+        <ScoreDistribution value="versicolor" recordCount="1.0"/>
+    </Node>
+</Node>
+<Node score="virginica" recordCount="53.0">
+    <SimplePredicate field="SepalLength" operator="greaterThan" value="6"/>
+    <ScoreDistribution value="versicolor" recordCount="2.0"/>
+    <ScoreDistribution value="virginica" recordCount="51.0"/>
+    <Node score="virginica" recordCount="34.0">
+        <SimplePredicate field="SepalLength" operator="lessOrEqual" value="6.8"/>
+        <ScoreDistribution value="virginica" recordCount="34.0"/>
+    </Node>
+    <Node score="virginica" recordCount="19.0">
+        <SimplePredicate field="SepalLength" operator="greaterThan" value="6.8"/>
+        <ScoreDistribution value="versicolor" recordCount="2.0"/>
+        <ScoreDistribution value="virginica" recordCount="17.0"/>
+        <Node score="versicolor" recordCount="2.0">
+            <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.5"/>
+            <ScoreDistribution value="versicolor" recordCount="2.0"/>
+        </Node>
+        <Node score="virginica" recordCount="17.0">
+            <SimplePredicate field="PetalWidth" operator="greaterThan" value="1.5"/>
+            <ScoreDistribution value="virginica" recordCount="17.0"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="12">
+                <True/>
+                <TreeModel functionName="classification" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="SepalLength"/>
+                        <MiningField name="SepalWidth"/>
+                        <MiningField name="PetalLength"/>
+                        <MiningField name="PetalWidth"/>
+                    </MiningSchema>
+                    <Node score="virginica" recordCount="144.0">
+                        <True/>
+                        <ScoreDistribution value="versicolor" recordCount="38.0"/>
+                        <ScoreDistribution value="virginica" recordCount="60.0"/>
+                        <ScoreDistribution value="setosa" recordCount="46.0"/>
+                        <Node score="setosa" recordCount="83.0">
+                            <SimplePredicate field="PetalLength" operator="lessOrEqual" value="4.7"/>
+                            <ScoreDistribution value="versicolor" recordCount="36.0"/>
+                            <ScoreDistribution value="virginica" recordCount="1.0"/>
+                            <ScoreDistribution value="setosa" recordCount="46.0"/>
+                            <Node score="setosa" recordCount="46.0">
+<SimplePredicate field="PetalLength" operator="lessOrEqual" value="1.9"/>
+<ScoreDistribution value="setosa" recordCount="46.0"/>
+                            </Node>
+                            <Node score="versicolor" recordCount="37.0">
+<SimplePredicate field="PetalLength" operator="greaterThan" value="1.9"/>
+<ScoreDistribution value="versicolor" recordCount="36.0"/>
+<ScoreDistribution value="virginica" recordCount="1.0"/>
+<Node score="versicolor" recordCount="36.0">
+    <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.6"/>
+    <ScoreDistribution value="versicolor" recordCount="36.0"/>
+</Node>
+<Node score="virginica" recordCount="1.0">
+    <SimplePredicate field="PetalWidth" operator="greaterThan" value="1.6"/>
+    <ScoreDistribution value="virginica" recordCount="1.0"/>
+</Node>
+                            </Node>
+                        </Node>
+                        <Node score="virginica" recordCount="61.0">
+                            <SimplePredicate field="PetalLength" operator="greaterThan" value="4.7"/>
+                            <ScoreDistribution value="versicolor" recordCount="2.0"/>
+                            <ScoreDistribution value="virginica" recordCount="59.0"/>
+                            <Node score="virginica" recordCount="18.0">
+<SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.8"/>
+<ScoreDistribution value="versicolor" recordCount="2.0"/>
+<ScoreDistribution value="virginica" recordCount="16.0"/>
+<Node score="virginica" recordCount="3.0">
+    <SimplePredicate field="PetalLength" operator="lessOrEqual" value="4.8"/>
+    <ScoreDistribution value="versicolor" recordCount="1.0"/>
+    <ScoreDistribution value="virginica" recordCount="2.0"/>
+    <Node score="versicolor" recordCount="1.0">
+        <SimplePredicate field="SepalLength" operator="lessOrEqual" value="5.9"/>
+        <ScoreDistribution value="versicolor" recordCount="1.0"/>
+    </Node>
+    <Node score="virginica" recordCount="2.0">
+        <SimplePredicate field="SepalLength" operator="greaterThan" value="5.9"/>
+        <ScoreDistribution value="virginica" recordCount="2.0"/>
+    </Node>
+</Node>
+<Node score="virginica" recordCount="15.0">
+    <SimplePredicate field="PetalLength" operator="greaterThan" value="4.8"/>
+    <ScoreDistribution value="versicolor" recordCount="1.0"/>
+    <ScoreDistribution value="virginica" recordCount="14.0"/>
+    <Node score="virginica" recordCount="6.0">
+        <SimplePredicate field="SepalWidth" operator="lessOrEqual" value="2.7"/>
+        <ScoreDistribution value="versicolor" recordCount="1.0"/>
+        <ScoreDistribution value="virginica" recordCount="5.0"/>
+        <Node score="virginica" recordCount="4.0">
+            <SimplePredicate field="SepalWidth" operator="lessOrEqual" value="2.6"/>
+            <ScoreDistribution value="virginica" recordCount="4.0"/>
+        </Node>
+        <Node score="versicolor" recordCount="2.0">
+            <SimplePredicate field="SepalWidth" operator="greaterThan" value="2.6"/>
+            <ScoreDistribution value="versicolor" recordCount="1.0"/>
+            <ScoreDistribution value="virginica" recordCount="1.0"/>
+        </Node>
+    </Node>
+    <Node score="virginica" recordCount="9.0">
+        <SimplePredicate field="SepalWidth" operator="greaterThan" value="2.7"/>
+        <ScoreDistribution value="virginica" recordCount="9.0"/>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="virginica" recordCount="43.0">
+<SimplePredicate field="PetalWidth" operator="greaterThan" value="1.8"/>
+<ScoreDistribution value="virginica" recordCount="43.0"/>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="13">
+                <True/>
+                <TreeModel functionName="classification" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="SepalLength"/>
+                        <MiningField name="SepalWidth"/>
+                        <MiningField name="PetalLength"/>
+                        <MiningField name="PetalWidth"/>
+                    </MiningSchema>
+                    <Node score="versicolor" recordCount="159.0">
+                        <True/>
+                        <ScoreDistribution value="versicolor" recordCount="58.0"/>
+                        <ScoreDistribution value="virginica" recordCount="46.0"/>
+                        <ScoreDistribution value="setosa" recordCount="55.0"/>
+                        <Node score="setosa" recordCount="55.0">
+                            <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="0.5"/>
+                            <ScoreDistribution value="setosa" recordCount="55.0"/>
+                        </Node>
+                        <Node score="versicolor" recordCount="104.0">
+                            <SimplePredicate field="PetalWidth" operator="greaterThan" value="0.5"/>
+                            <ScoreDistribution value="versicolor" recordCount="58.0"/>
+                            <ScoreDistribution value="virginica" recordCount="46.0"/>
+                            <Node score="versicolor" recordCount="59.0">
+<SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.7"/>
+<ScoreDistribution value="versicolor" recordCount="56.0"/>
+<ScoreDistribution value="virginica" recordCount="3.0"/>
+<Node score="versicolor" recordCount="58.0">
+    <SimplePredicate field="SepalLength" operator="lessOrEqual" value="7"/>
+    <ScoreDistribution value="versicolor" recordCount="56.0"/>
+    <ScoreDistribution value="virginica" recordCount="2.0"/>
+    <Node score="versicolor" recordCount="57.0">
+        <SimplePredicate field="PetalLength" operator="lessOrEqual" value="5.1"/>
+        <ScoreDistribution value="versicolor" recordCount="56.0"/>
+        <ScoreDistribution value="virginica" recordCount="1.0"/>
+        <Node score="versicolor" recordCount="54.0">
+            <SimplePredicate field="PetalLength" operator="lessOrEqual" value="4.9"/>
+            <ScoreDistribution value="versicolor" recordCount="54.0"/>
+        </Node>
+        <Node score="versicolor" recordCount="3.0">
+            <SimplePredicate field="PetalLength" operator="greaterThan" value="4.9"/>
+            <ScoreDistribution value="versicolor" recordCount="2.0"/>
+            <ScoreDistribution value="virginica" recordCount="1.0"/>
+        </Node>
+    </Node>
+    <Node score="virginica" recordCount="1.0">
+        <SimplePredicate field="PetalLength" operator="greaterThan" value="5.1"/>
+        <ScoreDistribution value="virginica" recordCount="1.0"/>
+    </Node>
+</Node>
+<Node score="virginica" recordCount="1.0">
+    <SimplePredicate field="SepalLength" operator="greaterThan" value="7"/>
+    <ScoreDistribution value="virginica" recordCount="1.0"/>
+</Node>
+                            </Node>
+                            <Node score="virginica" recordCount="45.0">
+<SimplePredicate field="PetalWidth" operator="greaterThan" value="1.7"/>
+<ScoreDistribution value="versicolor" recordCount="2.0"/>
+<ScoreDistribution value="virginica" recordCount="43.0"/>
+<Node score="virginica" recordCount="33.0">
+    <SimplePredicate field="SepalWidth" operator="lessOrEqual" value="3.1"/>
+    <ScoreDistribution value="virginica" recordCount="33.0"/>
+</Node>
+<Node score="virginica" recordCount="12.0">
+    <SimplePredicate field="SepalWidth" operator="greaterThan" value="3.1"/>
+    <ScoreDistribution value="versicolor" recordCount="2.0"/>
+    <ScoreDistribution value="virginica" recordCount="10.0"/>
+    <Node score="versicolor" recordCount="2.0">
+        <SimplePredicate field="PetalLength" operator="lessOrEqual" value="4.8"/>
+        <ScoreDistribution value="versicolor" recordCount="2.0"/>
+    </Node>
+    <Node score="virginica" recordCount="10.0">
+        <SimplePredicate field="PetalLength" operator="greaterThan" value="4.8"/>
+        <ScoreDistribution value="virginica" recordCount="10.0"/>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="14">
+                <True/>
+                <TreeModel functionName="classification" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="SepalLength"/>
+                        <MiningField name="PetalLength"/>
+                        <MiningField name="PetalWidth"/>
+                    </MiningSchema>
+                    <Node score="setosa" recordCount="132.0">
+                        <True/>
+                        <ScoreDistribution value="versicolor" recordCount="39.0"/>
+                        <ScoreDistribution value="virginica" recordCount="45.0"/>
+                        <ScoreDistribution value="setosa" recordCount="48.0"/>
+                        <Node score="setosa" recordCount="48.0">
+                            <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="0.6"/>
+                            <ScoreDistribution value="setosa" recordCount="48.0"/>
+                        </Node>
+                        <Node score="virginica" recordCount="84.0">
+                            <SimplePredicate field="PetalWidth" operator="greaterThan" value="0.6"/>
+                            <ScoreDistribution value="versicolor" recordCount="39.0"/>
+                            <ScoreDistribution value="virginica" recordCount="45.0"/>
+                            <Node score="versicolor" recordCount="41.0">
+<SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.7"/>
+<ScoreDistribution value="versicolor" recordCount="38.0"/>
+<ScoreDistribution value="virginica" recordCount="3.0"/>
+<Node score="versicolor" recordCount="39.0">
+    <SimplePredicate field="PetalLength" operator="lessOrEqual" value="5"/>
+    <ScoreDistribution value="versicolor" recordCount="38.0"/>
+    <ScoreDistribution value="virginica" recordCount="1.0"/>
+    <Node score="versicolor" recordCount="37.0">
+        <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.5"/>
+        <ScoreDistribution value="versicolor" recordCount="37.0"/>
+    </Node>
+    <Node score="versicolor" recordCount="2.0">
+        <SimplePredicate field="PetalWidth" operator="greaterThan" value="1.5"/>
+        <ScoreDistribution value="versicolor" recordCount="1.0"/>
+        <ScoreDistribution value="virginica" recordCount="1.0"/>
+        <Node score="virginica" recordCount="1.0">
+            <SimplePredicate field="SepalLength" operator="lessOrEqual" value="4.9"/>
+            <ScoreDistribution value="virginica" recordCount="1.0"/>
+        </Node>
+        <Node score="versicolor" recordCount="1.0">
+            <SimplePredicate field="SepalLength" operator="greaterThan" value="4.9"/>
+            <ScoreDistribution value="versicolor" recordCount="1.0"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="virginica" recordCount="2.0">
+    <SimplePredicate field="PetalLength" operator="greaterThan" value="5"/>
+    <ScoreDistribution value="virginica" recordCount="2.0"/>
+</Node>
+                            </Node>
+                            <Node score="virginica" recordCount="43.0">
+<SimplePredicate field="PetalWidth" operator="greaterThan" value="1.7"/>
+<ScoreDistribution value="versicolor" recordCount="1.0"/>
+<ScoreDistribution value="virginica" recordCount="42.0"/>
+<Node score="virginica" recordCount="5.0">
+    <SimplePredicate field="SepalLength" operator="lessOrEqual" value="5.9"/>
+    <ScoreDistribution value="versicolor" recordCount="1.0"/>
+    <ScoreDistribution value="virginica" recordCount="4.0"/>
+    <Node score="versicolor" recordCount="1.0">
+        <SimplePredicate field="PetalLength" operator="lessOrEqual" value="4.8"/>
+        <ScoreDistribution value="versicolor" recordCount="1.0"/>
+    </Node>
+    <Node score="virginica" recordCount="4.0">
+        <SimplePredicate field="PetalLength" operator="greaterThan" value="4.8"/>
+        <ScoreDistribution value="virginica" recordCount="4.0"/>
+    </Node>
+</Node>
+<Node score="virginica" recordCount="38.0">
+    <SimplePredicate field="SepalLength" operator="greaterThan" value="5.9"/>
+    <ScoreDistribution value="virginica" recordCount="38.0"/>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="15">
+                <True/>
+                <TreeModel functionName="classification" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="SepalLength"/>
+                        <MiningField name="SepalWidth"/>
+                        <MiningField name="PetalLength"/>
+                        <MiningField name="PetalWidth"/>
+                    </MiningSchema>
+                    <Node score="setosa" recordCount="181.0">
+                        <True/>
+                        <ScoreDistribution value="versicolor" recordCount="59.0"/>
+                        <ScoreDistribution value="virginica" recordCount="60.0"/>
+                        <ScoreDistribution value="setosa" recordCount="62.0"/>
+                        <Node score="setosa" recordCount="62.0">
+                            <SimplePredicate field="PetalLength" operator="lessOrEqual" value="1.9"/>
+                            <ScoreDistribution value="setosa" recordCount="62.0"/>
+                        </Node>
+                        <Node score="virginica" recordCount="119.0">
+                            <SimplePredicate field="PetalLength" operator="greaterThan" value="1.9"/>
+                            <ScoreDistribution value="versicolor" recordCount="59.0"/>
+                            <ScoreDistribution value="virginica" recordCount="60.0"/>
+                            <Node score="versicolor" recordCount="57.0">
+<SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.5"/>
+<ScoreDistribution value="versicolor" recordCount="57.0"/>
+                            </Node>
+                            <Node score="virginica" recordCount="62.0">
+<SimplePredicate field="PetalWidth" operator="greaterThan" value="1.5"/>
+<ScoreDistribution value="versicolor" recordCount="2.0"/>
+<ScoreDistribution value="virginica" recordCount="60.0"/>
+<Node score="virginica" recordCount="4.0">
+    <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.7"/>
+    <ScoreDistribution value="versicolor" recordCount="1.0"/>
+    <ScoreDistribution value="virginica" recordCount="3.0"/>
+    <Node score="versicolor" recordCount="2.0">
+        <SimplePredicate field="SepalLength" operator="lessOrEqual" value="6.7"/>
+        <ScoreDistribution value="versicolor" recordCount="1.0"/>
+        <ScoreDistribution value="virginica" recordCount="1.0"/>
+        <Node score="virginica" recordCount="1.0">
+            <SimplePredicate field="SepalLength" operator="lessOrEqual" value="4.9"/>
+            <ScoreDistribution value="virginica" recordCount="1.0"/>
+        </Node>
+        <Node score="versicolor" recordCount="1.0">
+            <SimplePredicate field="SepalLength" operator="greaterThan" value="4.9"/>
+            <ScoreDistribution value="versicolor" recordCount="1.0"/>
+        </Node>
+    </Node>
+    <Node score="virginica" recordCount="2.0">
+        <SimplePredicate field="SepalLength" operator="greaterThan" value="6.7"/>
+        <ScoreDistribution value="virginica" recordCount="2.0"/>
+    </Node>
+</Node>
+<Node score="virginica" recordCount="58.0">
+    <SimplePredicate field="PetalWidth" operator="greaterThan" value="1.7"/>
+    <ScoreDistribution value="versicolor" recordCount="1.0"/>
+    <ScoreDistribution value="virginica" recordCount="57.0"/>
+    <Node score="virginica" recordCount="13.0">
+        <SimplePredicate field="SepalLength" operator="lessOrEqual" value="5.9"/>
+        <ScoreDistribution value="versicolor" recordCount="1.0"/>
+        <ScoreDistribution value="virginica" recordCount="12.0"/>
+        <Node score="virginica" recordCount="12.0">
+            <SimplePredicate field="SepalWidth" operator="lessOrEqual" value="3"/>
+            <ScoreDistribution value="virginica" recordCount="12.0"/>
+        </Node>
+        <Node score="versicolor" recordCount="1.0">
+            <SimplePredicate field="SepalWidth" operator="greaterThan" value="3"/>
+            <ScoreDistribution value="versicolor" recordCount="1.0"/>
+        </Node>
+    </Node>
+    <Node score="virginica" recordCount="45.0">
+        <SimplePredicate field="SepalLength" operator="greaterThan" value="5.9"/>
+        <ScoreDistribution value="virginica" recordCount="45.0"/>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="16">
+                <True/>
+                <TreeModel functionName="classification" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="SepalLength"/>
+                        <MiningField name="PetalLength"/>
+                        <MiningField name="PetalWidth"/>
+                    </MiningSchema>
+                    <Node score="versicolor" recordCount="155.0">
+                        <True/>
+                        <ScoreDistribution value="versicolor" recordCount="57.0"/>
+                        <ScoreDistribution value="virginica" recordCount="50.0"/>
+                        <ScoreDistribution value="setosa" recordCount="48.0"/>
+                        <Node score="setosa" recordCount="48.0">
+                            <SimplePredicate field="PetalLength" operator="lessOrEqual" value="1.9"/>
+                            <ScoreDistribution value="setosa" recordCount="48.0"/>
+                        </Node>
+                        <Node score="versicolor" recordCount="107.0">
+                            <SimplePredicate field="PetalLength" operator="greaterThan" value="1.9"/>
+                            <ScoreDistribution value="versicolor" recordCount="57.0"/>
+                            <ScoreDistribution value="virginica" recordCount="50.0"/>
+                            <Node score="versicolor" recordCount="62.0">
+<SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.6"/>
+<ScoreDistribution value="versicolor" recordCount="55.0"/>
+<ScoreDistribution value="virginica" recordCount="7.0"/>
+<Node score="versicolor" recordCount="60.0">
+    <SimplePredicate field="SepalLength" operator="lessOrEqual" value="6.9"/>
+    <ScoreDistribution value="versicolor" recordCount="55.0"/>
+    <ScoreDistribution value="virginica" recordCount="5.0"/>
+    <Node score="versicolor" recordCount="53.0">
+        <SimplePredicate field="PetalLength" operator="lessOrEqual" value="4.9"/>
+        <ScoreDistribution value="versicolor" recordCount="53.0"/>
+    </Node>
+    <Node score="virginica" recordCount="7.0">
+        <SimplePredicate field="PetalLength" operator="greaterThan" value="4.9"/>
+        <ScoreDistribution value="versicolor" recordCount="2.0"/>
+        <ScoreDistribution value="virginica" recordCount="5.0"/>
+        <Node score="virginica" recordCount="3.0">
+            <SimplePredicate field="PetalLength" operator="lessOrEqual" value="5"/>
+            <ScoreDistribution value="virginica" recordCount="3.0"/>
+        </Node>
+        <Node score="versicolor" recordCount="4.0">
+            <SimplePredicate field="PetalLength" operator="greaterThan" value="5"/>
+            <ScoreDistribution value="versicolor" recordCount="2.0"/>
+            <ScoreDistribution value="virginica" recordCount="2.0"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="virginica" recordCount="2.0">
+    <SimplePredicate field="SepalLength" operator="greaterThan" value="6.9"/>
+    <ScoreDistribution value="virginica" recordCount="2.0"/>
+</Node>
+                            </Node>
+                            <Node score="virginica" recordCount="45.0">
+<SimplePredicate field="PetalWidth" operator="greaterThan" value="1.6"/>
+<ScoreDistribution value="versicolor" recordCount="2.0"/>
+<ScoreDistribution value="virginica" recordCount="43.0"/>
+<Node score="versicolor" recordCount="3.0">
+    <SimplePredicate field="PetalLength" operator="lessOrEqual" value="4.8"/>
+    <ScoreDistribution value="versicolor" recordCount="2.0"/>
+    <ScoreDistribution value="virginica" recordCount="1.0"/>
+    <Node score="versicolor" recordCount="2.0">
+        <SimplePredicate field="SepalLength" operator="lessOrEqual" value="5.9"/>
+        <ScoreDistribution value="versicolor" recordCount="2.0"/>
+    </Node>
+    <Node score="virginica" recordCount="1.0">
+        <SimplePredicate field="SepalLength" operator="greaterThan" value="5.9"/>
+        <ScoreDistribution value="virginica" recordCount="1.0"/>
+    </Node>
+</Node>
+<Node score="virginica" recordCount="42.0">
+    <SimplePredicate field="PetalLength" operator="greaterThan" value="4.8"/>
+    <ScoreDistribution value="virginica" recordCount="42.0"/>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="17">
+                <True/>
+                <TreeModel functionName="classification" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="SepalLength"/>
+                        <MiningField name="SepalWidth"/>
+                        <MiningField name="PetalLength"/>
+                        <MiningField name="PetalWidth"/>
+                    </MiningSchema>
+                    <Node score="virginica" recordCount="149.0">
+                        <True/>
+                        <ScoreDistribution value="versicolor" recordCount="45.0"/>
+                        <ScoreDistribution value="virginica" recordCount="52.0"/>
+                        <ScoreDistribution value="setosa" recordCount="52.0"/>
+                        <Node score="setosa" recordCount="52.0">
+                            <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="0.6"/>
+                            <ScoreDistribution value="setosa" recordCount="52.0"/>
+                        </Node>
+                        <Node score="virginica" recordCount="97.0">
+                            <SimplePredicate field="PetalWidth" operator="greaterThan" value="0.6"/>
+                            <ScoreDistribution value="versicolor" recordCount="45.0"/>
+                            <ScoreDistribution value="virginica" recordCount="52.0"/>
+                            <Node score="versicolor" recordCount="44.0">
+<SimplePredicate field="SepalLength" operator="lessOrEqual" value="6"/>
+<ScoreDistribution value="versicolor" recordCount="30.0"/>
+<ScoreDistribution value="virginica" recordCount="14.0"/>
+<Node score="versicolor" recordCount="30.0">
+    <SimplePredicate field="PetalLength" operator="lessOrEqual" value="4.5"/>
+    <ScoreDistribution value="versicolor" recordCount="27.0"/>
+    <ScoreDistribution value="virginica" recordCount="3.0"/>
+    <Node score="versicolor" recordCount="27.0">
+        <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.6"/>
+        <ScoreDistribution value="versicolor" recordCount="27.0"/>
+    </Node>
+    <Node score="virginica" recordCount="3.0">
+        <SimplePredicate field="PetalWidth" operator="greaterThan" value="1.6"/>
+        <ScoreDistribution value="virginica" recordCount="3.0"/>
+    </Node>
+</Node>
+<Node score="virginica" recordCount="14.0">
+    <SimplePredicate field="PetalLength" operator="greaterThan" value="4.5"/>
+    <ScoreDistribution value="versicolor" recordCount="3.0"/>
+    <ScoreDistribution value="virginica" recordCount="11.0"/>
+    <Node score="virginica" recordCount="8.0">
+        <SimplePredicate field="SepalLength" operator="lessOrEqual" value="5.8"/>
+        <ScoreDistribution value="virginica" recordCount="8.0"/>
+    </Node>
+    <Node score="versicolor" recordCount="6.0">
+        <SimplePredicate field="SepalLength" operator="greaterThan" value="5.8"/>
+        <ScoreDistribution value="versicolor" recordCount="3.0"/>
+        <ScoreDistribution value="virginica" recordCount="3.0"/>
+        <Node score="versicolor" recordCount="2.0">
+            <SimplePredicate field="SepalWidth" operator="lessOrEqual" value="2.7"/>
+            <ScoreDistribution value="versicolor" recordCount="2.0"/>
+        </Node>
+        <Node score="virginica" recordCount="4.0">
+            <SimplePredicate field="SepalWidth" operator="greaterThan" value="2.7"/>
+            <ScoreDistribution value="versicolor" recordCount="1.0"/>
+            <ScoreDistribution value="virginica" recordCount="3.0"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="virginica" recordCount="53.0">
+<SimplePredicate field="SepalLength" operator="greaterThan" value="6"/>
+<ScoreDistribution value="versicolor" recordCount="15.0"/>
+<ScoreDistribution value="virginica" recordCount="38.0"/>
+<Node score="versicolor" recordCount="20.0">
+    <SimplePredicate field="PetalLength" operator="lessOrEqual" value="4.9"/>
+    <ScoreDistribution value="versicolor" recordCount="15.0"/>
+    <ScoreDistribution value="virginica" recordCount="5.0"/>
+    <Node score="versicolor" recordCount="11.0">
+        <SimplePredicate field="SepalLength" operator="lessOrEqual" value="6.3"/>
+        <ScoreDistribution value="versicolor" recordCount="6.0"/>
+        <ScoreDistribution value="virginica" recordCount="5.0"/>
+        <Node score="versicolor" recordCount="6.0">
+            <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.6"/>
+            <ScoreDistribution value="versicolor" recordCount="6.0"/>
+        </Node>
+        <Node score="virginica" recordCount="5.0">
+            <SimplePredicate field="PetalWidth" operator="greaterThan" value="1.6"/>
+            <ScoreDistribution value="virginica" recordCount="5.0"/>
+        </Node>
+    </Node>
+    <Node score="versicolor" recordCount="9.0">
+        <SimplePredicate field="SepalLength" operator="greaterThan" value="6.3"/>
+        <ScoreDistribution value="versicolor" recordCount="9.0"/>
+    </Node>
+</Node>
+<Node score="virginica" recordCount="33.0">
+    <SimplePredicate field="PetalLength" operator="greaterThan" value="4.9"/>
+    <ScoreDistribution value="virginica" recordCount="33.0"/>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="18">
+                <True/>
+                <TreeModel functionName="classification" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="SepalLength"/>
+                        <MiningField name="SepalWidth"/>
+                        <MiningField name="PetalLength"/>
+                        <MiningField name="PetalWidth"/>
+                    </MiningSchema>
+                    <Node score="virginica" recordCount="163.0">
+                        <True/>
+                        <ScoreDistribution value="versicolor" recordCount="52.0"/>
+                        <ScoreDistribution value="virginica" recordCount="65.0"/>
+                        <ScoreDistribution value="setosa" recordCount="46.0"/>
+                        <Node score="setosa" recordCount="47.0">
+                            <SimplePredicate field="SepalLength" operator="lessOrEqual" value="5.4"/>
+                            <ScoreDistribution value="versicolor" recordCount="7.0"/>
+                            <ScoreDistribution value="setosa" recordCount="40.0"/>
+                            <Node score="setosa" recordCount="40.0">
+<SimplePredicate field="PetalLength" operator="lessOrEqual" value="1.9"/>
+<ScoreDistribution value="setosa" recordCount="40.0"/>
+                            </Node>
+                            <Node score="versicolor" recordCount="7.0">
+<SimplePredicate field="PetalLength" operator="greaterThan" value="1.9"/>
+<ScoreDistribution value="versicolor" recordCount="7.0"/>
+                            </Node>
+                        </Node>
+                        <Node score="virginica" recordCount="116.0">
+                            <SimplePredicate field="SepalLength" operator="greaterThan" value="5.4"/>
+                            <ScoreDistribution value="versicolor" recordCount="45.0"/>
+                            <ScoreDistribution value="virginica" recordCount="65.0"/>
+                            <ScoreDistribution value="setosa" recordCount="6.0"/>
+                            <Node score="versicolor" recordCount="56.0">
+<SimplePredicate field="PetalLength" operator="lessOrEqual" value="4.9"/>
+<ScoreDistribution value="versicolor" recordCount="43.0"/>
+<ScoreDistribution value="virginica" recordCount="7.0"/>
+<ScoreDistribution value="setosa" recordCount="6.0"/>
+<Node score="setosa" recordCount="6.0">
+    <SimplePredicate field="PetalLength" operator="lessOrEqual" value="1.7"/>
+    <ScoreDistribution value="setosa" recordCount="6.0"/>
+</Node>
+<Node score="versicolor" recordCount="50.0">
+    <SimplePredicate field="PetalLength" operator="greaterThan" value="1.7"/>
+    <ScoreDistribution value="versicolor" recordCount="43.0"/>
+    <ScoreDistribution value="virginica" recordCount="7.0"/>
+    <Node score="versicolor" recordCount="42.0">
+        <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.5"/>
+        <ScoreDistribution value="versicolor" recordCount="42.0"/>
+    </Node>
+    <Node score="virginica" recordCount="8.0">
+        <SimplePredicate field="PetalWidth" operator="greaterThan" value="1.5"/>
+        <ScoreDistribution value="versicolor" recordCount="1.0"/>
+        <ScoreDistribution value="virginica" recordCount="7.0"/>
+        <Node score="virginica" recordCount="4.0">
+            <SimplePredicate field="PetalLength" operator="lessOrEqual" value="4.8"/>
+            <ScoreDistribution value="versicolor" recordCount="1.0"/>
+            <ScoreDistribution value="virginica" recordCount="3.0"/>
+        </Node>
+        <Node score="virginica" recordCount="4.0">
+            <SimplePredicate field="PetalLength" operator="greaterThan" value="4.8"/>
+            <ScoreDistribution value="virginica" recordCount="4.0"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="virginica" recordCount="60.0">
+<SimplePredicate field="PetalLength" operator="greaterThan" value="4.9"/>
+<ScoreDistribution value="versicolor" recordCount="2.0"/>
+<ScoreDistribution value="virginica" recordCount="58.0"/>
+<Node score="virginica" recordCount="9.0">
+    <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.6"/>
+    <ScoreDistribution value="versicolor" recordCount="2.0"/>
+    <ScoreDistribution value="virginica" recordCount="7.0"/>
+    <Node score="virginica" recordCount="4.0">
+        <SimplePredicate field="SepalWidth" operator="lessOrEqual" value="2.6"/>
+        <ScoreDistribution value="virginica" recordCount="4.0"/>
+    </Node>
+    <Node score="virginica" recordCount="5.0">
+        <SimplePredicate field="SepalWidth" operator="greaterThan" value="2.6"/>
+        <ScoreDistribution value="versicolor" recordCount="2.0"/>
+        <ScoreDistribution value="virginica" recordCount="3.0"/>
+        <Node score="versicolor" recordCount="2.0">
+            <SimplePredicate field="SepalWidth" operator="lessOrEqual" value="2.7"/>
+            <ScoreDistribution value="versicolor" recordCount="2.0"/>
+        </Node>
+        <Node score="virginica" recordCount="3.0">
+            <SimplePredicate field="SepalWidth" operator="greaterThan" value="2.7"/>
+            <ScoreDistribution value="virginica" recordCount="3.0"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="virginica" recordCount="51.0">
+    <SimplePredicate field="PetalWidth" operator="greaterThan" value="1.6"/>
+    <ScoreDistribution value="virginica" recordCount="51.0"/>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="19">
+                <True/>
+                <TreeModel functionName="classification" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="SepalLength"/>
+                        <MiningField name="PetalLength"/>
+                        <MiningField name="PetalWidth"/>
+                    </MiningSchema>
+                    <Node score="versicolor" recordCount="145.0">
+                        <True/>
+                        <ScoreDistribution value="versicolor" recordCount="51.0"/>
+                        <ScoreDistribution value="virginica" recordCount="49.0"/>
+                        <ScoreDistribution value="setosa" recordCount="45.0"/>
+                        <Node score="setosa" recordCount="45.0">
+                            <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="0.4"/>
+                            <ScoreDistribution value="setosa" recordCount="45.0"/>
+                        </Node>
+                        <Node score="versicolor" recordCount="100.0">
+                            <SimplePredicate field="PetalWidth" operator="greaterThan" value="0.4"/>
+                            <ScoreDistribution value="versicolor" recordCount="51.0"/>
+                            <ScoreDistribution value="virginica" recordCount="49.0"/>
+                            <Node score="versicolor" recordCount="56.0">
+<SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.6"/>
+<ScoreDistribution value="versicolor" recordCount="50.0"/>
+<ScoreDistribution value="virginica" recordCount="6.0"/>
+<Node score="versicolor" recordCount="41.0">
+    <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.3"/>
+    <ScoreDistribution value="versicolor" recordCount="41.0"/>
+</Node>
+<Node score="versicolor" recordCount="15.0">
+    <SimplePredicate field="PetalWidth" operator="greaterThan" value="1.3"/>
+    <ScoreDistribution value="versicolor" recordCount="9.0"/>
+    <ScoreDistribution value="virginica" recordCount="6.0"/>
+    <Node score="versicolor" recordCount="9.0">
+        <SimplePredicate field="PetalLength" operator="lessOrEqual" value="4.7"/>
+        <ScoreDistribution value="versicolor" recordCount="9.0"/>
+    </Node>
+    <Node score="virginica" recordCount="6.0">
+        <SimplePredicate field="PetalLength" operator="greaterThan" value="4.7"/>
+        <ScoreDistribution value="virginica" recordCount="6.0"/>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="virginica" recordCount="44.0">
+<SimplePredicate field="PetalWidth" operator="greaterThan" value="1.6"/>
+<ScoreDistribution value="versicolor" recordCount="1.0"/>
+<ScoreDistribution value="virginica" recordCount="43.0"/>
+<Node score="virginica" recordCount="3.0">
+    <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.7"/>
+    <ScoreDistribution value="versicolor" recordCount="1.0"/>
+    <ScoreDistribution value="virginica" recordCount="2.0"/>
+    <Node score="virginica" recordCount="2.0">
+        <SimplePredicate field="SepalLength" operator="lessOrEqual" value="4.9"/>
+        <ScoreDistribution value="virginica" recordCount="2.0"/>
+    </Node>
+    <Node score="versicolor" recordCount="1.0">
+        <SimplePredicate field="SepalLength" operator="greaterThan" value="4.9"/>
+        <ScoreDistribution value="versicolor" recordCount="1.0"/>
+    </Node>
+</Node>
+<Node score="virginica" recordCount="41.0">
+    <SimplePredicate field="PetalWidth" operator="greaterThan" value="1.7"/>
+    <ScoreDistribution value="virginica" recordCount="41.0"/>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="20">
+                <True/>
+                <TreeModel functionName="classification" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="SepalWidth"/>
+                        <MiningField name="PetalLength"/>
+                        <MiningField name="PetalWidth"/>
+                    </MiningSchema>
+                    <Node score="setosa" recordCount="160.0">
+                        <True/>
+                        <ScoreDistribution value="versicolor" recordCount="57.0"/>
+                        <ScoreDistribution value="virginica" recordCount="42.0"/>
+                        <ScoreDistribution value="setosa" recordCount="61.0"/>
+                        <Node score="setosa" recordCount="61.0">
+                            <SimplePredicate field="PetalLength" operator="lessOrEqual" value="1.9"/>
+                            <ScoreDistribution value="setosa" recordCount="61.0"/>
+                        </Node>
+                        <Node score="versicolor" recordCount="99.0">
+                            <SimplePredicate field="PetalLength" operator="greaterThan" value="1.9"/>
+                            <ScoreDistribution value="versicolor" recordCount="57.0"/>
+                            <ScoreDistribution value="virginica" recordCount="42.0"/>
+                            <Node score="versicolor" recordCount="56.0">
+<SimplePredicate field="PetalLength" operator="lessOrEqual" value="4.7"/>
+<ScoreDistribution value="versicolor" recordCount="54.0"/>
+<ScoreDistribution value="virginica" recordCount="2.0"/>
+<Node score="versicolor" recordCount="13.0">
+    <SimplePredicate field="SepalWidth" operator="lessOrEqual" value="2.5"/>
+    <ScoreDistribution value="versicolor" recordCount="11.0"/>
+    <ScoreDistribution value="virginica" recordCount="2.0"/>
+    <Node score="versicolor" recordCount="11.0">
+        <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.5"/>
+        <ScoreDistribution value="versicolor" recordCount="11.0"/>
+    </Node>
+    <Node score="virginica" recordCount="2.0">
+        <SimplePredicate field="PetalWidth" operator="greaterThan" value="1.5"/>
+        <ScoreDistribution value="virginica" recordCount="2.0"/>
+    </Node>
+</Node>
+<Node score="versicolor" recordCount="43.0">
+    <SimplePredicate field="SepalWidth" operator="greaterThan" value="2.5"/>
+    <ScoreDistribution value="versicolor" recordCount="43.0"/>
+</Node>
+                            </Node>
+                            <Node score="virginica" recordCount="43.0">
+<SimplePredicate field="PetalLength" operator="greaterThan" value="4.7"/>
+<ScoreDistribution value="versicolor" recordCount="3.0"/>
+<ScoreDistribution value="virginica" recordCount="40.0"/>
+<Node score="virginica" recordCount="7.0">
+    <SimplePredicate field="PetalLength" operator="lessOrEqual" value="4.9"/>
+    <ScoreDistribution value="versicolor" recordCount="3.0"/>
+    <ScoreDistribution value="virginica" recordCount="4.0"/>
+    <Node score="versicolor" recordCount="2.0">
+        <SimplePredicate field="PetalWidth" operator="lessOrEqual" value="1.5"/>
+        <ScoreDistribution value="versicolor" recordCount="2.0"/>
+    </Node>
+    <Node score="virginica" recordCount="5.0">
+        <SimplePredicate field="PetalWidth" operator="greaterThan" value="1.5"/>
+        <ScoreDistribution value="versicolor" recordCount="1.0"/>
+        <ScoreDistribution value="virginica" recordCount="4.0"/>
+        <Node score="virginica" recordCount="4.0">
+            <SimplePredicate field="SepalWidth" operator="lessOrEqual" value="3"/>
+            <ScoreDistribution value="virginica" recordCount="4.0"/>
+        </Node>
+        <Node score="versicolor" recordCount="1.0">
+            <SimplePredicate field="SepalWidth" operator="greaterThan" value="3"/>
+            <ScoreDistribution value="versicolor" recordCount="1.0"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="virginica" recordCount="36.0">
+    <SimplePredicate field="PetalLength" operator="greaterThan" value="4.9"/>
+    <ScoreDistribution value="virginica" recordCount="36.0"/>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+        </Segmentation>
+    </MiningModel>
+</PMML>

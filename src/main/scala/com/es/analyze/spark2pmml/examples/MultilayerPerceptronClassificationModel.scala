@@ -4,7 +4,7 @@ import java.io.FileOutputStream
 import javax.xml.transform.stream.StreamResult
 
 import org.apache.spark.ml.Pipeline
-import org.apache.spark.ml.classification.{GBTClassifier, MultilayerPerceptronClassifier}
+import org.apache.spark.ml.classification.{MultilayerPerceptronClassifier}
 import org.apache.spark.ml.feature.RFormula
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.types.{DoubleType, StringType, StructField, StructType}
@@ -27,7 +27,7 @@ object MultilayerPerceptronClassificationModel {
 
     val spark = SparkSession.builder.
       master(args(0)).
-      appName("GradientBoostedTreeClassifier").
+      appName("MultilayerPerceptronClassificationModel").
       getOrCreate()
 
     //原本列名含有点号，Spark DataFrame不支持列名含有点号
