@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PMML xmlns="http://www.dmg.org/PMML-4_3" version="4.3">
+    <Header>
+        <Application name="JPMML-SparkML" version="1.2.6"/>
+        <Timestamp>2017-11-03T07:23:37Z</Timestamp>
+    </Header>
+    <DataDictionary>
+        <DataField name="Species" optype="categorical" dataType="string">
+            <Value value="versicolor"/>
+            <Value value="virginica"/>
+            <Value value="setosa"/>
+        </DataField>
+        <DataField name="SepalLength" optype="continuous" dataType="double"/>
+        <DataField name="SepalWidth" optype="continuous" dataType="double"/>
+        <DataField name="PetalLength" optype="continuous" dataType="double"/>
+        <DataField name="PetalWidth" optype="continuous" dataType="double"/>
+    </DataDictionary>
+    <RegressionModel functionName="classification" normalizationMethod="softmax">
+        <MiningSchema>
+            <MiningField name="Species" usageType="target"/>
+            <MiningField name="SepalLength"/>
+            <MiningField name="SepalWidth"/>
+            <MiningField name="PetalLength"/>
+            <MiningField name="PetalWidth"/>
+        </MiningSchema>
+        <Output>
+            <OutputField name="pmml(prediction)" optype="categorical" dataType="string" feature="predictedValue"/>
+            <OutputField name="prediction" optype="categorical" dataType="double" feature="transformedValue">
+                <MapValues outputColumn="output">
+                    <FieldColumnPair field="pmml(prediction)" column="input"/>
+                    <InlineTable>
+                        <row>
+                            <input xmlns:ns2="http://www.dmg.org/PMML-4_3" xmlns="">versicolor</input>
+                            <output xmlns:ns2="http://www.dmg.org/PMML-4_3" xmlns="">0</output>
+                        </row>
+                        <row>
+                            <input xmlns:ns2="http://www.dmg.org/PMML-4_3" xmlns="">virginica</input>
+                            <output xmlns:ns2="http://www.dmg.org/PMML-4_3" xmlns="">1</output>
+                        </row>
+                        <row>
+                            <input xmlns:ns2="http://www.dmg.org/PMML-4_3" xmlns="">setosa</input>
+                            <output xmlns:ns2="http://www.dmg.org/PMML-4_3" xmlns="">2</output>
+                        </row>
+                    </InlineTable>
+                </MapValues>
+            </OutputField>
+            <OutputField name="probability(versicolor)" optype="continuous" dataType="double" feature="probability" value="versicolor"/>
+            <OutputField name="probability(virginica)" optype="continuous" dataType="double" feature="probability" value="virginica"/>
+            <OutputField name="probability(setosa)" optype="continuous" dataType="double" feature="probability" value="setosa"/>
+        </Output>
+        <RegressionTable intercept="20.31985922824593" targetCategory="versicolor">
+            <NumericPredictor name="SepalLength" coefficient="5.698494709058805"/>
+            <NumericPredictor name="SepalWidth" coefficient="-16.222285152147094"/>
+            <NumericPredictor name="PetalLength" coefficient="0.9565173465210007"/>
+            <NumericPredictor name="PetalWidth" coefficient="3.631020273659564"/>
+        </RegressionTable>
+        <RegressionTable intercept="-22.316478455568504" targetCategory="virginica">
+            <NumericPredictor name="SepalLength" coefficient="3.2332980584625757"/>
+            <NumericPredictor name="SepalWidth" coefficient="-22.903119334898722"/>
+            <NumericPredictor name="PetalLength" coefficient="10.385604304700468"/>
+            <NumericPredictor name="PetalWidth" coefficient="21.916965907879543"/>
+        </RegressionTable>
+        <RegressionTable intercept="1.9966192273225705" targetCategory="setosa">
+            <NumericPredictor name="SepalLength" coefficient="-8.931792767520673"/>
+            <NumericPredictor name="SepalWidth" coefficient="39.12540448704222"/>
+            <NumericPredictor name="PetalLength" coefficient="-11.342121651220237"/>
+            <NumericPredictor name="PetalWidth" coefficient="-25.54798618153744"/>
+        </RegressionTable>
+    </RegressionModel>
+</PMML>
