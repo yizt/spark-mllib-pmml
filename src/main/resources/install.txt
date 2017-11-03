@@ -1,0 +1,13 @@
+将/usr/hdp/2.6.0.3-8/spark2/jars下spark开头的jar下载到本地的D:\jar\spark_jar目录下，执行如下命令
+
+
+mvn install:install-file -Dfile=D:\jar\spark_jar\spark-core_2.11-2.1.0.2.6.0.3-8.jar -DgroupId=org.apache.spark -DartifactId=spark-core_2.11 -Dversion=2.1.0.2.6.0.3-8 -Dpackaging=jar
+mvn install:install-file -Dfile=D:\jar\spark_jar\spark-mllib_2.11-2.1.0.2.6.0.3-8.jar -DgroupId=org.apache.spark -DartifactId=spark-mllib_2.11 -Dversion=2.1.0.2.6.0.3-8 -Dpackaging=jar
+mvn install:install-file -Dfile=D:\jar\spark_jar\spark-mllib-local_2.11-2.1.0.2.6.0.3-8.jar -DgroupId=org.apache.spark -DartifactId=spark-mllib-local_2.11 -Dversion=2.1.0.2.6.0.3-8 -Dpackaging=jar
+mvn install:install-file -Dfile=D:\jar\spark_jar\spark-sql_2.11-2.1.0.2.6.0.3-8.jar -DgroupId=org.apache.spark -DartifactId=spark-sql_2.11 -Dversion=2.1.0.2.6.0.3-8 -Dpackaging=jar
+mvn install:install-file -Dfile=D:\jar\spark_jar\spark-catalyst_2.11-2.1.0.2.6.0.3-8.jar -DgroupId=org.apache.spark -DartifactId=spark-catalyst_2.11 -Dversion=2.1.0.2.6.0.3-8 -Dpackaging=jar
+mvn install:install-file -Dfile=D:\jar\spark_jar\spark-tags_2.11-2.1.0.2.6.0.3-8.jar -DgroupId=org.apache.spark -DartifactId=spark-tags_2.11 -Dversion=2.1.0.2.6.0.3-8 -Dpackaging=jar
+mvn install:install-file -Dfile=D:\jar\spark_jar\spark-network-common_2.11-2.1.0.2.6.0.3-8.jar -DgroupId=org.apache.spark -DartifactId=spark-network-common_2.11 -Dversion=2.1.0.2.6.0.3-8 -Dpackaging=jar
+mvn install:install-file -Dfile=D:\jar\spark_jar\spark-network-shuffle_2.11-2.1.0.2.6.0.3-8.jar -DgroupId=org.apache.spark -DartifactId=spark-network-shuffle_2.11 -Dversion=2.1.0.2.6.0.3-8 -Dpackaging=jar
+mvn install:install-file -Dfile=D:\jar\spark_jar\spark-unsafe_2.11-2.1.0.2.6.0.3-8.jar -DgroupId=org.apache.spark -DartifactId=spark-unsafe_2.11 -Dversion=2.1.0.2.6.0.3-8 -Dpackaging=jar
+mvn install:install-file -Dfile=D:\jar\spark_jar\spark-launcher_2.11-2.1.0.2.6.0.3-8.jar -DgroupId=org.apache.spark -DartifactId=spark-launcher_2.11 -Dversion=2.1.0.2.6.0.3-8 -Dpackaging=jar
