@@ -1,0 +1,3851 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PMML xmlns="http://www.dmg.org/PMML-4_3" version="4.3">
+    <Header>
+        <Application name="JPMML-SparkML" version="1.2.6"/>
+        <Timestamp>2017-11-03T06:38:32Z</Timestamp>
+    </Header>
+    <DataDictionary>
+        <DataField name="mpg" optype="continuous" dataType="double"/>
+        <DataField name="cylinders" optype="continuous" dataType="double"/>
+        <DataField name="displacement" optype="continuous" dataType="double"/>
+        <DataField name="horsepower" optype="continuous" dataType="double"/>
+        <DataField name="weight" optype="continuous" dataType="double"/>
+        <DataField name="acceleration" optype="continuous" dataType="double"/>
+        <DataField name="model_year" optype="continuous" dataType="double"/>
+        <DataField name="origin" optype="continuous" dataType="double"/>
+    </DataDictionary>
+    <MiningModel functionName="regression">
+        <MiningSchema>
+            <MiningField name="mpg" usageType="target"/>
+            <MiningField name="cylinders"/>
+            <MiningField name="acceleration"/>
+            <MiningField name="model_year"/>
+            <MiningField name="displacement"/>
+            <MiningField name="weight"/>
+            <MiningField name="origin"/>
+            <MiningField name="horsepower"/>
+        </MiningSchema>
+        <Output>
+            <OutputField name="prediction" optype="continuous" dataType="double" feature="predictedValue"/>
+        </Output>
+        <Segmentation multipleModelMethod="average">
+            <Segment id="1">
+                <True/>
+                <TreeModel functionName="regression" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="displacement"/>
+                        <MiningField name="horsepower"/>
+                        <MiningField name="weight"/>
+                        <MiningField name="acceleration"/>
+                        <MiningField name="model_year"/>
+                        <MiningField name="origin"/>
+                    </MiningSchema>
+                    <Node score="23.37331730769231">
+                        <True/>
+                        <Node score="29.378703703703703">
+                            <SimplePredicate field="displacement" operator="lessOrEqual" value="156"/>
+                            <Node score="33.01346153846154">
+<SimplePredicate field="displacement" operator="lessOrEqual" value="91"/>
+<Node score="21.35">
+    <SimplePredicate field="acceleration" operator="lessOrEqual" value="13.7"/>
+    <Node score="19">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="72"/>
+    </Node>
+    <Node score="23.700000000000003">
+        <SimplePredicate field="model_year" operator="greaterThan" value="72"/>
+    </Node>
+</Node>
+<Node score="33.48">
+    <SimplePredicate field="acceleration" operator="greaterThan" value="13.7"/>
+    <Node score="33.06666666666667">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="2135"/>
+        <Node score="30.657142857142862">
+            <SimplePredicate field="origin" operator="lessOrEqual" value="2"/>
+        </Node>
+        <Node score="34.94074074074075">
+            <SimplePredicate field="origin" operator="greaterThan" value="2"/>
+        </Node>
+    </Node>
+    <Node score="43.39999999999998">
+        <SimplePredicate field="weight" operator="greaterThan" value="2135"/>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="28.226219512195126">
+<SimplePredicate field="displacement" operator="greaterThan" value="91"/>
+<Node score="31.713953488372088">
+    <SimplePredicate field="weight" operator="lessOrEqual" value="2188"/>
+    <Node score="29.935294117647057">
+        <SimplePredicate field="displacement" operator="lessOrEqual" value="97.5"/>
+        <Node score="27.923076923076923">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="77"/>
+        </Node>
+        <Node score="36.474999999999994">
+            <SimplePredicate field="model_year" operator="greaterThan" value="77"/>
+        </Node>
+    </Node>
+    <Node score="32.87692307692308">
+        <SimplePredicate field="displacement" operator="greaterThan" value="97.5"/>
+        <Node score="35.42142857142857">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="15.4"/>
+        </Node>
+        <Node score="29.90833333333333">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="15.4"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="26.98677685950413">
+    <SimplePredicate field="weight" operator="greaterThan" value="2188"/>
+    <Node score="24.637096774193548">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="78"/>
+        <Node score="24.974137931034484">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="18.2"/>
+        </Node>
+        <Node score="19.75">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="18.2"/>
+        </Node>
+    </Node>
+    <Node score="29.455932203389825">
+        <SimplePredicate field="model_year" operator="greaterThan" value="78"/>
+        <Node score="32.71818181818182">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="2587"/>
+        </Node>
+        <Node score="27.51621621621622">
+            <SimplePredicate field="weight" operator="greaterThan" value="2587"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                        <Node score="16.887499999999996">
+                            <SimplePredicate field="displacement" operator="greaterThan" value="156"/>
+                            <Node score="19.107017543859648">
+<SimplePredicate field="horsepower" operator="lessOrEqual" value="142"/>
+<Node score="22.865517241379308">
+    <SimplePredicate field="weight" operator="lessOrEqual" value="3085"/>
+    <Node score="20.761904761904763">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="79"/>
+        <Node score="24">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="82"/>
+        </Node>
+        <Node score="20.000000000000004">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="82"/>
+        </Node>
+    </Node>
+    <Node score="28.387500000000003">
+        <SimplePredicate field="model_year" operator="greaterThan" value="79"/>
+        <Node score="25.82">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="81"/>
+        </Node>
+        <Node score="32.666666666666664">
+            <SimplePredicate field="model_year" operator="greaterThan" value="81"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="17.82470588235294">
+    <SimplePredicate field="weight" operator="greaterThan" value="3085"/>
+    <Node score="16.25">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="75"/>
+        <Node score="16.870967741935484">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="110"/>
+        </Node>
+        <Node score="14.11111111111111">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="110"/>
+        </Node>
+    </Node>
+    <Node score="19.224444444444444">
+        <SimplePredicate field="model_year" operator="greaterThan" value="75"/>
+        <Node score="18.474999999999998">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="78"/>
+        </Node>
+        <Node score="20.45882352941177">
+            <SimplePredicate field="model_year" operator="greaterThan" value="78"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="13.945348837209298">
+<SimplePredicate field="horsepower" operator="greaterThan" value="142"/>
+<Node score="14.188157894736841">
+    <SimplePredicate field="horsepower" operator="lessOrEqual" value="193"/>
+    <Node score="13.450980392156863">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="74"/>
+        <Node score="14.541666666666666">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="4154"/>
+        </Node>
+        <Node score="12.481481481481481">
+            <SimplePredicate field="weight" operator="greaterThan" value="4154"/>
+        </Node>
+    </Node>
+    <Node score="15.692000000000007">
+        <SimplePredicate field="model_year" operator="greaterThan" value="74"/>
+        <Node score="16.900000000000002">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="149"/>
+        </Node>
+        <Node score="15.52727272727273">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="149"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="12.1">
+    <SimplePredicate field="horsepower" operator="greaterThan" value="193"/>
+    <Node score="14">
+        <SimplePredicate field="acceleration" operator="lessOrEqual" value="10.5"/>
+    </Node>
+    <Node score="11.285714285714286">
+        <SimplePredicate field="acceleration" operator="greaterThan" value="10.5"/>
+        <Node score="10.75">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="4654"/>
+        </Node>
+        <Node score="12">
+            <SimplePredicate field="weight" operator="greaterThan" value="4654"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="2">
+                <True/>
+                <TreeModel functionName="regression" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="cylinders"/>
+                        <MiningField name="displacement"/>
+                        <MiningField name="horsepower"/>
+                        <MiningField name="weight"/>
+                        <MiningField name="acceleration"/>
+                        <MiningField name="model_year"/>
+                        <MiningField name="origin"/>
+                    </MiningSchema>
+                    <Node score="24.04592391304348">
+                        <True/>
+                        <Node score="29.721938775510214">
+                            <SimplePredicate field="cylinders" operator="lessOrEqual" value="5"/>
+                            <Node score="33.67126436781609">
+<SimplePredicate field="horsepower" operator="lessOrEqual" value="74"/>
+<Node score="29.041666666666668">
+    <SimplePredicate field="model_year" operator="lessOrEqual" value="76"/>
+    <Node score="30.764705882352942">
+        <SimplePredicate field="displacement" operator="lessOrEqual" value="91"/>
+        <Node score="25">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="16.5"/>
+        </Node>
+        <Node score="32">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="16.5"/>
+        </Node>
+    </Node>
+    <Node score="24.857142857142858">
+        <SimplePredicate field="displacement" operator="greaterThan" value="91"/>
+        <Node score="28.25">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="1834"/>
+        </Node>
+        <Node score="23.5">
+            <SimplePredicate field="weight" operator="greaterThan" value="1834"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="35.43492063492064">
+    <SimplePredicate field="model_year" operator="greaterThan" value="76"/>
+    <Node score="36.6875">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="2135"/>
+        <Node score="43.64">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="53"/>
+        </Node>
+        <Node score="35.69428571428572">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="53"/>
+        </Node>
+    </Node>
+    <Node score="33.25652173913044">
+        <SimplePredicate field="weight" operator="greaterThan" value="2135"/>
+        <Node score="43.4">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="53"/>
+        </Node>
+        <Node score="32.795454545454554">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="53"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="26.56972477064221">
+<SimplePredicate field="horsepower" operator="greaterThan" value="74"/>
+<Node score="24.720588235294116">
+    <SimplePredicate field="model_year" operator="lessOrEqual" value="78"/>
+    <Node score="26.47741935483871">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="2265"/>
+        <Node score="27.914285714285715">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="15.4"/>
+        </Node>
+        <Node score="25.29411764705882">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="15.4"/>
+        </Node>
+    </Node>
+    <Node score="23.248648648648643">
+        <SimplePredicate field="weight" operator="greaterThan" value="2265"/>
+        <Node score="19">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="79"/>
+        </Node>
+        <Node score="23.49142857142857">
+            <SimplePredicate field="displacement" operator="greaterThan" value="79"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="29.636585365853666">
+    <SimplePredicate field="model_year" operator="greaterThan" value="78"/>
+    <Node score="32.108695652173914">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="2587"/>
+        <Node score="33.14">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="90"/>
+        </Node>
+        <Node score="25.23333333333335">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="90"/>
+        </Node>
+    </Node>
+    <Node score="26.477777777777774">
+        <SimplePredicate field="weight" operator="greaterThan" value="2587"/>
+        <Node score="27.292307692307695">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="90"/>
+        </Node>
+        <Node score="24.360000000000003">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="90"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                        <Node score="17.577906976744185">
+                            <SimplePredicate field="cylinders" operator="greaterThan" value="5"/>
+                            <Node score="16.367586206896554">
+<SimplePredicate field="model_year" operator="lessOrEqual" value="78"/>
+<Node score="18.47457627118644">
+    <SimplePredicate field="displacement" operator="lessOrEqual" value="267"/>
+    <Node score="17.61764705882353">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="75"/>
+        <Node score="19.5">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="2962"/>
+        </Node>
+        <Node score="17.214285714285715">
+            <SimplePredicate field="weight" operator="greaterThan" value="2962"/>
+        </Node>
+    </Node>
+    <Node score="19.64">
+        <SimplePredicate field="model_year" operator="greaterThan" value="75"/>
+        <Node score="21.29">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="3410"/>
+        </Node>
+        <Node score="18.540000000000003">
+            <SimplePredicate field="weight" operator="greaterThan" value="3410"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="14.922093023255815">
+    <SimplePredicate field="displacement" operator="greaterThan" value="267"/>
+    <Node score="15.360273972602739">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="4425"/>
+        <Node score="16.954545454545453">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="3613"/>
+        </Node>
+        <Node score="15.077419354838709">
+            <SimplePredicate field="weight" operator="greaterThan" value="3613"/>
+        </Node>
+    </Node>
+    <Node score="12.461538461538462">
+        <SimplePredicate field="weight" operator="greaterThan" value="4425"/>
+        <Node score="13.5">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="175"/>
+        </Node>
+        <Node score="10.8">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="175"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="24.077777777777776">
+<SimplePredicate field="model_year" operator="greaterThan" value="78"/>
+<Node score="23.166666666666668">
+    <SimplePredicate field="origin" operator="lessOrEqual" value="1"/>
+    <Node score="27.6">
+        <SimplePredicate field="acceleration" operator="lessOrEqual" value="12.9"/>
+        <Node score="28.8">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="11.4"/>
+        </Node>
+        <Node score="26.8">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="11.4"/>
+        </Node>
+    </Node>
+    <Node score="22">
+        <SimplePredicate field="acceleration" operator="greaterThan" value="12.9"/>
+        <Node score="18.766666666666666">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="16.9"/>
+        </Node>
+        <Node score="23.49230769230769">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="16.9"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="31.366666666666674">
+    <SimplePredicate field="origin" operator="greaterThan" value="1"/>
+    <Node score="30.7">
+        <SimplePredicate field="origin" operator="lessOrEqual" value="2"/>
+    </Node>
+    <Node score="32.699999999999996">
+        <SimplePredicate field="origin" operator="greaterThan" value="2"/>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="3">
+                <True/>
+                <TreeModel functionName="regression" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="cylinders"/>
+                        <MiningField name="displacement"/>
+                        <MiningField name="horsepower"/>
+                        <MiningField name="weight"/>
+                        <MiningField name="acceleration"/>
+                        <MiningField name="model_year"/>
+                        <MiningField name="origin"/>
+                    </MiningSchema>
+                    <Node score="23.460814249363867">
+                        <True/>
+                        <Node score="28.89953488372093">
+                            <SimplePredicate field="displacement" operator="lessOrEqual" value="156"/>
+                            <Node score="32.556310679611656">
+<SimplePredicate field="horsepower" operator="lessOrEqual" value="78"/>
+<Node score="27.46969696969697">
+    <SimplePredicate field="model_year" operator="lessOrEqual" value="77"/>
+    <Node score="29.305555555555557">
+        <SimplePredicate field="horsepower" operator="lessOrEqual" value="69"/>
+        <Node score="25.5">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="73"/>
+        </Node>
+        <Node score="31.208333333333332">
+            <SimplePredicate field="model_year" operator="greaterThan" value="73"/>
+        </Node>
+    </Node>
+    <Node score="25.266666666666666">
+        <SimplePredicate field="horsepower" operator="greaterThan" value="69"/>
+        <Node score="26.7">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="97"/>
+        </Node>
+        <Node score="22.4">
+            <SimplePredicate field="displacement" operator="greaterThan" value="97"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="34.95428571428572">
+    <SimplePredicate field="model_year" operator="greaterThan" value="77"/>
+    <Node score="33.136842105263156">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="79"/>
+        <Node score="43.1">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="53"/>
+        </Node>
+        <Node score="31.96470588235294">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="53"/>
+        </Node>
+    </Node>
+    <Node score="35.631372549019616">
+        <SimplePredicate field="model_year" operator="greaterThan" value="79"/>
+        <Node score="37.25833333333333">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="80"/>
+        </Node>
+        <Node score="34.18518518518518">
+            <SimplePredicate field="model_year" operator="greaterThan" value="80"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="25.53660714285713">
+<SimplePredicate field="horsepower" operator="greaterThan" value="78"/>
+<Node score="27.119512195121953">
+    <SimplePredicate field="displacement" operator="lessOrEqual" value="119"/>
+    <Node score="25.182758620689654">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="78"/>
+        <Node score="20">
+            <SimplePredicate field="cylinders" operator="lessOrEqual" value="3"/>
+        </Node>
+        <Node score="26.011999999999997">
+            <SimplePredicate field="cylinders" operator="greaterThan" value="3"/>
+        </Node>
+    </Node>
+    <Node score="31.80000000000001">
+        <SimplePredicate field="model_year" operator="greaterThan" value="78"/>
+        <Node score="23.7">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="79"/>
+        </Node>
+        <Node score="32.53636363636364">
+            <SimplePredicate field="displacement" operator="greaterThan" value="79"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="24.62253521126761">
+    <SimplePredicate field="displacement" operator="greaterThan" value="119"/>
+    <Node score="26.4125">
+        <SimplePredicate field="horsepower" operator="lessOrEqual" value="93"/>
+        <Node score="28.348000000000003">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="16.5"/>
+        </Node>
+        <Node score="23.186666666666664">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="16.5"/>
+        </Node>
+    </Node>
+    <Node score="22.312903225806455">
+        <SimplePredicate field="horsepower" operator="greaterThan" value="93"/>
+        <Node score="24.384615384615383">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="14.4"/>
+        </Node>
+        <Node score="20.81666666666667">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="14.4"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                        <Node score="16.891573033707868">
+                            <SimplePredicate field="displacement" operator="greaterThan" value="156"/>
+                            <Node score="20.083823529411767">
+<SimplePredicate field="displacement" operator="lessOrEqual" value="267"/>
+<Node score="19.8955223880597">
+    <SimplePredicate field="origin" operator="lessOrEqual" value="2"/>
+    <Node score="23.342105263157894">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="3085"/>
+        <Node score="22.52777777777778">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="250"/>
+        </Node>
+        <Node score="38">
+            <SimplePredicate field="displacement" operator="greaterThan" value="250"/>
+        </Node>
+    </Node>
+    <Node score="18.53125">
+        <SimplePredicate field="weight" operator="greaterThan" value="3085"/>
+        <Node score="18.860975609756096">
+            <SimplePredicate field="origin" operator="lessOrEqual" value="1"/>
+        </Node>
+        <Node score="16.600000000000005">
+            <SimplePredicate field="origin" operator="greaterThan" value="1"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="32.700000000000045">
+    <SimplePredicate field="origin" operator="greaterThan" value="2"/>
+</Node>
+                            </Node>
+                            <Node score="14.918181818181816">
+<SimplePredicate field="displacement" operator="greaterThan" value="267"/>
+<Node score="16.78648648648649">
+    <SimplePredicate field="horsepower" operator="lessOrEqual" value="149"/>
+    <Node score="26.6">
+        <SimplePredicate field="horsepower" operator="lessOrEqual" value="107"/>
+    </Node>
+    <Node score="16.51388888888889">
+        <SimplePredicate field="horsepower" operator="greaterThan" value="107"/>
+        <Node score="15.92727272727273">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="302"/>
+        </Node>
+        <Node score="16.772">
+            <SimplePredicate field="displacement" operator="greaterThan" value="302"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="13.971232876712328">
+    <SimplePredicate field="horsepower" operator="greaterThan" value="149"/>
+    <Node score="14.805555555555555">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="4295"/>
+        <Node score="17">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="307"/>
+        </Node>
+        <Node score="14.606060606060606">
+            <SimplePredicate field="displacement" operator="greaterThan" value="307"/>
+        </Node>
+    </Node>
+    <Node score="13.159459459459459">
+        <SimplePredicate field="weight" operator="greaterThan" value="4295"/>
+        <Node score="13.899999999999999">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="193"/>
+        </Node>
+        <Node score="12.1875">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="193"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="4">
+                <True/>
+                <TreeModel functionName="regression" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="cylinders"/>
+                        <MiningField name="displacement"/>
+                        <MiningField name="horsepower"/>
+                        <MiningField name="weight"/>
+                        <MiningField name="acceleration"/>
+                        <MiningField name="model_year"/>
+                    </MiningSchema>
+                    <Node score="23.075">
+                        <True/>
+                        <Node score="29.727374301675983">
+                            <SimplePredicate field="weight" operator="lessOrEqual" value="2711"/>
+                            <Node score="25.81111111111111">
+<SimplePredicate field="model_year" operator="lessOrEqual" value="76"/>
+<Node score="24.125">
+    <SimplePredicate field="model_year" operator="lessOrEqual" value="73"/>
+    <Node score="27.285714285714285">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="2188"/>
+        <Node score="29.5">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="79"/>
+        </Node>
+        <Node score="26.916666666666668">
+            <SimplePredicate field="displacement" operator="greaterThan" value="79"/>
+        </Node>
+    </Node>
+    <Node score="22.423076923076923">
+        <SimplePredicate field="weight" operator="greaterThan" value="2188"/>
+        <Node score="26">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="12.5"/>
+        </Node>
+        <Node score="22.28">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="12.5"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="27.16">
+    <SimplePredicate field="model_year" operator="greaterThan" value="73"/>
+    <Node score="30.916666666666668">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="2045"/>
+        <Node score="29">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="14.3"/>
+        </Node>
+        <Node score="31.875">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="14.3"/>
+        </Node>
+    </Node>
+    <Node score="25.973684210526315">
+        <SimplePredicate field="weight" operator="greaterThan" value="2045"/>
+        <Node score="27.147058823529413">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="107"/>
+        </Node>
+        <Node score="25.023809523809526">
+            <SimplePredicate field="displacement" operator="greaterThan" value="107"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="33.6876404494382">
+<SimplePredicate field="model_year" operator="greaterThan" value="76"/>
+<Node score="36.07380952380953">
+    <SimplePredicate field="weight" operator="lessOrEqual" value="2135"/>
+    <Node score="34.56363636363637">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="79"/>
+        <Node score="31.899999999999995">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="14"/>
+        </Node>
+        <Node score="34.98421052631579">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="14"/>
+        </Node>
+    </Node>
+    <Node score="37.735">
+        <SimplePredicate field="model_year" operator="greaterThan" value="79"/>
+        <Node score="44.15">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="53"/>
+        </Node>
+        <Node score="37.022222222222226">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="53"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="31.555319148936174">
+    <SimplePredicate field="weight" operator="greaterThan" value="2135"/>
+    <Node score="33.199999999999996">
+        <SimplePredicate field="displacement" operator="lessOrEqual" value="120"/>
+        <Node score="43.4">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="91"/>
+        </Node>
+        <Node score="32.80769230769231">
+            <SimplePredicate field="displacement" operator="greaterThan" value="91"/>
+        </Node>
+    </Node>
+    <Node score="29.334999999999997">
+        <SimplePredicate field="displacement" operator="greaterThan" value="120"/>
+        <Node score="23.3">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="78"/>
+        </Node>
+        <Node score="30.005555555555556">
+            <SimplePredicate field="model_year" operator="greaterThan" value="78"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                        <Node score="17.484507042253515">
+                            <SimplePredicate field="weight" operator="greaterThan" value="2711"/>
+                            <Node score="20.760204081632654">
+<SimplePredicate field="displacement" operator="lessOrEqual" value="267"/>
+<Node score="19.789534883720933">
+    <SimplePredicate field="model_year" operator="lessOrEqual" value="79"/>
+    <Node score="21.983333333333334">
+        <SimplePredicate field="cylinders" operator="lessOrEqual" value="5"/>
+        <Node score="20.363636363636363">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="76"/>
+        </Node>
+        <Node score="23.353846153846156">
+            <SimplePredicate field="model_year" operator="greaterThan" value="76"/>
+        </Node>
+    </Node>
+    <Node score="18.940322580645166">
+        <SimplePredicate field="cylinders" operator="greaterThan" value="5"/>
+        <Node score="18.295454545454547">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="77"/>
+        </Node>
+        <Node score="20.516666666666666">
+            <SimplePredicate field="model_year" operator="greaterThan" value="77"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="27.716666666666658">
+    <SimplePredicate field="model_year" operator="greaterThan" value="79"/>
+    <Node score="26.781818181818178">
+        <SimplePredicate field="displacement" operator="lessOrEqual" value="232"/>
+        <Node score="36.4">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="67"/>
+        </Node>
+        <Node score="25.82">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="67"/>
+        </Node>
+    </Node>
+    <Node score="38">
+        <SimplePredicate field="displacement" operator="greaterThan" value="232"/>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="14.693043478260872">
+<SimplePredicate field="displacement" operator="greaterThan" value="267"/>
+<Node score="14.220588235294118">
+    <SimplePredicate field="model_year" operator="lessOrEqual" value="77"/>
+    <Node score="15.970588235294118">
+        <SimplePredicate field="horsepower" operator="lessOrEqual" value="142"/>
+        <Node score="14.777777777777779">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="302"/>
+        </Node>
+        <Node score="17.3125">
+            <SimplePredicate field="displacement" operator="greaterThan" value="302"/>
+        </Node>
+    </Node>
+    <Node score="13.870588235294118">
+        <SimplePredicate field="horsepower" operator="greaterThan" value="142"/>
+        <Node score="13.507462686567164">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="74"/>
+        </Node>
+        <Node score="15.222222222222221">
+            <SimplePredicate field="model_year" operator="greaterThan" value="74"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="18.399999999999984">
+    <SimplePredicate field="model_year" operator="greaterThan" value="77"/>
+    <Node score="20.2">
+        <SimplePredicate field="displacement" operator="lessOrEqual" value="302"/>
+    </Node>
+    <Node score="17.599999999999998">
+        <SimplePredicate field="displacement" operator="greaterThan" value="302"/>
+        <Node score="17.8">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="4154"/>
+        </Node>
+        <Node score="16.89999999999999">
+            <SimplePredicate field="weight" operator="greaterThan" value="4154"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="5">
+                <True/>
+                <TreeModel functionName="regression" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="displacement"/>
+                        <MiningField name="horsepower"/>
+                        <MiningField name="weight"/>
+                        <MiningField name="acceleration"/>
+                        <MiningField name="model_year"/>
+                    </MiningSchema>
+                    <Node score="23.43811881188119">
+                        <True/>
+                        <Node score="29.04629629629629">
+                            <SimplePredicate field="displacement" operator="lessOrEqual" value="156"/>
+                            <Node score="27.55514018691589">
+<SimplePredicate field="acceleration" operator="lessOrEqual" value="15.7"/>
+<Node score="24.60571428571429">
+    <SimplePredicate field="model_year" operator="lessOrEqual" value="78"/>
+    <Node score="26">
+        <SimplePredicate field="displacement" operator="lessOrEqual" value="119"/>
+        <Node score="27.886363636363637">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="88"/>
+        </Node>
+        <Node score="24.113636363636363">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="88"/>
+        </Node>
+    </Node>
+    <Node score="22.24615384615385">
+        <SimplePredicate field="displacement" operator="greaterThan" value="119"/>
+        <Node score="23.325">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="2711"/>
+        </Node>
+        <Node score="20.52">
+            <SimplePredicate field="weight" operator="greaterThan" value="2711"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="33.13513513513514">
+    <SimplePredicate field="model_year" operator="greaterThan" value="78"/>
+    <Node score="35.54090909090909">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="2223"/>
+        <Node score="37.52222222222222">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="67"/>
+        </Node>
+        <Node score="34.16923076923078">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="67"/>
+        </Node>
+    </Node>
+    <Node score="29.606666666666683">
+        <SimplePredicate field="weight" operator="greaterThan" value="2223"/>
+        <Node score="31.675">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="90"/>
+        </Node>
+        <Node score="27.24285714285713">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="90"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="30.510091743119272">
+<SimplePredicate field="acceleration" operator="greaterThan" value="15.7"/>
+<Node score="33.01690140845071">
+    <SimplePredicate field="horsepower" operator="lessOrEqual" value="78"/>
+    <Node score="34.12553191489362">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="2135"/>
+        <Node score="32.25">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="79"/>
+        </Node>
+        <Node score="37.43529411764706">
+            <SimplePredicate field="model_year" operator="greaterThan" value="79"/>
+        </Node>
+    </Node>
+    <Node score="30.845833333333342">
+        <SimplePredicate field="weight" operator="greaterThan" value="2135"/>
+        <Node score="43.4">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="53"/>
+        </Node>
+        <Node score="30.299999999999994">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="53"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="25.826315789473686">
+    <SimplePredicate field="horsepower" operator="greaterThan" value="78"/>
+    <Node score="24.503703703703703">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="80"/>
+        <Node score="25.384999999999998">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="17.9"/>
+        </Node>
+        <Node score="21.98571428571429">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="17.9"/>
+        </Node>
+    </Node>
+    <Node score="29.072727272727278">
+        <SimplePredicate field="model_year" operator="greaterThan" value="80"/>
+        <Node score="33">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="119"/>
+        </Node>
+        <Node score="27.6">
+            <SimplePredicate field="displacement" operator="greaterThan" value="119"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                        <Node score="16.994680851063833">
+                            <SimplePredicate field="displacement" operator="greaterThan" value="156"/>
+                            <Node score="19.613684210526316">
+<SimplePredicate field="weight" operator="lessOrEqual" value="3730"/>
+<Node score="18.961111111111112">
+    <SimplePredicate field="acceleration" operator="lessOrEqual" value="16.9"/>
+    <Node score="18.309677419354838">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="78"/>
+        <Node score="19.09090909090909">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="110"/>
+        </Node>
+        <Node score="16.399999999999995">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="110"/>
+        </Node>
+    </Node>
+    <Node score="23">
+        <SimplePredicate field="model_year" operator="greaterThan" value="78"/>
+        <Node score="28.8">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="11.4"/>
+        </Node>
+        <Node score="21.55">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="11.4"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="21.65652173913044">
+    <SimplePredicate field="acceleration" operator="greaterThan" value="16.9"/>
+    <Node score="38">
+        <SimplePredicate field="horsepower" operator="lessOrEqual" value="87"/>
+    </Node>
+    <Node score="20.100000000000005">
+        <SimplePredicate field="horsepower" operator="greaterThan" value="87"/>
+        <Node score="19.016666666666666">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="267"/>
+        </Node>
+        <Node score="26.600000000000005">
+            <SimplePredicate field="displacement" operator="greaterThan" value="267"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="14.319354838709678">
+<SimplePredicate field="weight" operator="greaterThan" value="3730"/>
+<Node score="14.847540983606558">
+    <SimplePredicate field="displacement" operator="lessOrEqual" value="360"/>
+    <Node score="15.170588235294117">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="4425"/>
+        <Node score="16.36521739130435">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="142"/>
+        </Node>
+        <Node score="14.189285714285713">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="142"/>
+        </Node>
+    </Node>
+    <Node score="13.2">
+        <SimplePredicate field="weight" operator="greaterThan" value="4425"/>
+        <Node score="9">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="70"/>
+        </Node>
+        <Node score="13.666666666666666">
+            <SimplePredicate field="model_year" operator="greaterThan" value="70"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="13.3125">
+    <SimplePredicate field="displacement" operator="greaterThan" value="360"/>
+    <Node score="14.333333333333334">
+        <SimplePredicate field="acceleration" operator="lessOrEqual" value="10.5"/>
+        <Node score="15">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="3880"/>
+        </Node>
+        <Node score="14">
+            <SimplePredicate field="weight" operator="greaterThan" value="3880"/>
+        </Node>
+    </Node>
+    <Node score="12.91304347826087">
+        <SimplePredicate field="acceleration" operator="greaterThan" value="10.5"/>
+        <Node score="12.666666666666666">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="73"/>
+        </Node>
+        <Node score="15.5">
+            <SimplePredicate field="model_year" operator="greaterThan" value="73"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="6">
+                <True/>
+                <TreeModel functionName="regression" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="cylinders"/>
+                        <MiningField name="displacement"/>
+                        <MiningField name="horsepower"/>
+                        <MiningField name="weight"/>
+                        <MiningField name="acceleration"/>
+                        <MiningField name="model_year"/>
+                    </MiningSchema>
+                    <Node score="22.17632241813602">
+                        <True/>
+                        <Node score="28.84632768361582">
+                            <SimplePredicate field="weight" operator="lessOrEqual" value="2800"/>
+                            <Node score="31.95454545454546">
+<SimplePredicate field="weight" operator="lessOrEqual" value="2223"/>
+<Node score="32.5">
+    <SimplePredicate field="horsepower" operator="lessOrEqual" value="88"/>
+    <Node score="32.94202898550725">
+        <SimplePredicate field="horsepower" operator="lessOrEqual" value="71"/>
+        <Node score="29.66">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="76"/>
+        </Node>
+        <Node score="34.80681818181818">
+            <SimplePredicate field="model_year" operator="greaterThan" value="76"/>
+        </Node>
+    </Node>
+    <Node score="30.466666666666665">
+        <SimplePredicate field="horsepower" operator="greaterThan" value="71"/>
+        <Node score="28.136363636363637">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="77"/>
+        </Node>
+        <Node score="36.875">
+            <SimplePredicate field="model_year" operator="greaterThan" value="77"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="20.5">
+    <SimplePredicate field="horsepower" operator="greaterThan" value="88"/>
+    <Node score="18">
+        <SimplePredicate field="cylinders" operator="lessOrEqual" value="3"/>
+    </Node>
+    <Node score="28">
+        <SimplePredicate field="cylinders" operator="greaterThan" value="3"/>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="25.773033707865167">
+<SimplePredicate field="weight" operator="greaterThan" value="2223"/>
+<Node score="43.4">
+    <SimplePredicate field="horsepower" operator="lessOrEqual" value="53"/>
+</Node>
+<Node score="25.572727272727263">
+    <SimplePredicate field="horsepower" operator="greaterThan" value="53"/>
+    <Node score="26.77857142857143">
+        <SimplePredicate field="horsepower" operator="lessOrEqual" value="93"/>
+        <Node score="27.76857142857143">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="135"/>
+        </Node>
+        <Node score="25.12857142857142">
+            <SimplePredicate field="displacement" operator="greaterThan" value="135"/>
+        </Node>
+    </Node>
+    <Node score="23.462500000000006">
+        <SimplePredicate field="horsepower" operator="greaterThan" value="93"/>
+        <Node score="19">
+            <SimplePredicate field="cylinders" operator="lessOrEqual" value="3"/>
+        </Node>
+        <Node score="23.924137931034487">
+            <SimplePredicate field="cylinders" operator="greaterThan" value="3"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                        <Node score="16.81">
+                            <SimplePredicate field="weight" operator="greaterThan" value="2800"/>
+                            <Node score="20.271590909090907">
+<SimplePredicate field="horsepower" operator="lessOrEqual" value="125"/>
+<Node score="24.94705882352941">
+    <SimplePredicate field="cylinders" operator="lessOrEqual" value="5"/>
+    <Node score="28.372727272727275">
+        <SimplePredicate field="horsepower" operator="lessOrEqual" value="90"/>
+        <Node score="36.4">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="122"/>
+        </Node>
+        <Node score="26.58888888888889">
+            <SimplePredicate field="displacement" operator="greaterThan" value="122"/>
+        </Node>
+    </Node>
+    <Node score="18.666666666666668">
+        <SimplePredicate field="horsepower" operator="greaterThan" value="90"/>
+        <Node score="18">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="14.5"/>
+        </Node>
+        <Node score="19.333333333333332">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="14.5"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="19.152112676056337">
+    <SimplePredicate field="cylinders" operator="greaterThan" value="5"/>
+    <Node score="18.66984126984127">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="80"/>
+        <Node score="19.367441860465114">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="3410"/>
+        </Node>
+        <Node score="17.169999999999995">
+            <SimplePredicate field="weight" operator="greaterThan" value="3410"/>
+        </Node>
+    </Node>
+    <Node score="22.94999999999999">
+        <SimplePredicate field="model_year" operator="greaterThan" value="80"/>
+        <Node score="21.733333333333334">
+            <SimplePredicate field="cylinders" operator="lessOrEqual" value="6"/>
+        </Node>
+        <Node score="26.60000000000001">
+            <SimplePredicate field="cylinders" operator="greaterThan" value="6"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="14.50227272727273">
+<SimplePredicate field="horsepower" operator="greaterThan" value="125"/>
+<Node score="13.785046728971963">
+    <SimplePredicate field="model_year" operator="lessOrEqual" value="76"/>
+    <Node score="15.466666666666667">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="3613"/>
+        <Node score="16.363636363636363">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="73"/>
+        </Node>
+        <Node score="13">
+            <SimplePredicate field="model_year" operator="greaterThan" value="73"/>
+        </Node>
+    </Node>
+    <Node score="13.51086956521739">
+        <SimplePredicate field="weight" operator="greaterThan" value="3613"/>
+        <Node score="13.789473684210526">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="4654"/>
+        </Node>
+        <Node score="12.1875">
+            <SimplePredicate field="weight" operator="greaterThan" value="4654"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="17.572000000000006">
+    <SimplePredicate field="model_year" operator="greaterThan" value="76"/>
+    <Node score="18.073333333333334">
+        <SimplePredicate field="displacement" operator="lessOrEqual" value="307"/>
+        <Node score="18.475">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="13.4"/>
+        </Node>
+        <Node score="16.46666666666667">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="13.4"/>
+        </Node>
+    </Node>
+    <Node score="16.82">
+        <SimplePredicate field="displacement" operator="greaterThan" value="307"/>
+        <Node score="18.95">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="13.4"/>
+        </Node>
+        <Node score="16.287499999999998">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="13.4"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="7">
+                <True/>
+                <TreeModel functionName="regression" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="cylinders"/>
+                        <MiningField name="displacement"/>
+                        <MiningField name="horsepower"/>
+                        <MiningField name="weight"/>
+                        <MiningField name="acceleration"/>
+                        <MiningField name="model_year"/>
+                        <MiningField name="origin"/>
+                    </MiningSchema>
+                    <Node score="23.594221105527645">
+                        <True/>
+                        <Node score="29.47549019607844">
+                            <SimplePredicate field="cylinders" operator="lessOrEqual" value="5"/>
+                            <Node score="32.65087719298246">
+<SimplePredicate field="horsepower" operator="lessOrEqual" value="78"/>
+<Node score="28.522727272727273">
+    <SimplePredicate field="model_year" operator="lessOrEqual" value="77"/>
+    <Node score="27.224137931034484">
+        <SimplePredicate field="origin" operator="lessOrEqual" value="2"/>
+        <Node score="28.065217391304348">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="104"/>
+        </Node>
+        <Node score="24">
+            <SimplePredicate field="displacement" operator="greaterThan" value="104"/>
+        </Node>
+    </Node>
+    <Node score="31.033333333333335">
+        <SimplePredicate field="origin" operator="greaterThan" value="2"/>
+        <Node score="32.04545454545455">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="71"/>
+        </Node>
+        <Node score="28.25">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="71"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="35.245714285714286">
+    <SimplePredicate field="model_year" operator="greaterThan" value="77"/>
+    <Node score="37.54772727272728">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="2188"/>
+        <Node score="36.96999999999999">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="19.5"/>
+        </Node>
+        <Node score="43.32499999999999">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="19.5"/>
+        </Node>
+    </Node>
+    <Node score="31.350000000000005">
+        <SimplePredicate field="weight" operator="greaterThan" value="2188"/>
+        <Node score="43.4">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="53"/>
+        </Node>
+        <Node score="30.868">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="53"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="25.453333333333337">
+<SimplePredicate field="horsepower" operator="greaterThan" value="78"/>
+<Node score="26.156521739130433">
+    <SimplePredicate field="horsepower" operator="lessOrEqual" value="95"/>
+    <Node score="24.56590909090909">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="78"/>
+        <Node score="25.313157894736843">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="17.9"/>
+        </Node>
+        <Node score="19.833333333333353">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="17.9"/>
+        </Node>
+    </Node>
+    <Node score="28.956000000000003">
+        <SimplePredicate field="model_year" operator="greaterThan" value="78"/>
+        <Node score="32.599999999999994">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="15.2"/>
+        </Node>
+        <Node score="26.906249999999993">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="15.2"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="23.14285714285713">
+    <SimplePredicate field="horsepower" operator="greaterThan" value="95"/>
+    <Node score="22.673684210526314">
+        <SimplePredicate field="displacement" operator="lessOrEqual" value="135"/>
+        <Node score="23.335714285714285">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="2711"/>
+        </Node>
+        <Node score="20.820000000000004">
+            <SimplePredicate field="weight" operator="greaterThan" value="2711"/>
+        </Node>
+    </Node>
+    <Node score="27.599999999999994">
+        <SimplePredicate field="displacement" operator="greaterThan" value="135"/>
+        <Node score="32">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="14"/>
+        </Node>
+        <Node score="23.200000000000003">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="14"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                        <Node score="17.40979381443299">
+                            <SimplePredicate field="cylinders" operator="greaterThan" value="5"/>
+                            <Node score="19.838679245283014">
+<SimplePredicate field="weight" operator="lessOrEqual" value="3730"/>
+<Node score="18.884090909090908">
+    <SimplePredicate field="model_year" operator="lessOrEqual" value="79"/>
+    <Node score="20.633333333333333">
+        <SimplePredicate field="displacement" operator="lessOrEqual" value="232"/>
+        <Node score="28.8">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="11.4"/>
+        </Node>
+        <Node score="20.253488372093027">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="11.4"/>
+        </Node>
+    </Node>
+    <Node score="17.053488372093028">
+        <SimplePredicate field="displacement" operator="greaterThan" value="232"/>
+        <Node score="16.296296296296298">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="75"/>
+        </Node>
+        <Node score="18.331249999999997">
+            <SimplePredicate field="model_year" operator="greaterThan" value="75"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="24.50555555555554">
+    <SimplePredicate field="model_year" operator="greaterThan" value="79"/>
+    <Node score="25.54615384615385">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="3085"/>
+        <Node score="24.508333333333336">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="232"/>
+        </Node>
+        <Node score="38">
+            <SimplePredicate field="displacement" operator="greaterThan" value="232"/>
+        </Node>
+    </Node>
+    <Node score="21.8">
+        <SimplePredicate field="weight" operator="greaterThan" value="3085"/>
+        <Node score="18.6">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="3613"/>
+        </Node>
+        <Node score="26.599999999999998">
+            <SimplePredicate field="weight" operator="greaterThan" value="3613"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="14.484090909090908">
+<SimplePredicate field="weight" operator="greaterThan" value="3730"/>
+<Node score="15.309615384615386">
+    <SimplePredicate field="weight" operator="lessOrEqual" value="4295"/>
+    <Node score="14.679487179487179">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="76"/>
+        <Node score="16.428571428571427">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="250"/>
+        </Node>
+        <Node score="14.296875">
+            <SimplePredicate field="displacement" operator="greaterThan" value="250"/>
+        </Node>
+    </Node>
+    <Node score="17.200000000000003">
+        <SimplePredicate field="model_year" operator="greaterThan" value="76"/>
+        <Node score="15.75">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="11.4"/>
+        </Node>
+        <Node score="17.463636363636365">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="11.4"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="13.291666666666664">
+    <SimplePredicate field="weight" operator="greaterThan" value="4295"/>
+    <Node score="14.02">
+        <SimplePredicate field="horsepower" operator="lessOrEqual" value="193"/>
+        <Node score="14.229166666666666">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="16.2"/>
+        </Node>
+        <Node score="9">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="16.2"/>
+        </Node>
+    </Node>
+    <Node score="11.636363636363637">
+        <SimplePredicate field="horsepower" operator="greaterThan" value="193"/>
+        <Node score="10.333333333333334">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="360"/>
+        </Node>
+        <Node score="13.2">
+            <SimplePredicate field="displacement" operator="greaterThan" value="360"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="8">
+                <True/>
+                <TreeModel functionName="regression" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="cylinders"/>
+                        <MiningField name="displacement"/>
+                        <MiningField name="horsepower"/>
+                        <MiningField name="weight"/>
+                        <MiningField name="acceleration"/>
+                        <MiningField name="model_year"/>
+                        <MiningField name="origin"/>
+                    </MiningSchema>
+                    <Node score="23.082702702702704">
+                        <True/>
+                        <Node score="28.067452830188675">
+                            <SimplePredicate field="weight" operator="lessOrEqual" value="3085"/>
+                            <Node score="32.130693069306936">
+<SimplePredicate field="horsepower" operator="lessOrEqual" value="82"/>
+<Node score="32.89080459770115">
+    <SimplePredicate field="weight" operator="lessOrEqual" value="2370"/>
+    <Node score="33.65223880597015">
+        <SimplePredicate field="horsepower" operator="lessOrEqual" value="74"/>
+        <Node score="36.32">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="53"/>
+        </Node>
+        <Node score="33.18421052631579">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="53"/>
+        </Node>
+    </Node>
+    <Node score="30.34000000000001">
+        <SimplePredicate field="horsepower" operator="greaterThan" value="74"/>
+        <Node score="32.00909090909091">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="14.8"/>
+        </Node>
+        <Node score="28.300000000000004">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="14.8"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="27.407142857142844">
+    <SimplePredicate field="weight" operator="greaterThan" value="2370"/>
+    <Node score="24.954545454545453">
+        <SimplePredicate field="acceleration" operator="lessOrEqual" value="19"/>
+        <Node score="22">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="2515"/>
+        </Node>
+        <Node score="27.416666666666668">
+            <SimplePredicate field="weight" operator="greaterThan" value="2515"/>
+        </Node>
+    </Node>
+    <Node score="36.4">
+        <SimplePredicate field="acceleration" operator="greaterThan" value="19"/>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="24.370270270270268">
+<SimplePredicate field="horsepower" operator="greaterThan" value="82"/>
+<Node score="23.235632183908045">
+    <SimplePredicate field="model_year" operator="lessOrEqual" value="79"/>
+    <Node score="24.186153846153843">
+        <SimplePredicate field="cylinders" operator="lessOrEqual" value="4"/>
+        <Node score="26.884615384615383">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="2223"/>
+        </Node>
+        <Node score="23.511538461538457">
+            <SimplePredicate field="weight" operator="greaterThan" value="2223"/>
+        </Node>
+    </Node>
+    <Node score="20.427272727272733">
+        <SimplePredicate field="cylinders" operator="greaterThan" value="4"/>
+        <Node score="19.766666666666666">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="110"/>
+        </Node>
+        <Node score="23.39999999999999">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="110"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="28.48333333333333">
+    <SimplePredicate field="model_year" operator="greaterThan" value="79"/>
+    <Node score="31.22">
+        <SimplePredicate field="displacement" operator="lessOrEqual" value="135"/>
+        <Node score="23.7">
+            <SimplePredicate field="cylinders" operator="lessOrEqual" value="3"/>
+        </Node>
+        <Node score="32.05555555555556">
+            <SimplePredicate field="cylinders" operator="greaterThan" value="3"/>
+        </Node>
+    </Node>
+    <Node score="26.52857142857142">
+        <SimplePredicate field="displacement" operator="greaterThan" value="135"/>
+        <Node score="25.646153846153844">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="232"/>
+        </Node>
+        <Node score="38">
+            <SimplePredicate field="displacement" operator="greaterThan" value="232"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                        <Node score="16.39430379746836">
+                            <SimplePredicate field="weight" operator="greaterThan" value="3085"/>
+                            <Node score="18.2780487804878">
+<SimplePredicate field="weight" operator="lessOrEqual" value="3730"/>
+<Node score="17.40909090909091">
+    <SimplePredicate field="model_year" operator="lessOrEqual" value="78"/>
+    <Node score="15.133333333333333">
+        <SimplePredicate field="acceleration" operator="lessOrEqual" value="12"/>
+        <Node score="14.25">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="138"/>
+        </Node>
+        <Node score="15.454545454545455">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="138"/>
+        </Node>
+    </Node>
+    <Node score="18.07843137254902">
+        <SimplePredicate field="acceleration" operator="greaterThan" value="12"/>
+        <Node score="15">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="74"/>
+        </Node>
+        <Node score="18.488888888888887">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="74"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="21.862499999999997">
+    <SimplePredicate field="model_year" operator="greaterThan" value="78"/>
+    <Node score="20.28461538461539">
+        <SimplePredicate field="origin" operator="lessOrEqual" value="1"/>
+        <Node score="19.758333333333333">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="18.7"/>
+        </Node>
+        <Node score="26.599999999999994">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="18.7"/>
+        </Node>
+    </Node>
+    <Node score="28.700000000000006">
+        <SimplePredicate field="origin" operator="greaterThan" value="1"/>
+        <Node score="28.049999999999997">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="21"/>
+        </Node>
+        <Node score="30">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="21"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="14.361842105263158">
+<SimplePredicate field="weight" operator="greaterThan" value="3730"/>
+<Node score="13.85483870967742">
+    <SimplePredicate field="model_year" operator="lessOrEqual" value="76"/>
+    <Node score="14.137254901960784">
+        <SimplePredicate field="horsepower" operator="lessOrEqual" value="175"/>
+        <Node score="14">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="16.2"/>
+        </Node>
+        <Node score="16.333333333333332">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="16.2"/>
+        </Node>
+    </Node>
+    <Node score="12.545454545454545">
+        <SimplePredicate field="horsepower" operator="greaterThan" value="175"/>
+        <Node score="14.333333333333334">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="10.5"/>
+        </Node>
+        <Node score="11.875">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="10.5"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="16.607142857142858">
+    <SimplePredicate field="model_year" operator="greaterThan" value="76"/>
+    <Node score="17.5">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="4055"/>
+        <Node score="23">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="125"/>
+        </Node>
+        <Node score="16.4">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="125"/>
+        </Node>
+    </Node>
+    <Node score="15.9375">
+        <SimplePredicate field="weight" operator="greaterThan" value="4055"/>
+        <Node score="15.714285714285714">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="77"/>
+        </Node>
+        <Node score="17.5">
+            <SimplePredicate field="model_year" operator="greaterThan" value="77"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="9">
+                <True/>
+                <TreeModel functionName="regression" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="cylinders"/>
+                        <MiningField name="displacement"/>
+                        <MiningField name="horsepower"/>
+                        <MiningField name="weight"/>
+                        <MiningField name="acceleration"/>
+                        <MiningField name="model_year"/>
+                        <MiningField name="origin"/>
+                    </MiningSchema>
+                    <Node score="24.192820512820504">
+                        <True/>
+                        <Node score="29.034070796460163">
+                            <SimplePredicate field="cylinders" operator="lessOrEqual" value="4"/>
+                            <Node score="31.761788617886186">
+<SimplePredicate field="horsepower" operator="lessOrEqual" value="78"/>
+<Node score="32.694495412844034">
+    <SimplePredicate field="displacement" operator="lessOrEqual" value="113"/>
+    <Node score="29.443181818181817">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="77"/>
+        <Node score="28.3">
+            <SimplePredicate field="origin" operator="lessOrEqual" value="2"/>
+        </Node>
+        <Node score="31.892857142857142">
+            <SimplePredicate field="origin" operator="greaterThan" value="2"/>
+        </Node>
+    </Node>
+    <Node score="34.89538461538462">
+        <SimplePredicate field="model_year" operator="greaterThan" value="77"/>
+        <Node score="40.75">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="53"/>
+        </Node>
+        <Node score="34.51147540983607">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="53"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="24.5">
+    <SimplePredicate field="displacement" operator="greaterThan" value="113"/>
+    <Node score="22.7">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="2515"/>
+        <Node score="24.5">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="2265"/>
+        </Node>
+        <Node score="21.5">
+            <SimplePredicate field="weight" operator="greaterThan" value="2265"/>
+        </Node>
+    </Node>
+    <Node score="29">
+        <SimplePredicate field="weight" operator="greaterThan" value="2515"/>
+        <Node score="31.6">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="120"/>
+        </Node>
+        <Node score="28.133333333333336">
+            <SimplePredicate field="displacement" operator="greaterThan" value="120"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="25.77669902912623">
+<SimplePredicate field="horsepower" operator="greaterThan" value="78"/>
+<Node score="23.847692307692306">
+    <SimplePredicate field="model_year" operator="lessOrEqual" value="78"/>
+    <Node score="25.796296296296298">
+        <SimplePredicate field="displacement" operator="lessOrEqual" value="113"/>
+        <Node score="19">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="13.7"/>
+        </Node>
+        <Node score="26.34">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="13.7"/>
+        </Node>
+    </Node>
+    <Node score="22.463157894736838">
+        <SimplePredicate field="displacement" operator="greaterThan" value="113"/>
+        <Node score="26.666666666666668">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="71"/>
+        </Node>
+        <Node score="22.102857142857143">
+            <SimplePredicate field="model_year" operator="greaterThan" value="71"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="29.076315789473686">
+    <SimplePredicate field="model_year" operator="greaterThan" value="78"/>
+    <Node score="31.65555555555555">
+        <SimplePredicate field="horsepower" operator="lessOrEqual" value="88"/>
+        <Node score="30.215384615384615">
+            <SimplePredicate field="origin" operator="lessOrEqual" value="1"/>
+        </Node>
+        <Node score="35.39999999999999">
+            <SimplePredicate field="origin" operator="greaterThan" value="1"/>
+        </Node>
+    </Node>
+    <Node score="26.755000000000006">
+        <SimplePredicate field="horsepower" operator="greaterThan" value="88"/>
+        <Node score="27.850000000000005">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="16.2"/>
+        </Node>
+        <Node score="25.112499999999997">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="16.2"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                        <Node score="17.521341463414632">
+                            <SimplePredicate field="cylinders" operator="greaterThan" value="4"/>
+                            <Node score="20.22631578947368">
+<SimplePredicate field="displacement" operator="lessOrEqual" value="267"/>
+<Node score="23.389999999999997">
+    <SimplePredicate field="horsepower" operator="lessOrEqual" value="87"/>
+    <Node score="21.766666666666666">
+        <SimplePredicate field="displacement" operator="lessOrEqual" value="250"/>
+        <Node score="20.650000000000002">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="79"/>
+        </Node>
+        <Node score="30.69999999999999">
+            <SimplePredicate field="model_year" operator="greaterThan" value="79"/>
+        </Node>
+    </Node>
+    <Node score="38">
+        <SimplePredicate field="displacement" operator="greaterThan" value="250"/>
+    </Node>
+</Node>
+<Node score="19.7469696969697">
+    <SimplePredicate field="horsepower" operator="greaterThan" value="87"/>
+    <Node score="25.7">
+        <SimplePredicate field="acceleration" operator="lessOrEqual" value="12.9"/>
+        <Node score="26.8">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="79"/>
+        </Node>
+        <Node score="23.499999999999993">
+            <SimplePredicate field="model_year" operator="greaterThan" value="79"/>
+        </Node>
+    </Node>
+    <Node score="19.463492063492065">
+        <SimplePredicate field="acceleration" operator="greaterThan" value="12.9"/>
+        <Node score="18.846153846153847">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="75"/>
+        </Node>
+        <Node score="20.46666666666667">
+            <SimplePredicate field="model_year" operator="greaterThan" value="75"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="15.185227272727275">
+<SimplePredicate field="displacement" operator="greaterThan" value="267"/>
+<Node score="14.62987012987013">
+    <SimplePredicate field="model_year" operator="lessOrEqual" value="77"/>
+    <Node score="15.25609756097561">
+        <SimplePredicate field="displacement" operator="lessOrEqual" value="350"/>
+        <Node score="16.526315789473685">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="13"/>
+        </Node>
+        <Node score="14.159090909090908">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="13"/>
+        </Node>
+    </Node>
+    <Node score="13.916666666666666">
+        <SimplePredicate field="displacement" operator="greaterThan" value="350"/>
+        <Node score="14.666666666666666">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="4425"/>
+        </Node>
+        <Node score="12.866666666666667">
+            <SimplePredicate field="weight" operator="greaterThan" value="4425"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="19.07272727272725">
+    <SimplePredicate field="model_year" operator="greaterThan" value="77"/>
+    <Node score="18.32">
+        <SimplePredicate field="acceleration" operator="lessOrEqual" value="13.7"/>
+        <Node score="17.05">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="138"/>
+        </Node>
+        <Node score="18.6375">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="138"/>
+        </Node>
+    </Node>
+    <Node score="26.599999999999994">
+        <SimplePredicate field="acceleration" operator="greaterThan" value="13.7"/>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="10">
+                <True/>
+                <TreeModel functionName="regression" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="cylinders"/>
+                        <MiningField name="displacement"/>
+                        <MiningField name="horsepower"/>
+                        <MiningField name="weight"/>
+                        <MiningField name="acceleration"/>
+                        <MiningField name="model_year"/>
+                        <MiningField name="origin"/>
+                    </MiningSchema>
+                    <Node score="22.954787234042552">
+                        <True/>
+                        <Node score="28.8627027027027">
+                            <SimplePredicate field="cylinders" operator="lessOrEqual" value="5"/>
+                            <Node score="27.63416666666667">
+<SimplePredicate field="origin" operator="lessOrEqual" value="2"/>
+<Node score="31">
+    <SimplePredicate field="displacement" operator="lessOrEqual" value="107"/>
+    <Node score="25.952380952380953">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="76"/>
+        <Node score="28">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="1945"/>
+        </Node>
+        <Node score="25.61111111111111">
+            <SimplePredicate field="weight" operator="greaterThan" value="1945"/>
+        </Node>
+    </Node>
+    <Node score="35.07692307692308">
+        <SimplePredicate field="model_year" operator="greaterThan" value="76"/>
+        <Node score="43.1">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="53"/>
+        </Node>
+        <Node score="34.0304347826087">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="53"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="25.46712328767124">
+    <SimplePredicate field="displacement" operator="greaterThan" value="107"/>
+    <Node score="26.1375">
+        <SimplePredicate field="origin" operator="lessOrEqual" value="1"/>
+        <Node score="22.875">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="78"/>
+        </Node>
+        <Node score="26.434090909090912">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="78"/>
+        </Node>
+    </Node>
+    <Node score="24.18">
+        <SimplePredicate field="origin" operator="greaterThan" value="1"/>
+        <Node score="36.4">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="67"/>
+        </Node>
+        <Node score="23.670833333333334">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="67"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="31.130769230769232">
+<SimplePredicate field="origin" operator="greaterThan" value="2"/>
+<Node score="33.612195121951224">
+    <SimplePredicate field="weight" operator="lessOrEqual" value="2265"/>
+    <Node score="31">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="77"/>
+        <Node score="31.416666666666668">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="76"/>
+        </Node>
+        <Node score="26">
+            <SimplePredicate field="model_year" operator="greaterThan" value="76"/>
+        </Node>
+    </Node>
+    <Node score="34.824999999999996">
+        <SimplePredicate field="model_year" operator="greaterThan" value="77"/>
+        <Node score="33.625">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="1980"/>
+        </Node>
+        <Node score="35.72500000000001">
+            <SimplePredicate field="weight" operator="greaterThan" value="1980"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="26.891666666666662">
+    <SimplePredicate field="weight" operator="greaterThan" value="2265"/>
+    <Node score="31.25">
+        <SimplePredicate field="horsepower" operator="lessOrEqual" value="93"/>
+        <Node score="26">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="113"/>
+        </Node>
+        <Node score="33">
+            <SimplePredicate field="displacement" operator="greaterThan" value="113"/>
+        </Node>
+    </Node>
+    <Node score="24.7125">
+        <SimplePredicate field="horsepower" operator="greaterThan" value="93"/>
+        <Node score="22.96153846153846">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="80"/>
+        </Node>
+        <Node score="32.29999999999999">
+            <SimplePredicate field="model_year" operator="greaterThan" value="80"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                        <Node score="17.232460732984297">
+                            <SimplePredicate field="cylinders" operator="greaterThan" value="5"/>
+                            <Node score="19.736559139784948">
+<SimplePredicate field="displacement" operator="lessOrEqual" value="267"/>
+<Node score="18.417391304347824">
+    <SimplePredicate field="model_year" operator="lessOrEqual" value="78"/>
+    <Node score="19.866666666666667">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="3085"/>
+        <Node score="19.1">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="2962"/>
+        </Node>
+        <Node score="21.4">
+            <SimplePredicate field="weight" operator="greaterThan" value="2962"/>
+        </Node>
+    </Node>
+    <Node score="18.014814814814812">
+        <SimplePredicate field="weight" operator="greaterThan" value="3085"/>
+        <Node score="18.313636363636363">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="3730"/>
+        </Node>
+        <Node score="16.7">
+            <SimplePredicate field="weight" operator="greaterThan" value="3730"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="23.52916666666667">
+    <SimplePredicate field="model_year" operator="greaterThan" value="78"/>
+    <Node score="25.2375">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="3193"/>
+        <Node score="30.7">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="78"/>
+        </Node>
+        <Node score="24.45714285714286">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="78"/>
+        </Node>
+    </Node>
+    <Node score="20.11249999999999">
+        <SimplePredicate field="weight" operator="greaterThan" value="3193"/>
+        <Node score="21.619999999999997">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="79"/>
+        </Node>
+        <Node score="17.600000000000005">
+            <SimplePredicate field="model_year" operator="greaterThan" value="79"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="14.856122448979589">
+<SimplePredicate field="displacement" operator="greaterThan" value="267"/>
+<Node score="16.62162162162162">
+    <SimplePredicate field="horsepower" operator="lessOrEqual" value="149"/>
+    <Node score="14.842105263157896">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="77"/>
+        <Node score="17">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="3459"/>
+        </Node>
+        <Node score="14.722222222222221">
+            <SimplePredicate field="weight" operator="greaterThan" value="3459"/>
+        </Node>
+    </Node>
+    <Node score="18.5">
+        <SimplePredicate field="model_year" operator="greaterThan" value="77"/>
+        <Node score="26.6">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="107"/>
+        </Node>
+        <Node score="18.023529411764706">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="107"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="13.785245901639346">
+    <SimplePredicate field="horsepower" operator="greaterThan" value="149"/>
+    <Node score="13.130434782608695">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="74"/>
+        <Node score="14.32">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="4295"/>
+        </Node>
+        <Node score="11.714285714285714">
+            <SimplePredicate field="weight" operator="greaterThan" value="4295"/>
+        </Node>
+    </Node>
+    <Node score="15.793333333333331">
+        <SimplePredicate field="model_year" operator="greaterThan" value="74"/>
+        <Node score="16.22222222222222">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="13"/>
+        </Node>
+        <Node score="15.15">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="13"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="11">
+                <True/>
+                <TreeModel functionName="regression" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="cylinders"/>
+                        <MiningField name="displacement"/>
+                        <MiningField name="horsepower"/>
+                        <MiningField name="weight"/>
+                        <MiningField name="acceleration"/>
+                        <MiningField name="model_year"/>
+                        <MiningField name="origin"/>
+                    </MiningSchema>
+                    <Node score="24.046341463414635">
+                        <True/>
+                        <Node score="29.514847161572042">
+                            <SimplePredicate field="cylinders" operator="lessOrEqual" value="5"/>
+                            <Node score="34.3046875">
+<SimplePredicate field="displacement" operator="lessOrEqual" value="91"/>
+<Node score="28.661538461538463">
+    <SimplePredicate field="acceleration" operator="lessOrEqual" value="15.5"/>
+    <Node score="31.985714285714288">
+        <SimplePredicate field="horsepower" operator="lessOrEqual" value="71"/>
+        <Node score="30.325000000000003">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="89"/>
+        </Node>
+        <Node score="34.199999999999996">
+            <SimplePredicate field="displacement" operator="greaterThan" value="89"/>
+        </Node>
+    </Node>
+    <Node score="24.783333333333328">
+        <SimplePredicate field="horsepower" operator="greaterThan" value="71"/>
+        <Node score="27.333333333333332">
+            <SimplePredicate field="origin" operator="lessOrEqual" value="2"/>
+        </Node>
+        <Node score="22.23333333333333">
+            <SimplePredicate field="origin" operator="greaterThan" value="2"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="35.74313725490196">
+    <SimplePredicate field="acceleration" operator="greaterThan" value="15.5"/>
+    <Node score="33.573076923076925">
+        <SimplePredicate field="displacement" operator="lessOrEqual" value="85"/>
+        <Node score="30.919999999999998">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="53"/>
+        </Node>
+        <Node score="34.20476190476191">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="53"/>
+        </Node>
+    </Node>
+    <Node score="38">
+        <SimplePredicate field="displacement" operator="greaterThan" value="85"/>
+        <Node score="35.64705882352941">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="2045"/>
+        </Node>
+        <Node score="43">
+            <SimplePredicate field="weight" operator="greaterThan" value="2045"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="27.65696969696969">
+<SimplePredicate field="displacement" operator="greaterThan" value="91"/>
+<Node score="30.264285714285716">
+    <SimplePredicate field="horsepower" operator="lessOrEqual" value="84"/>
+    <Node score="30.747368421052634">
+        <SimplePredicate field="displacement" operator="lessOrEqual" value="135"/>
+        <Node score="30.594594594594593">
+            <SimplePredicate field="cylinders" operator="lessOrEqual" value="4"/>
+        </Node>
+        <Node score="36.40000000000009">
+            <SimplePredicate field="cylinders" operator="greaterThan" value="4"/>
+        </Node>
+    </Node>
+    <Node score="25.67500000000001">
+        <SimplePredicate field="displacement" operator="greaterThan" value="135"/>
+        <Node score="25.166666666666668">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="21"/>
+        </Node>
+        <Node score="27.200000000000003">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="21"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="24.953086419753088">
+    <SimplePredicate field="horsepower" operator="greaterThan" value="84"/>
+    <Node score="25.56119402985075">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="2800"/>
+        <Node score="24.42641509433962">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="78"/>
+        </Node>
+        <Node score="29.857142857142858">
+            <SimplePredicate field="model_year" operator="greaterThan" value="78"/>
+        </Node>
+    </Node>
+    <Node score="22.042857142857137">
+        <SimplePredicate field="weight" operator="greaterThan" value="2800"/>
+        <Node score="24.100000000000005">
+            <SimplePredicate field="origin" operator="lessOrEqual" value="1"/>
+        </Node>
+        <Node score="20.5">
+            <SimplePredicate field="origin" operator="greaterThan" value="1"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                        <Node score="17.127624309392278">
+                            <SimplePredicate field="cylinders" operator="greaterThan" value="5"/>
+                            <Node score="19.676288659793816">
+<SimplePredicate field="weight" operator="lessOrEqual" value="3730"/>
+<Node score="26.900000000000002">
+    <SimplePredicate field="displacement" operator="lessOrEqual" value="146"/>
+    <Node score="30.7">
+        <SimplePredicate field="horsepower" operator="lessOrEqual" value="78"/>
+    </Node>
+    <Node score="23.100000000000005">
+        <SimplePredicate field="horsepower" operator="greaterThan" value="78"/>
+        <Node score="22">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="2901"/>
+        </Node>
+        <Node score="24.200000000000003">
+            <SimplePredicate field="weight" operator="greaterThan" value="2901"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="19.365591397849464">
+    <SimplePredicate field="displacement" operator="greaterThan" value="146"/>
+    <Node score="18.5225">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="79"/>
+        <Node score="19.00588235294118">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="149"/>
+        </Node>
+        <Node score="15.78333333333334">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="149"/>
+        </Node>
+    </Node>
+    <Node score="24.55384615384616">
+        <SimplePredicate field="model_year" operator="greaterThan" value="79"/>
+        <Node score="32.7">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="11.4"/>
+        </Node>
+        <Node score="23.875000000000004">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="11.4"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="14.184523809523812">
+<SimplePredicate field="weight" operator="greaterThan" value="3730"/>
+<Node score="14.940677966101696">
+    <SimplePredicate field="weight" operator="lessOrEqual" value="4425"/>
+    <Node score="16.131249999999998">
+        <SimplePredicate field="horsepower" operator="lessOrEqual" value="142"/>
+        <Node score="13">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="72"/>
+        </Node>
+        <Node score="16.853846153846156">
+            <SimplePredicate field="model_year" operator="greaterThan" value="72"/>
+        </Node>
+    </Node>
+    <Node score="14.497674418604648">
+        <SimplePredicate field="horsepower" operator="greaterThan" value="142"/>
+        <Node score="13.85">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="76"/>
+        </Node>
+        <Node score="15.99230769230769">
+            <SimplePredicate field="model_year" operator="greaterThan" value="76"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="12.4">
+    <SimplePredicate field="weight" operator="greaterThan" value="4425"/>
+    <Node score="9.25">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="70"/>
+        <Node score="9">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="307"/>
+        </Node>
+        <Node score="10">
+            <SimplePredicate field="displacement" operator="greaterThan" value="307"/>
+        </Node>
+    </Node>
+    <Node score="13">
+        <SimplePredicate field="model_year" operator="greaterThan" value="70"/>
+        <Node score="12.285714285714286">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="73"/>
+        </Node>
+        <Node score="14.428571428571429">
+            <SimplePredicate field="model_year" operator="greaterThan" value="73"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="12">
+                <True/>
+                <TreeModel functionName="regression" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="cylinders"/>
+                        <MiningField name="displacement"/>
+                        <MiningField name="horsepower"/>
+                        <MiningField name="weight"/>
+                        <MiningField name="acceleration"/>
+                        <MiningField name="model_year"/>
+                        <MiningField name="origin"/>
+                    </MiningSchema>
+                    <Node score="22.935678391959797">
+                        <True/>
+                        <Node score="29.466847826086955">
+                            <SimplePredicate field="weight" operator="lessOrEqual" value="2800"/>
+                            <Node score="25.970588235294116">
+<SimplePredicate field="model_year" operator="lessOrEqual" value="76"/>
+<Node score="26.290123456790123">
+    <SimplePredicate field="cylinders" operator="lessOrEqual" value="4"/>
+    <Node score="29.916666666666668">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="2110"/>
+        <Node score="27.2">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="15.5"/>
+        </Node>
+        <Node score="30.63157894736842">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="15.5"/>
+        </Node>
+    </Node>
+    <Node score="24.763157894736842">
+        <SimplePredicate field="weight" operator="greaterThan" value="2110"/>
+        <Node score="25.229166666666668">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="17.5"/>
+        </Node>
+        <Node score="22.27777777777778">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="17.5"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="19.5">
+    <SimplePredicate field="cylinders" operator="greaterThan" value="4"/>
+    <Node score="21">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="2648"/>
+    </Node>
+    <Node score="18">
+        <SimplePredicate field="weight" operator="greaterThan" value="2648"/>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="32.468686868686866">
+<SimplePredicate field="model_year" operator="greaterThan" value="76"/>
+<Node score="29.08947368421052">
+    <SimplePredicate field="origin" operator="lessOrEqual" value="1"/>
+    <Node score="31.561111111111106">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="2587"/>
+        <Node score="35.475">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="2045"/>
+        </Node>
+        <Node score="30.44285714285714">
+            <SimplePredicate field="weight" operator="greaterThan" value="2045"/>
+        </Node>
+    </Node>
+    <Node score="26.865">
+        <SimplePredicate field="weight" operator="greaterThan" value="2587"/>
+        <Node score="27.479999999999997">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="90"/>
+        </Node>
+        <Node score="25.020000000000003">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="90"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="34.57377049180328">
+    <SimplePredicate field="origin" operator="greaterThan" value="1"/>
+    <Node score="33.76964285714285">
+        <SimplePredicate field="acceleration" operator="lessOrEqual" value="19.5"/>
+        <Node score="34.77073170731707">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="2223"/>
+        </Node>
+        <Node score="31.033333333333335">
+            <SimplePredicate field="weight" operator="greaterThan" value="2223"/>
+        </Node>
+    </Node>
+    <Node score="43.57999999999997">
+        <SimplePredicate field="acceleration" operator="greaterThan" value="19.5"/>
+        <Node score="43.300000000000004">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="91"/>
+        </Node>
+        <Node score="44">
+            <SimplePredicate field="displacement" operator="greaterThan" value="91"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                        <Node score="17.320093457943916">
+                            <SimplePredicate field="weight" operator="greaterThan" value="2800"/>
+                            <Node score="24.194594594594594">
+<SimplePredicate field="displacement" operator="lessOrEqual" value="200"/>
+<Node score="20.264705882352942">
+    <SimplePredicate field="model_year" operator="lessOrEqual" value="78"/>
+    <Node score="22.166666666666668">
+        <SimplePredicate field="horsepower" operator="lessOrEqual" value="97"/>
+        <Node score="22.375">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="2962"/>
+        </Node>
+        <Node score="20.5">
+            <SimplePredicate field="weight" operator="greaterThan" value="2962"/>
+        </Node>
+    </Node>
+    <Node score="18.125">
+        <SimplePredicate field="horsepower" operator="greaterThan" value="97"/>
+        <Node score="18.5">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="156"/>
+        </Node>
+        <Node score="17">
+            <SimplePredicate field="displacement" operator="greaterThan" value="156"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="27.53499999999999">
+    <SimplePredicate field="model_year" operator="greaterThan" value="78"/>
+    <Node score="36.4">
+        <SimplePredicate field="displacement" operator="lessOrEqual" value="122"/>
+    </Node>
+    <Node score="26.55">
+        <SimplePredicate field="displacement" operator="greaterThan" value="122"/>
+        <Node score="23.933333333333334">
+            <SimplePredicate field="origin" operator="lessOrEqual" value="1"/>
+        </Node>
+        <Node score="27.85833333333333">
+            <SimplePredicate field="origin" operator="greaterThan" value="1"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="15.883050847457628">
+<SimplePredicate field="displacement" operator="greaterThan" value="200"/>
+<Node score="18.04">
+    <SimplePredicate field="weight" operator="lessOrEqual" value="3730"/>
+    <Node score="17.023255813953487">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="75"/>
+        <Node score="17.514285714285716">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="3613"/>
+        </Node>
+        <Node score="14.875">
+            <SimplePredicate field="weight" operator="greaterThan" value="3613"/>
+        </Node>
+    </Node>
+    <Node score="19.659259259259258">
+        <SimplePredicate field="model_year" operator="greaterThan" value="75"/>
+        <Node score="20.615384615384617">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="3459"/>
+        </Node>
+        <Node score="18.77142857142857">
+            <SimplePredicate field="weight" operator="greaterThan" value="3459"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="14.471962616822433">
+    <SimplePredicate field="weight" operator="greaterThan" value="3730"/>
+    <Node score="13.054545454545455">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="73"/>
+        <Node score="13.837837837837839">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="4425"/>
+        </Node>
+        <Node score="11.444444444444445">
+            <SimplePredicate field="weight" operator="greaterThan" value="4425"/>
+        </Node>
+    </Node>
+    <Node score="15.971153846153847">
+        <SimplePredicate field="model_year" operator="greaterThan" value="73"/>
+        <Node score="15.180555555555555">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="77"/>
+        </Node>
+        <Node score="17.75">
+            <SimplePredicate field="model_year" operator="greaterThan" value="77"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="13">
+                <True/>
+                <TreeModel functionName="regression" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="cylinders"/>
+                        <MiningField name="displacement"/>
+                        <MiningField name="horsepower"/>
+                        <MiningField name="weight"/>
+                        <MiningField name="acceleration"/>
+                        <MiningField name="model_year"/>
+                        <MiningField name="origin"/>
+                    </MiningSchema>
+                    <Node score="22.53223350253807">
+                        <True/>
+                        <Node score="27.755450236966823">
+                            <SimplePredicate field="weight" operator="lessOrEqual" value="3085"/>
+                            <Node score="31.01047619047619">
+<SimplePredicate field="horsepower" operator="lessOrEqual" value="84"/>
+<Node score="27.133333333333333">
+    <SimplePredicate field="model_year" operator="lessOrEqual" value="76"/>
+    <Node score="29.8">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="2110"/>
+        <Node score="28.5">
+            <SimplePredicate field="origin" operator="lessOrEqual" value="2"/>
+        </Node>
+        <Node score="31.75">
+            <SimplePredicate field="origin" operator="greaterThan" value="2"/>
+        </Node>
+    </Node>
+    <Node score="25">
+        <SimplePredicate field="weight" operator="greaterThan" value="2110"/>
+        <Node score="24.875">
+            <SimplePredicate field="origin" operator="lessOrEqual" value="2"/>
+        </Node>
+        <Node score="28">
+            <SimplePredicate field="origin" operator="greaterThan" value="2"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="33.91833333333332">
+    <SimplePredicate field="model_year" operator="greaterThan" value="76"/>
+    <Node score="35.51315789473684">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="2223"/>
+        <Node score="33.99444444444445">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="79"/>
+        </Node>
+        <Node score="36.88000000000001">
+            <SimplePredicate field="model_year" operator="greaterThan" value="79"/>
+        </Node>
+    </Node>
+    <Node score="31.16363636363637">
+        <SimplePredicate field="weight" operator="greaterThan" value="2223"/>
+        <Node score="32.21111111111111">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="74"/>
+        </Node>
+        <Node score="30.438461538461542">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="74"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="24.531132075471696">
+<SimplePredicate field="horsepower" operator="greaterThan" value="84"/>
+<Node score="25.26626506024097">
+    <SimplePredicate field="displacement" operator="lessOrEqual" value="181"/>
+    <Node score="23.664285714285715">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="78"/>
+        <Node score="19.833333333333332">
+            <SimplePredicate field="cylinders" operator="lessOrEqual" value="3"/>
+        </Node>
+        <Node score="23.881132075471697">
+            <SimplePredicate field="cylinders" operator="greaterThan" value="3"/>
+        </Node>
+    </Node>
+    <Node score="28.5888888888889">
+        <SimplePredicate field="model_year" operator="greaterThan" value="78"/>
+        <Node score="35.1">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="2587"/>
+        </Node>
+        <Node score="27.109090909090913">
+            <SimplePredicate field="weight" operator="greaterThan" value="2587"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="21.87826086956521">
+    <SimplePredicate field="displacement" operator="greaterThan" value="181"/>
+    <Node score="20.589473684210528">
+        <SimplePredicate field="displacement" operator="lessOrEqual" value="232"/>
+        <Node score="19">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="13"/>
+        </Node>
+        <Node score="20.677777777777777">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="13"/>
+        </Node>
+    </Node>
+    <Node score="28">
+        <SimplePredicate field="displacement" operator="greaterThan" value="232"/>
+        <Node score="38">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="87"/>
+        </Node>
+        <Node score="18">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="87"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                        <Node score="16.509836065573765">
+                            <SimplePredicate field="weight" operator="greaterThan" value="3085"/>
+                            <Node score="15.166666666666666">
+<SimplePredicate field="model_year" operator="lessOrEqual" value="76"/>
+<Node score="17.064814814814813">
+    <SimplePredicate field="weight" operator="lessOrEqual" value="3880"/>
+    <Node score="17.984848484848484">
+        <SimplePredicate field="horsepower" operator="lessOrEqual" value="110"/>
+        <Node score="19">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="16.5"/>
+        </Node>
+        <Node score="16.766666666666666">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="16.5"/>
+        </Node>
+    </Node>
+    <Node score="15.619047619047619">
+        <SimplePredicate field="horsepower" operator="greaterThan" value="110"/>
+        <Node score="13">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="3193"/>
+        </Node>
+        <Node score="15.75">
+            <SimplePredicate field="weight" operator="greaterThan" value="3193"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="13.681159420289855">
+    <SimplePredicate field="weight" operator="greaterThan" value="3880"/>
+    <Node score="14.264705882352942">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="4295"/>
+        <Node score="15.277777777777779">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="142"/>
+        </Node>
+        <Node score="13.9">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="142"/>
+        </Node>
+    </Node>
+    <Node score="13.114285714285714">
+        <SimplePredicate field="weight" operator="greaterThan" value="4295"/>
+        <Node score="13.303030303030303">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="14.5"/>
+        </Node>
+        <Node score="10">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="14.5"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="19.26333333333333">
+<SimplePredicate field="model_year" operator="greaterThan" value="76"/>
+<Node score="18.7">
+    <SimplePredicate field="origin" operator="lessOrEqual" value="1"/>
+    <Node score="20.27037037037037">
+        <SimplePredicate field="horsepower" operator="lessOrEqual" value="125"/>
+        <Node score="19.929166666666667">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="267"/>
+        </Node>
+        <Node score="22.999999999999982">
+            <SimplePredicate field="displacement" operator="greaterThan" value="267"/>
+        </Node>
+    </Node>
+    <Node score="17.06923076923077">
+        <SimplePredicate field="horsepower" operator="greaterThan" value="125"/>
+        <Node score="17.573684210526313">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="4154"/>
+        </Node>
+        <Node score="15.699999999999998">
+            <SimplePredicate field="weight" operator="greaterThan" value="4154"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="23.528571428571418">
+    <SimplePredicate field="origin" operator="greaterThan" value="1"/>
+    <Node score="30.7">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="3193"/>
+    </Node>
+    <Node score="22.333333333333332">
+        <SimplePredicate field="weight" operator="greaterThan" value="3193"/>
+        <Node score="25.4">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="78"/>
+        </Node>
+        <Node score="16.200000000000003">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="78"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="14">
+                <True/>
+                <TreeModel functionName="regression" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="cylinders"/>
+                        <MiningField name="displacement"/>
+                        <MiningField name="horsepower"/>
+                        <MiningField name="weight"/>
+                        <MiningField name="acceleration"/>
+                        <MiningField name="model_year"/>
+                        <MiningField name="origin"/>
+                    </MiningSchema>
+                    <Node score="23.50749414519906">
+                        <True/>
+                        <Node score="28.389495798319327">
+                            <SimplePredicate field="displacement" operator="lessOrEqual" value="156"/>
+                            <Node score="31.455">
+<SimplePredicate field="horsepower" operator="lessOrEqual" value="84"/>
+<Node score="33.71764705882353">
+    <SimplePredicate field="horsepower" operator="lessOrEqual" value="69"/>
+    <Node score="31.907142857142855">
+        <SimplePredicate field="origin" operator="lessOrEqual" value="2"/>
+        <Node score="30.072727272727267">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="1980"/>
+        </Node>
+        <Node score="33.09411764705882">
+            <SimplePredicate field="weight" operator="greaterThan" value="1980"/>
+        </Node>
+    </Node>
+    <Node score="34.985">
+        <SimplePredicate field="origin" operator="greaterThan" value="2"/>
+        <Node score="32.36842105263158">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="78"/>
+        </Node>
+        <Node score="37.352380952380955">
+            <SimplePredicate field="model_year" operator="greaterThan" value="78"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="29.31805555555555">
+    <SimplePredicate field="horsepower" operator="greaterThan" value="69"/>
+    <Node score="26.137931034482758">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="76"/>
+        <Node score="25.40909090909091">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="75"/>
+        </Node>
+        <Node score="28.428571428571427">
+            <SimplePredicate field="model_year" operator="greaterThan" value="75"/>
+        </Node>
+    </Node>
+    <Node score="31.46279069767442">
+        <SimplePredicate field="model_year" operator="greaterThan" value="76"/>
+        <Node score="30.15">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="77"/>
+        </Node>
+        <Node score="31.860606060606063">
+            <SimplePredicate field="model_year" operator="greaterThan" value="77"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="24.010204081632644">
+<SimplePredicate field="horsepower" operator="greaterThan" value="84"/>
+<Node score="24.58470588235294">
+    <SimplePredicate field="acceleration" operator="lessOrEqual" value="18.2"/>
+    <Node score="20.48888888888889">
+        <SimplePredicate field="displacement" operator="lessOrEqual" value="85"/>
+        <Node score="18.8">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="2370"/>
+        </Node>
+        <Node score="22.6">
+            <SimplePredicate field="weight" operator="greaterThan" value="2370"/>
+        </Node>
+    </Node>
+    <Node score="25.069736842105264">
+        <SimplePredicate field="displacement" operator="greaterThan" value="85"/>
+        <Node score="25.50147058823529">
+            <SimplePredicate field="cylinders" operator="lessOrEqual" value="4"/>
+        </Node>
+        <Node score="21.400000000000006">
+            <SimplePredicate field="cylinders" operator="greaterThan" value="4"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="20.25384615384617">
+    <SimplePredicate field="acceleration" operator="greaterThan" value="18.2"/>
+    <Node score="19.9">
+        <SimplePredicate field="horsepower" operator="lessOrEqual" value="88"/>
+        <Node score="20.285714285714285">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="19.5"/>
+        </Node>
+        <Node score="19">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="19.5"/>
+        </Node>
+    </Node>
+    <Node score="21.433333333333337">
+        <SimplePredicate field="horsepower" operator="greaterThan" value="88"/>
+        <Node score="20">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="72"/>
+        </Node>
+        <Node score="24.299999999999997">
+            <SimplePredicate field="model_year" operator="greaterThan" value="72"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                        <Node score="17.359788359788364">
+                            <SimplePredicate field="displacement" operator="greaterThan" value="156"/>
+                            <Node score="19.986813186813187">
+<SimplePredicate field="displacement" operator="lessOrEqual" value="267"/>
+<Node score="19.27674418604651">
+    <SimplePredicate field="model_year" operator="lessOrEqual" value="81"/>
+    <Node score="18.663768115942027">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="78"/>
+        <Node score="19.821428571428573">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="3278"/>
+        </Node>
+        <Node score="17.873170731707322">
+            <SimplePredicate field="weight" operator="greaterThan" value="3278"/>
+        </Node>
+    </Node>
+    <Node score="21.764705882352942">
+        <SimplePredicate field="model_year" operator="greaterThan" value="78"/>
+        <Node score="26.1">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="12.9"/>
+        </Node>
+        <Node score="20.430769230769233">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="12.9"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="32.2">
+    <SimplePredicate field="model_year" operator="greaterThan" value="81"/>
+    <Node score="23.5">
+        <SimplePredicate field="acceleration" operator="lessOrEqual" value="16.4"/>
+        <Node score="22">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="2901"/>
+        </Node>
+        <Node score="25">
+            <SimplePredicate field="weight" operator="greaterThan" value="2901"/>
+        </Node>
+    </Node>
+    <Node score="38">
+        <SimplePredicate field="acceleration" operator="greaterThan" value="16.4"/>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="14.920408163265302">
+<SimplePredicate field="displacement" operator="greaterThan" value="267"/>
+<Node score="15.97258064516129">
+    <SimplePredicate field="weight" operator="lessOrEqual" value="4295"/>
+    <Node score="15.554237288135594">
+        <SimplePredicate field="acceleration" operator="lessOrEqual" value="15.5"/>
+        <Node score="15.77843137254902">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="14.3"/>
+        </Node>
+        <Node score="14.125">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="14.3"/>
+        </Node>
+    </Node>
+    <Node score="24.200000000000006">
+        <SimplePredicate field="acceleration" operator="greaterThan" value="15.5"/>
+        <Node score="26.6">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="107"/>
+        </Node>
+        <Node score="22.999999999999996">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="107"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="13.108333333333336">
+    <SimplePredicate field="weight" operator="greaterThan" value="4295"/>
+    <Node score="12.285714285714286">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="74"/>
+        <Node score="12.909090909090908">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="4425"/>
+        </Node>
+        <Node score="11.882352941176471">
+            <SimplePredicate field="weight" operator="greaterThan" value="4425"/>
+        </Node>
+    </Node>
+    <Node score="15.987499999999997">
+        <SimplePredicate field="model_year" operator="greaterThan" value="74"/>
+        <Node score="16.316666666666666">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="4425"/>
+        </Node>
+        <Node score="15">
+            <SimplePredicate field="weight" operator="greaterThan" value="4425"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="15">
+                <True/>
+                <TreeModel functionName="regression" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="cylinders"/>
+                        <MiningField name="displacement"/>
+                        <MiningField name="horsepower"/>
+                        <MiningField name="weight"/>
+                        <MiningField name="acceleration"/>
+                        <MiningField name="model_year"/>
+                        <MiningField name="origin"/>
+                    </MiningSchema>
+                    <Node score="24.201941747572807">
+                        <True/>
+                        <Node score="28.706048387096775">
+                            <SimplePredicate field="weight" operator="lessOrEqual" value="2962"/>
+                            <Node score="32.41228070175438">
+<SimplePredicate field="displacement" operator="lessOrEqual" value="107"/>
+<Node score="31.87009345794392">
+    <SimplePredicate field="acceleration" operator="lessOrEqual" value="21"/>
+    <Node score="28.622222222222224">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="77"/>
+        <Node score="19.75">
+            <SimplePredicate field="cylinders" operator="lessOrEqual" value="3"/>
+        </Node>
+        <Node score="29.03488372093023">
+            <SimplePredicate field="cylinders" operator="greaterThan" value="3"/>
+        </Node>
+    </Node>
+    <Node score="34.22741935483871">
+        <SimplePredicate field="model_year" operator="greaterThan" value="77"/>
+        <Node score="35.55882352941177">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="67"/>
+        </Node>
+        <Node score="32.6107142857143">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="67"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="40.70000000000001">
+    <SimplePredicate field="acceleration" operator="greaterThan" value="21"/>
+    <Node score="43.7">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="2135"/>
+        <Node score="43.1">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="78"/>
+        </Node>
+        <Node score="44.1">
+            <SimplePredicate field="model_year" operator="greaterThan" value="78"/>
+        </Node>
+    </Node>
+    <Node score="33.19999999999999">
+        <SimplePredicate field="weight" operator="greaterThan" value="2135"/>
+        <Node score="43.4">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="91"/>
+        </Node>
+        <Node score="23.000000000000007">
+            <SimplePredicate field="displacement" operator="greaterThan" value="91"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="25.552985074626854">
+<SimplePredicate field="displacement" operator="greaterThan" value="107"/>
+<Node score="27.007142857142856">
+    <SimplePredicate field="horsepower" operator="lessOrEqual" value="93"/>
+    <Node score="24.082926829268292">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="78"/>
+        <Node score="28">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="2188"/>
+        </Node>
+        <Node score="23.41142857142857">
+            <SimplePredicate field="weight" operator="greaterThan" value="2188"/>
+        </Node>
+    </Node>
+    <Node score="29.795348837209307">
+        <SimplePredicate field="model_year" operator="greaterThan" value="78"/>
+        <Node score="28.341379310344827">
+            <SimplePredicate field="origin" operator="lessOrEqual" value="1"/>
+        </Node>
+        <Node score="32.80714285714284">
+            <SimplePredicate field="origin" operator="greaterThan" value="1"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="23.109999999999992">
+    <SimplePredicate field="horsepower" operator="greaterThan" value="93"/>
+    <Node score="24.040000000000003">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="2800"/>
+        <Node score="23.495238095238093">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="103"/>
+        </Node>
+        <Node score="25.311111111111117">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="103"/>
+        </Node>
+    </Node>
+    <Node score="21.714999999999996">
+        <SimplePredicate field="weight" operator="greaterThan" value="2800"/>
+        <Node score="20.791666666666668">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="156"/>
+        </Node>
+        <Node score="23.1">
+            <SimplePredicate field="displacement" operator="greaterThan" value="156"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                        <Node score="17.390853658536578">
+                            <SimplePredicate field="weight" operator="greaterThan" value="2962"/>
+                            <Node score="20.046753246753248">
+<SimplePredicate field="displacement" operator="lessOrEqual" value="267"/>
+<Node score="18.566666666666666">
+    <SimplePredicate field="model_year" operator="lessOrEqual" value="78"/>
+    <Node score="20.7">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="3085"/>
+        <Node score="18.6">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="75"/>
+        </Node>
+        <Node score="22.2">
+            <SimplePredicate field="model_year" operator="greaterThan" value="75"/>
+        </Node>
+    </Node>
+    <Node score="17.997777777777777">
+        <SimplePredicate field="weight" operator="greaterThan" value="3085"/>
+        <Node score="18.40294117647059">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="18.2"/>
+        </Node>
+        <Node score="16.74545454545455">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="18.2"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="24.264999999999997">
+    <SimplePredicate field="model_year" operator="greaterThan" value="78"/>
+    <Node score="28.971428571428568">
+        <SimplePredicate field="horsepower" operator="lessOrEqual" value="82"/>
+        <Node score="29.566666666666666">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="3278"/>
+        </Node>
+        <Node score="25.400000000000006">
+            <SimplePredicate field="weight" operator="greaterThan" value="3278"/>
+        </Node>
+    </Node>
+    <Node score="21.73076923076923">
+        <SimplePredicate field="horsepower" operator="greaterThan" value="82"/>
+        <Node score="20.374999999999996">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="81"/>
+        </Node>
+        <Node score="38.00000000000003">
+            <SimplePredicate field="model_year" operator="greaterThan" value="81"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="15.040229885057474">
+<SimplePredicate field="displacement" operator="greaterThan" value="267"/>
+<Node score="15.608333333333333">
+    <SimplePredicate field="displacement" operator="lessOrEqual" value="350"/>
+    <Node score="14.076086956521738">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="77"/>
+        <Node score="15.121621621621621">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="175"/>
+        </Node>
+        <Node score="9.777777777777779">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="175"/>
+        </Node>
+    </Node>
+    <Node score="20.642857142857142">
+        <SimplePredicate field="model_year" operator="greaterThan" value="77"/>
+        <Node score="25.700000000000003">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="125"/>
+        </Node>
+        <Node score="18.619999999999997">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="125"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="13.777777777777779">
+    <SimplePredicate field="displacement" operator="greaterThan" value="350"/>
+    <Node score="14.833333333333334">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="4425"/>
+        <Node score="14.571428571428571">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="13.7"/>
+        </Node>
+        <Node score="15.75">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="13.7"/>
+        </Node>
+    </Node>
+    <Node score="11.666666666666666">
+        <SimplePredicate field="weight" operator="greaterThan" value="4425"/>
+        <Node score="12.333333333333334">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="13"/>
+        </Node>
+        <Node score="10.333333333333334">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="13"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="16">
+                <True/>
+                <TreeModel functionName="regression" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="cylinders"/>
+                        <MiningField name="displacement"/>
+                        <MiningField name="horsepower"/>
+                        <MiningField name="weight"/>
+                        <MiningField name="acceleration"/>
+                        <MiningField name="model_year"/>
+                        <MiningField name="origin"/>
+                    </MiningSchema>
+                    <Node score="22.49123287671233">
+                        <True/>
+                        <Node score="28.73040935672515">
+                            <SimplePredicate field="cylinders" operator="lessOrEqual" value="5"/>
+                            <Node score="26.20353982300885">
+<SimplePredicate field="model_year" operator="lessOrEqual" value="79"/>
+<Node score="31.296296296296298">
+    <SimplePredicate field="weight" operator="lessOrEqual" value="2045"/>
+    <Node score="30.912">
+        <SimplePredicate field="displacement" operator="lessOrEqual" value="97"/>
+        <Node score="26.5">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="71"/>
+        </Node>
+        <Node score="31.295652173913048">
+            <SimplePredicate field="model_year" operator="greaterThan" value="71"/>
+        </Node>
+    </Node>
+    <Node score="36.10000000000002">
+        <SimplePredicate field="displacement" operator="greaterThan" value="97"/>
+    </Node>
+</Node>
+<Node score="24.6046511627907">
+    <SimplePredicate field="weight" operator="greaterThan" value="2045"/>
+    <Node score="27.05263157894737">
+        <SimplePredicate field="displacement" operator="lessOrEqual" value="107"/>
+        <Node score="25.642857142857142">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="76"/>
+        </Node>
+        <Node score="31">
+            <SimplePredicate field="model_year" operator="greaterThan" value="76"/>
+        </Node>
+    </Node>
+    <Node score="23.91044776119403">
+        <SimplePredicate field="displacement" operator="greaterThan" value="107"/>
+        <Node score="23.18035714285714">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="78"/>
+        </Node>
+        <Node score="27.627272727272736">
+            <SimplePredicate field="model_year" operator="greaterThan" value="78"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="33.65344827586206">
+<SimplePredicate field="model_year" operator="greaterThan" value="79"/>
+<Node score="39.082608695652176">
+    <SimplePredicate field="weight" operator="lessOrEqual" value="2188"/>
+    <Node score="37.606249999999996">
+        <SimplePredicate field="acceleration" operator="lessOrEqual" value="17.5"/>
+        <Node score="36.800000000000004">
+            <SimplePredicate field="origin" operator="lessOrEqual" value="2"/>
+        </Node>
+        <Node score="38.233333333333334">
+            <SimplePredicate field="origin" operator="greaterThan" value="2"/>
+        </Node>
+    </Node>
+    <Node score="42.45714285714286">
+        <SimplePredicate field="acceleration" operator="greaterThan" value="17.5"/>
+        <Node score="43.9">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="91"/>
+        </Node>
+        <Node score="33.80000000000001">
+            <SimplePredicate field="displacement" operator="greaterThan" value="91"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="30.0857142857143">
+    <SimplePredicate field="weight" operator="greaterThan" value="2188"/>
+    <Node score="32.25">
+        <SimplePredicate field="acceleration" operator="lessOrEqual" value="14.9"/>
+        <Node score="34.68333333333334">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="2370"/>
+        </Node>
+        <Node score="28.599999999999994">
+            <SimplePredicate field="weight" operator="greaterThan" value="2370"/>
+        </Node>
+    </Node>
+    <Node score="29.22">
+        <SimplePredicate field="acceleration" operator="greaterThan" value="14.9"/>
+        <Node score="32.21111111111111">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="75"/>
+        </Node>
+        <Node score="27.5375">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="75"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                        <Node score="16.99175257731959">
+                            <SimplePredicate field="cylinders" operator="greaterThan" value="5"/>
+                            <Node score="19.230303030303027">
+<SimplePredicate field="horsepower" operator="lessOrEqual" value="138"/>
+<Node score="18.588372093023256">
+    <SimplePredicate field="model_year" operator="lessOrEqual" value="79"/>
+    <Node score="19.773913043478263">
+        <SimplePredicate field="displacement" operator="lessOrEqual" value="232"/>
+        <Node score="24">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="82"/>
+        </Node>
+        <Node score="19.58181818181818">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="82"/>
+        </Node>
+    </Node>
+    <Node score="17.224999999999998">
+        <SimplePredicate field="displacement" operator="greaterThan" value="232"/>
+        <Node score="17.979166666666668">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="3613"/>
+        </Node>
+        <Node score="16.09375">
+            <SimplePredicate field="weight" operator="greaterThan" value="3613"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="23.47692307692308">
+    <SimplePredicate field="model_year" operator="greaterThan" value="79"/>
+    <Node score="22.708333333333332">
+        <SimplePredicate field="horsepower" operator="lessOrEqual" value="125"/>
+        <Node score="21.355555555555558">
+            <SimplePredicate field="origin" operator="lessOrEqual" value="1"/>
+        </Node>
+        <Node score="26.766666666666662">
+            <SimplePredicate field="origin" operator="greaterThan" value="1"/>
+        </Node>
+    </Node>
+    <Node score="32.69999999999999">
+        <SimplePredicate field="horsepower" operator="greaterThan" value="125"/>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="14.658947368421051">
+<SimplePredicate field="horsepower" operator="greaterThan" value="138"/>
+<Node score="13.845070422535212">
+    <SimplePredicate field="model_year" operator="lessOrEqual" value="76"/>
+    <Node score="14.75">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="4295"/>
+        <Node score="15.857142857142858">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="3459"/>
+        </Node>
+        <Node score="14.5">
+            <SimplePredicate field="weight" operator="greaterThan" value="3459"/>
+        </Node>
+    </Node>
+    <Node score="12.803030303030303">
+        <SimplePredicate field="weight" operator="greaterThan" value="4295"/>
+        <Node score="13.075">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="4654"/>
+        </Node>
+        <Node score="12.384615384615385">
+            <SimplePredicate field="weight" operator="greaterThan" value="4654"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="17.066666666666663">
+    <SimplePredicate field="model_year" operator="greaterThan" value="76"/>
+    <Node score="18.85">
+        <SimplePredicate field="displacement" operator="lessOrEqual" value="307"/>
+        <Node score="19.425">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="149"/>
+        </Node>
+        <Node score="17.699999999999996">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="149"/>
+        </Node>
+    </Node>
+    <Node score="16.47222222222222">
+        <SimplePredicate field="displacement" operator="greaterThan" value="307"/>
+        <Node score="15.75">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="12.5"/>
+        </Node>
+        <Node score="16.678571428571427">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="12.5"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="17">
+                <True/>
+                <TreeModel functionName="regression" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="cylinders"/>
+                        <MiningField name="displacement"/>
+                        <MiningField name="horsepower"/>
+                        <MiningField name="weight"/>
+                        <MiningField name="acceleration"/>
+                        <MiningField name="model_year"/>
+                        <MiningField name="origin"/>
+                    </MiningSchema>
+                    <Node score="22.905301204819274">
+                        <True/>
+                        <Node score="28.475700934579436">
+                            <SimplePredicate field="cylinders" operator="lessOrEqual" value="5"/>
+                            <Node score="31.130999999999993">
+<SimplePredicate field="displacement" operator="lessOrEqual" value="107"/>
+<Node score="27.254901960784313">
+    <SimplePredicate field="model_year" operator="lessOrEqual" value="77"/>
+    <Node score="19.3125">
+        <SimplePredicate field="cylinders" operator="lessOrEqual" value="3"/>
+        <Node score="18">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="73"/>
+        </Node>
+        <Node score="21.5">
+            <SimplePredicate field="model_year" operator="greaterThan" value="73"/>
+        </Node>
+    </Node>
+    <Node score="28.732558139534884">
+        <SimplePredicate field="cylinders" operator="greaterThan" value="3"/>
+        <Node score="30.217391304347824">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="71"/>
+        </Node>
+        <Node score="27.025">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="71"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="35.165306122448975">
+    <SimplePredicate field="model_year" operator="greaterThan" value="77"/>
+    <Node score="35.77826086956521">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="2370"/>
+        <Node score="35.23255813953488">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="19.5"/>
+        </Node>
+        <Node score="43.59999999999999">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="19.5"/>
+        </Node>
+    </Node>
+    <Node score="25.766666666666726">
+        <SimplePredicate field="weight" operator="greaterThan" value="2370"/>
+        <Node score="23.7">
+            <SimplePredicate field="cylinders" operator="lessOrEqual" value="3"/>
+        </Node>
+        <Node score="29.9">
+            <SimplePredicate field="cylinders" operator="greaterThan" value="3"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="26.146491228070165">
+<SimplePredicate field="displacement" operator="greaterThan" value="107"/>
+<Node score="23.61875">
+    <SimplePredicate field="model_year" operator="lessOrEqual" value="78"/>
+    <Node score="26.1">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="2265"/>
+        <Node score="29">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="2188"/>
+        </Node>
+        <Node score="25.375">
+            <SimplePredicate field="weight" operator="greaterThan" value="2188"/>
+        </Node>
+    </Node>
+    <Node score="23.159259259259258">
+        <SimplePredicate field="weight" operator="greaterThan" value="2265"/>
+        <Node score="23.53673469387755">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="98"/>
+        </Node>
+        <Node score="19.45999999999999">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="98"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="29.381999999999998">
+    <SimplePredicate field="model_year" operator="greaterThan" value="78"/>
+    <Node score="31.134999999999998">
+        <SimplePredicate field="acceleration" operator="lessOrEqual" value="15.5"/>
+        <Node score="31.705882352941178">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="103"/>
+        </Node>
+        <Node score="27.900000000000016">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="103"/>
+        </Node>
+    </Node>
+    <Node score="28.21333333333333">
+        <SimplePredicate field="acceleration" operator="greaterThan" value="15.5"/>
+        <Node score="27.7">
+            <SimplePredicate field="origin" operator="lessOrEqual" value="1"/>
+        </Node>
+        <Node score="29.899999999999995">
+            <SimplePredicate field="origin" operator="greaterThan" value="1"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                        <Node score="16.97462686567164">
+                            <SimplePredicate field="cylinders" operator="greaterThan" value="5"/>
+                            <Node score="19.074358974358976">
+<SimplePredicate field="horsepower" operator="lessOrEqual" value="142"/>
+<Node score="21.53181818181818">
+    <SimplePredicate field="weight" operator="lessOrEqual" value="2962"/>
+    <Node score="20.0625">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="77"/>
+        <Node score="20.6">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="2901"/>
+        </Node>
+        <Node score="19.166666666666668">
+            <SimplePredicate field="weight" operator="greaterThan" value="2901"/>
+        </Node>
+    </Node>
+    <Node score="25.45">
+        <SimplePredicate field="model_year" operator="greaterThan" value="77"/>
+        <Node score="24">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="125"/>
+        </Node>
+        <Node score="32.69999999999999">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="125"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="18.505263157894735">
+    <SimplePredicate field="weight" operator="greaterThan" value="2962"/>
+    <Node score="17.1875">
+        <SimplePredicate field="acceleration" operator="lessOrEqual" value="15.2"/>
+        <Node score="18.87142857142857">
+            <SimplePredicate field="cylinders" operator="lessOrEqual" value="6"/>
+        </Node>
+        <Node score="16.715999999999998">
+            <SimplePredicate field="cylinders" operator="greaterThan" value="6"/>
+        </Node>
+    </Node>
+    <Node score="19.174603174603167">
+        <SimplePredicate field="acceleration" operator="greaterThan" value="15.2"/>
+        <Node score="18.99016393442623">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="267"/>
+        </Node>
+        <Node score="24.799999999999955">
+            <SimplePredicate field="displacement" operator="greaterThan" value="267"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="14.049999999999997">
+<SimplePredicate field="horsepower" operator="greaterThan" value="142"/>
+<Node score="14.65263157894737">
+    <SimplePredicate field="weight" operator="lessOrEqual" value="4425"/>
+    <Node score="17.066666666666666">
+        <SimplePredicate field="horsepower" operator="lessOrEqual" value="149"/>
+        <Node score="16">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="77"/>
+        </Node>
+        <Node score="19.200000000000003">
+            <SimplePredicate field="model_year" operator="greaterThan" value="77"/>
+        </Node>
+    </Node>
+    <Node score="14.518518518518519">
+        <SimplePredicate field="horsepower" operator="greaterThan" value="149"/>
+        <Node score="14.341463414634147">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="74"/>
+        </Node>
+        <Node score="15.076923076923077">
+            <SimplePredicate field="model_year" operator="greaterThan" value="74"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="12.777777777777779">
+    <SimplePredicate field="weight" operator="greaterThan" value="4425"/>
+    <Node score="13.578947368421053">
+        <SimplePredicate field="horsepower" operator="lessOrEqual" value="175"/>
+        <Node score="13.23076923076923">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="13.7"/>
+        </Node>
+        <Node score="14.333333333333334">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="13.7"/>
+        </Node>
+    </Node>
+    <Node score="10.875">
+        <SimplePredicate field="horsepower" operator="greaterThan" value="175"/>
+        <Node score="10.333333333333334">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="4654"/>
+        </Node>
+        <Node score="12.5">
+            <SimplePredicate field="weight" operator="greaterThan" value="4654"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="18">
+                <True/>
+                <TreeModel functionName="regression" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="displacement"/>
+                        <MiningField name="horsepower"/>
+                        <MiningField name="weight"/>
+                        <MiningField name="acceleration"/>
+                        <MiningField name="model_year"/>
+                    </MiningSchema>
+                    <Node score="23.287267904509285">
+                        <True/>
+                        <Node score="29.036453201970446">
+                            <SimplePredicate field="displacement" operator="lessOrEqual" value="181"/>
+                            <Node score="25.454545454545453">
+<SimplePredicate field="model_year" operator="lessOrEqual" value="76"/>
+<Node score="26.30597014925373">
+    <SimplePredicate field="horsepower" operator="lessOrEqual" value="97"/>
+    <Node score="30.133333333333333">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="2045"/>
+        <Node score="30.76923076923077">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="19.5"/>
+        </Node>
+        <Node score="26">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="19.5"/>
+        </Node>
+    </Node>
+    <Node score="25.201923076923077">
+        <SimplePredicate field="weight" operator="greaterThan" value="2045"/>
+        <Node score="26.196969696969695">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="113"/>
+        </Node>
+        <Node score="23.473684210526315">
+            <SimplePredicate field="displacement" operator="greaterThan" value="113"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="19.75">
+    <SimplePredicate field="horsepower" operator="greaterThan" value="97"/>
+    <Node score="22.5">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="2711"/>
+        <Node score="24">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="122"/>
+        </Node>
+        <Node score="21">
+            <SimplePredicate field="displacement" operator="greaterThan" value="122"/>
+        </Node>
+    </Node>
+    <Node score="19.0625">
+        <SimplePredicate field="weight" operator="greaterThan" value="2711"/>
+        <Node score="19.428571428571427">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="15.7"/>
+        </Node>
+        <Node score="16.5">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="15.7"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="31.22539682539682">
+<SimplePredicate field="model_year" operator="greaterThan" value="76"/>
+<Node score="33.654117647058825">
+    <SimplePredicate field="horsepower" operator="lessOrEqual" value="84"/>
+    <Node score="36.40714285714286">
+        <SimplePredicate field="displacement" operator="lessOrEqual" value="91"/>
+        <Node score="34.665000000000006">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="16.9"/>
+        </Node>
+        <Node score="40.76250000000002">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="16.9"/>
+        </Node>
+    </Node>
+    <Node score="32.30175438596491">
+        <SimplePredicate field="displacement" operator="greaterThan" value="91"/>
+        <Node score="32.975">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="135"/>
+        </Node>
+        <Node score="28.711111111111094">
+            <SimplePredicate field="displacement" operator="greaterThan" value="135"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="26.19024390243902">
+    <SimplePredicate field="horsepower" operator="greaterThan" value="84"/>
+    <Node score="27.646153846153844">
+        <SimplePredicate field="displacement" operator="lessOrEqual" value="122"/>
+        <Node score="30.857142857142858">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="93"/>
+        </Node>
+        <Node score="23.900000000000006">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="93"/>
+        </Node>
+    </Node>
+    <Node score="25.514285714285712">
+        <SimplePredicate field="displacement" operator="greaterThan" value="122"/>
+        <Node score="28.181818181818183">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="14.3"/>
+        </Node>
+        <Node score="23.78823529411764">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="14.3"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                        <Node score="16.579885057471266">
+                            <SimplePredicate field="displacement" operator="greaterThan" value="181"/>
+                            <Node score="18.977333333333334">
+<SimplePredicate field="horsepower" operator="lessOrEqual" value="125"/>
+<Node score="17.542857142857144">
+    <SimplePredicate field="model_year" operator="lessOrEqual" value="75"/>
+    <Node score="19.6">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="2962"/>
+        <Node score="18.5">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="15.2"/>
+        </Node>
+        <Node score="20.333333333333332">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="15.2"/>
+        </Node>
+    </Node>
+    <Node score="16.72">
+        <SimplePredicate field="weight" operator="greaterThan" value="2962"/>
+        <Node score="17.833333333333332">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="16.5"/>
+        </Node>
+        <Node score="15.692307692307692">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="16.5"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="20.232499999999998">
+    <SimplePredicate field="model_year" operator="greaterThan" value="75"/>
+    <Node score="15.5">
+        <SimplePredicate field="acceleration" operator="lessOrEqual" value="14"/>
+    </Node>
+    <Node score="20.353846153846156">
+        <SimplePredicate field="acceleration" operator="greaterThan" value="14"/>
+        <Node score="19.94857142857143">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="267"/>
+        </Node>
+        <Node score="23.900000000000006">
+            <SimplePredicate field="displacement" operator="greaterThan" value="267"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="14.763636363636362">
+<SimplePredicate field="horsepower" operator="greaterThan" value="125"/>
+<Node score="16.6030303030303">
+    <SimplePredicate field="weight" operator="lessOrEqual" value="3880"/>
+    <Node score="17.826315789473682">
+        <SimplePredicate field="displacement" operator="lessOrEqual" value="307"/>
+        <Node score="17.25">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="77"/>
+        </Node>
+        <Node score="18.466666666666665">
+            <SimplePredicate field="model_year" operator="greaterThan" value="77"/>
+        </Node>
+    </Node>
+    <Node score="14.942857142857141">
+        <SimplePredicate field="displacement" operator="greaterThan" value="307"/>
+        <Node score="14.692307692307692">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="14"/>
+        </Node>
+        <Node score="18.19999999999999">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="14"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="13.843939393939394">
+    <SimplePredicate field="weight" operator="greaterThan" value="3880"/>
+    <Node score="14.762162162162163">
+        <SimplePredicate field="horsepower" operator="lessOrEqual" value="160"/>
+        <Node score="14.160714285714286">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="76"/>
+        </Node>
+        <Node score="16.63333333333334">
+            <SimplePredicate field="model_year" operator="greaterThan" value="76"/>
+        </Node>
+    </Node>
+    <Node score="12.672413793103448">
+        <SimplePredicate field="horsepower" operator="greaterThan" value="160"/>
+        <Node score="12.444444444444445">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="73"/>
+        </Node>
+        <Node score="15.75">
+            <SimplePredicate field="model_year" operator="greaterThan" value="73"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="19">
+                <True/>
+                <TreeModel functionName="regression" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="displacement"/>
+                        <MiningField name="horsepower"/>
+                        <MiningField name="weight"/>
+                        <MiningField name="acceleration"/>
+                        <MiningField name="model_year"/>
+                    </MiningSchema>
+                    <Node score="23.20649651972158">
+                        <True/>
+                        <Node score="28.78823529411764">
+                            <SimplePredicate field="displacement" operator="lessOrEqual" value="181"/>
+                            <Node score="33.71208791208792">
+<SimplePredicate field="horsepower" operator="lessOrEqual" value="71"/>
+<Node score="34.653125">
+    <SimplePredicate field="horsepower" operator="lessOrEqual" value="69"/>
+    <Node score="35.915217391304346">
+        <SimplePredicate field="displacement" operator="lessOrEqual" value="91"/>
+        <Node score="33.34838709677419">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="2045"/>
+        </Node>
+        <Node score="41.22">
+            <SimplePredicate field="weight" operator="greaterThan" value="2045"/>
+        </Node>
+    </Node>
+    <Node score="31.42777777777779">
+        <SimplePredicate field="displacement" operator="greaterThan" value="91"/>
+        <Node score="26">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="53"/>
+        </Node>
+        <Node score="32.10625">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="53"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="31.48148148148148">
+    <SimplePredicate field="horsepower" operator="greaterThan" value="69"/>
+    <Node score="32.11666666666667">
+        <SimplePredicate field="acceleration" operator="lessOrEqual" value="19.5"/>
+        <Node score="29.666666666666668">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="76"/>
+        </Node>
+        <Node score="33.586666666666666">
+            <SimplePredicate field="model_year" operator="greaterThan" value="76"/>
+        </Node>
+    </Node>
+    <Node score="26.400000000000016">
+        <SimplePredicate field="acceleration" operator="greaterThan" value="19.5"/>
+        <Node score="26">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="21"/>
+        </Node>
+        <Node score="27.200000000000003">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="21"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="25.740136054421765">
+<SimplePredicate field="horsepower" operator="greaterThan" value="71"/>
+<Node score="24.476923076923075">
+    <SimplePredicate field="model_year" operator="lessOrEqual" value="78"/>
+    <Node score="26.235294117647058">
+        <SimplePredicate field="displacement" operator="lessOrEqual" value="119"/>
+        <Node score="27.1875">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="90"/>
+        </Node>
+        <Node score="22.772727272727273">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="90"/>
+        </Node>
+    </Node>
+    <Node score="22.78490566037736">
+        <SimplePredicate field="displacement" operator="greaterThan" value="119"/>
+        <Node score="23.692500000000003">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="2800"/>
+        </Node>
+        <Node score="19.992307692307698">
+            <SimplePredicate field="weight" operator="greaterThan" value="2800"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="28.795348837209307">
+    <SimplePredicate field="model_year" operator="greaterThan" value="78"/>
+    <Node score="32.75333333333333">
+        <SimplePredicate field="horsepower" operator="lessOrEqual" value="88"/>
+        <Node score="35.6125">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="15.2"/>
+        </Node>
+        <Node score="29.485714285714284">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="15.2"/>
+        </Node>
+    </Node>
+    <Node score="26.675000000000004">
+        <SimplePredicate field="horsepower" operator="greaterThan" value="88"/>
+        <Node score="30.52">
+            <SimplePredicate field="model_year" operator="lessOrEqual" value="79"/>
+        </Node>
+        <Node score="25.839130434782607">
+            <SimplePredicate field="model_year" operator="greaterThan" value="79"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                        <Node score="16.323316062176165">
+                            <SimplePredicate field="displacement" operator="greaterThan" value="181"/>
+                            <Node score="19.072857142857142">
+<SimplePredicate field="weight" operator="lessOrEqual" value="3613"/>
+<Node score="18.798550724637682">
+    <SimplePredicate field="model_year" operator="lessOrEqual" value="81"/>
+    <Node score="17.916666666666668">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="75"/>
+        <Node score="18.25">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="17"/>
+        </Node>
+        <Node score="15.25">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="17"/>
+        </Node>
+    </Node>
+    <Node score="19.760606060606065">
+        <SimplePredicate field="model_year" operator="greaterThan" value="75"/>
+        <Node score="20.681818181818183">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="90"/>
+        </Node>
+        <Node score="19.3">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="90"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="38">
+    <SimplePredicate field="model_year" operator="greaterThan" value="81"/>
+</Node>
+                            </Node>
+                            <Node score="14.758536585365851">
+<SimplePredicate field="weight" operator="greaterThan" value="3613"/>
+<Node score="15.7225">
+    <SimplePredicate field="weight" operator="lessOrEqual" value="4295"/>
+    <Node score="14.4">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="73"/>
+        <Node score="15.833333333333334">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="3730"/>
+        </Node>
+        <Node score="14.041666666666666">
+            <SimplePredicate field="weight" operator="greaterThan" value="3730"/>
+        </Node>
+    </Node>
+    <Node score="16.516000000000005">
+        <SimplePredicate field="model_year" operator="greaterThan" value="73"/>
+        <Node score="19.2">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="225"/>
+        </Node>
+        <Node score="16.217777777777776">
+            <SimplePredicate field="displacement" operator="greaterThan" value="225"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="12.965116279069768">
+    <SimplePredicate field="weight" operator="greaterThan" value="4295"/>
+    <Node score="12.486486486486486">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="74"/>
+        <Node score="13">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="13"/>
+        </Node>
+        <Node score="11.733333333333333">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="13"/>
+        </Node>
+    </Node>
+    <Node score="15.916666666666666">
+        <SimplePredicate field="model_year" operator="greaterThan" value="74"/>
+        <Node score="15.833333333333334">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="12.5"/>
+        </Node>
+        <Node score="16">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="12.5"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+            <Segment id="20">
+                <True/>
+                <TreeModel functionName="regression" splitCharacteristic="binarySplit">
+                    <MiningSchema>
+                        <MiningField name="cylinders"/>
+                        <MiningField name="displacement"/>
+                        <MiningField name="horsepower"/>
+                        <MiningField name="weight"/>
+                        <MiningField name="acceleration"/>
+                        <MiningField name="model_year"/>
+                        <MiningField name="origin"/>
+                    </MiningSchema>
+                    <Node score="22.94591346153846">
+                        <True/>
+                        <Node score="28.25152838427948">
+                            <SimplePredicate field="weight" operator="lessOrEqual" value="2962"/>
+                            <Node score="31.757723577235776">
+<SimplePredicate field="horsepower" operator="lessOrEqual" value="84"/>
+<Node score="28.38235294117647">
+    <SimplePredicate field="model_year" operator="lessOrEqual" value="77"/>
+    <Node score="29.791666666666668">
+        <SimplePredicate field="weight" operator="lessOrEqual" value="2188"/>
+        <Node score="31.34375">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="85"/>
+        </Node>
+        <Node score="28.55">
+            <SimplePredicate field="displacement" operator="greaterThan" value="85"/>
+        </Node>
+    </Node>
+    <Node score="25">
+        <SimplePredicate field="weight" operator="greaterThan" value="2188"/>
+        <Node score="26.3">
+            <SimplePredicate field="displacement" operator="lessOrEqual" value="122"/>
+        </Node>
+        <Node score="22.4">
+            <SimplePredicate field="displacement" operator="greaterThan" value="122"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="34.14861111111111">
+    <SimplePredicate field="model_year" operator="greaterThan" value="77"/>
+    <Node score="41.53333333333333">
+        <SimplePredicate field="horsepower" operator="lessOrEqual" value="53"/>
+        <Node score="43.279999999999994">
+            <SimplePredicate field="origin" operator="lessOrEqual" value="2"/>
+        </Node>
+        <Node score="32.80000000000001">
+            <SimplePredicate field="origin" operator="greaterThan" value="2"/>
+        </Node>
+    </Node>
+    <Node score="33.47727272727273">
+        <SimplePredicate field="horsepower" operator="greaterThan" value="53"/>
+        <Node score="34.523529411764706">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="2370"/>
+        </Node>
+        <Node score="29.920000000000012">
+            <SimplePredicate field="weight" operator="greaterThan" value="2370"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="24.183018867924538">
+<SimplePredicate field="horsepower" operator="greaterThan" value="84"/>
+<Node score="22.56621621621622">
+    <SimplePredicate field="model_year" operator="lessOrEqual" value="78"/>
+    <Node score="23.332142857142856">
+        <SimplePredicate field="cylinders" operator="lessOrEqual" value="4"/>
+        <Node score="18.333333333333332">
+            <SimplePredicate field="cylinders" operator="lessOrEqual" value="3"/>
+        </Node>
+        <Node score="23.61509433962264">
+            <SimplePredicate field="cylinders" operator="greaterThan" value="3"/>
+        </Node>
+    </Node>
+    <Node score="20.18333333333333">
+        <SimplePredicate field="cylinders" operator="greaterThan" value="4"/>
+        <Node score="21.666666666666668">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="97"/>
+        </Node>
+        <Node score="19.441666666666666">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="97"/>
+        </Node>
+    </Node>
+</Node>
+<Node score="27.921875">
+    <SimplePredicate field="model_year" operator="greaterThan" value="78"/>
+    <Node score="30.77777777777778">
+        <SimplePredicate field="displacement" operator="lessOrEqual" value="135"/>
+        <Node score="23.7">
+            <SimplePredicate field="cylinders" operator="lessOrEqual" value="3"/>
+        </Node>
+        <Node score="32.8">
+            <SimplePredicate field="cylinders" operator="greaterThan" value="3"/>
+        </Node>
+    </Node>
+    <Node score="26.804347826086957">
+        <SimplePredicate field="displacement" operator="greaterThan" value="135"/>
+        <Node score="32.7">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="11.4"/>
+        </Node>
+        <Node score="26.536363636363635">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="11.4"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                        <Node score="16.44866310160427">
+                            <SimplePredicate field="weight" operator="greaterThan" value="2962"/>
+                            <Node score="19.49066666666667">
+<SimplePredicate field="displacement" operator="lessOrEqual" value="267"/>
+<Node score="30">
+    <SimplePredicate field="horsepower" operator="lessOrEqual" value="67"/>
+</Node>
+<Node score="18.898591549295773">
+    <SimplePredicate field="horsepower" operator="greaterThan" value="67"/>
+    <Node score="19.826190476190476">
+        <SimplePredicate field="displacement" operator="lessOrEqual" value="232"/>
+        <Node score="24">
+            <SimplePredicate field="horsepower" operator="lessOrEqual" value="82"/>
+        </Node>
+        <Node score="19.6175">
+            <SimplePredicate field="horsepower" operator="greaterThan" value="82"/>
+        </Node>
+    </Node>
+    <Node score="17.55517241379311">
+        <SimplePredicate field="displacement" operator="greaterThan" value="232"/>
+        <Node score="17.32857142857143">
+            <SimplePredicate field="acceleration" operator="lessOrEqual" value="21"/>
+        </Node>
+        <Node score="23.899999999999977">
+            <SimplePredicate field="acceleration" operator="greaterThan" value="21"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                            <Node score="14.411607142857141">
+<SimplePredicate field="displacement" operator="greaterThan" value="267"/>
+<Node score="26.600000000000005">
+    <SimplePredicate field="horsepower" operator="lessOrEqual" value="107"/>
+</Node>
+<Node score="14.076146788990826">
+    <SimplePredicate field="horsepower" operator="greaterThan" value="107"/>
+    <Node score="13.521739130434783">
+        <SimplePredicate field="model_year" operator="lessOrEqual" value="76"/>
+        <Node score="14.270833333333334">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="4295"/>
+        </Node>
+        <Node score="12.704545454545455">
+            <SimplePredicate field="weight" operator="greaterThan" value="4295"/>
+        </Node>
+    </Node>
+    <Node score="17.076470588235292">
+        <SimplePredicate field="model_year" operator="greaterThan" value="76"/>
+        <Node score="18.05">
+            <SimplePredicate field="weight" operator="lessOrEqual" value="3880"/>
+        </Node>
+        <Node score="16.211111111111112">
+            <SimplePredicate field="weight" operator="greaterThan" value="3880"/>
+        </Node>
+    </Node>
+</Node>
+                            </Node>
+                        </Node>
+                    </Node>
+                </TreeModel>
+            </Segment>
+        </Segmentation>
+    </MiningModel>
+</PMML>
