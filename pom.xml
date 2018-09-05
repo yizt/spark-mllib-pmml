@@ -9,7 +9,7 @@
     <version>0.01-SNAPSHOT</version>
     <properties>
         <scala.binary.version>2.11</scala.binary.version>
-        <spark.version>2.1.0.2.6.0.3-8</spark.version>
+        <spark.version>2.3.0</spark.version>
         <scala.version>2.11.8</scala.version>
         <hadoop.version>2.7.0</hadoop.version>
         <hdfs.version>2.7.0</hdfs.version>
@@ -236,7 +236,7 @@
             <groupId>org.scalanlp</groupId>
             <artifactId>breeze_${scala.binary.version}</artifactId>
             <!-- or 2.11 -->
-            <version>0.12</version>
+            <version>0.13.2</version>
             <scope>${spark.scope}</scope>
         </dependency>
         <dependency>
