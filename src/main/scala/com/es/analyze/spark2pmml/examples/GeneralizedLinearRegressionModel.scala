@@ -7,7 +7,7 @@ import org.apache.spark.ml.feature.{RFormula}
 import org.apache.spark.sql.types._
 import org.apache.spark.sql.SparkSession
 import org.jpmml.model.JAXBUtil
-import org.jpmml.sparkml.ConverterUtil
+import org.jpmml.sparkml.{PMMLBuilder, ConverterUtil}
 object GeneralizedLinearRegressionModel {
   def main(args: Array[String]) {
     val master = args(0)
@@ -38,7 +38,8 @@ object GeneralizedLinearRegressionModel {
     val pipeline: Pipeline = new Pipeline setStages Array(formula, regression)
     val pipelineModel = pipeline.fit(mpgData)
 
-    val pmml = ConverterUtil.toPMML(mpgData.schema, pipelineModel)
+
+    val pmml = new PMMLBuilder(mpgData.schema, pipelineModel).build()
     JAXBUtil.marshalPMML(pmml, new StreamResult(new FileOutputStream(outPmmlFile)))
 
   }

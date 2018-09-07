@@ -8,7 +8,7 @@ import org.apache.spark.ml.feature.{RFormula}
 import org.apache.spark.sql.types._
 import org.apache.spark.sql.SparkSession
 import org.jpmml.model.JAXBUtil
-import org.jpmml.sparkml.ConverterUtil
+import org.jpmml.sparkml.PMMLBuilder
 /**
   * Created by mick.yi on 2017/11/2.
   * 决策分类树测试
@@ -55,7 +55,7 @@ object DecisionTreeClassificationModel {
     val pipelineModel = pipeline.fit(irisData)
 
     //使用jpmml-sparkml导出为pmml模型
-    val pmml = ConverterUtil.toPMML(irisData.schema, pipelineModel)
+    val pmml = new PMMLBuilder(irisData.schema, pipelineModel).build()
     JAXBUtil.marshalPMML(pmml, new StreamResult(new FileOutputStream(outPmmlFile)))
   }
 

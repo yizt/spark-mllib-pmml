@@ -9,7 +9,7 @@ import org.apache.spark.ml.feature.{RFormula}
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.types.{DoubleType, StringType, StructField, StructType}
 import org.jpmml.model.JAXBUtil
-import org.jpmml.sparkml.ConverterUtil
+import org.jpmml.sparkml.{PMMLBuilder, ConverterUtil}
 /**
   * Created by mick.yi on 2017/11/2.
   * 梯度提升分类树(目前只支持二分类)
@@ -56,7 +56,7 @@ object GradientBoostedTreeClassifier {
     val pipelineModel = pipeline.fit(irisData)
 
     //使用jpmml-sparkml导出为pmml模型
-    val pmml = ConverterUtil.toPMML(irisData.schema, pipelineModel)
+    val pmml = new PMMLBuilder(irisData.schema, pipelineModel).build()
     JAXBUtil.marshalPMML(pmml, new StreamResult(new FileOutputStream(outPmmlFile)))
 
     spark.stop()

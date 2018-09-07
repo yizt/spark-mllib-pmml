@@ -1,11 +1,14 @@
 package com.es.analyze.xgboost2pmml.examples
 
-import java.io.{File, PrintWriter}
+import java.io.{FileOutputStream, File, PrintWriter}
+import javax.xml.transform.stream.StreamResult
 
 import org.apache.spark.ml.feature.{IndexToString, VectorAssembler, StringIndexer}
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.types.{DoubleType, StringType, StructField, StructType}
 import ml.dmlc.xgboost4j.scala.spark.XGBoostClassifier
+import org.jpmml.model.JAXBUtil
+import org.jpmml.sparkml.PMMLBuilder
 
 /**
   * Created by mick.yi on 2018/9/4.
@@ -82,12 +85,8 @@ object XGBoost {
     prediction.show()
 
     // 导出pmml
-    val pmmlBytes = new org.jpmml.sparkml.PMMLBuilder(rawInput.schema, model).buildByteArray()
-    val pmml=new String(pmmlBytes, "UTF-8")
-    val writer = new PrintWriter(new File(outPmmlFile))
-
-    writer.write(pmml)
-    writer.close()
+    val pmml = new PMMLBuilder(rawInput.schema, model).build()
+    JAXBUtil.marshalPMML(pmml, new StreamResult(new FileOutputStream(outPmmlFile)))
 
   }
 }
