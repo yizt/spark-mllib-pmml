@@ -1,5 +1,11 @@
 package com.es.analyze.train
 
+import com.es.analyze.utils.{EvaluatorUtils, PmmlUtils, ModelUtils}
+import org.apache.spark.ml.evaluation.{MulticlassClassificationEvaluator, RegressionEvaluator, Evaluator}
+import org.apache.spark.ml.tuning.{ParamGridBuilder, CrossValidator, TrainValidationSplit}
+import org.apache.spark.ml.{PipelineModel, PipelineStage, Pipeline, Predictor}
+import org.apache.spark.ml.feature.RFormula
+import org.apache.spark.sql.{SparkSession, DataFrame}
 import scopt.OptionParser
 
 /**
@@ -19,6 +25,8 @@ object TrainMain {
                     crossValid: Boolean = false, //是否交叉验证
                     folds: Int = 3, //交叉验证数据分为多少折
                     splitRatio: Seq[Double] = Seq(3, 1), //训练测试分割比例
+                   trainRatio:Double=0.8, //训练验证比例
+                   parallel:Int=1, //并行度
                     kwargs: Map[String, String] = Map.empty, //其它个性化参数
                     appName: String = "TrainMain"
                    )
@@ -63,7 +71,7 @@ object TrainMain {
       .text("pmml文件输出路径")
       .action((x, c) => c.copy(outputPmml = x))
     opt[String]('s', "modelSavePath")
-      .required()
+      .optional()
       .text("模型保存路径")
       .action((x, c) => c.copy(modelSavePath = x))
 
@@ -72,7 +80,6 @@ object TrainMain {
     opt[Unit]("crossvalid").action((_, c) =>
       c.copy(crossValid = true)).text("crossvalid是标志参数,代表启用交叉验证")
     opt[Int]('k', "folds")
-      .required()
       .text("k折交叉验证")
       .action((x, c) => c.copy(folds = x))
 
@@ -84,12 +91,105 @@ object TrainMain {
   }
 
   def main(args: Array[String]) {
+    val spark = SparkSession.builder.
+      master(args(0)).
+      appName("DecisionTreeRegressionModel").
+      getOrCreate()
+    val mpgData = spark.read.option("header", "true").option("delimiter", " ").csv("")
+
     parser.parse(args, new Params()).map(p => {
-      print(p)
-      p
+      run(p,mpgData)
     }) getOrElse {
       System.exit(1)
     }
+  }
+  def run(p: Params,df:DataFrame): Unit = {
+    //分割数据集
+    val Array(trainDF, testDF) = df.randomSplit(p.splitRatio.toArray)
+
+
+    //配置pipeline
+    val rFormual=getRFormula(p)
+    val model=getModel(p).
+      setLabelCol(rFormual.getLabelCol).
+      setFeaturesCol(rFormual.getFeaturesCol)
+    val pipeline = new Pipeline()
+      .setStages(Array(rFormual, model.asInstanceOf[PipelineStage]))
+
+    //训练评估
+    val paramGrid = new ParamGridBuilder()
+      .build()
+    val (trainModel,evaluator)=if(p.crossValid){ //交叉验证
+      val cv = new CrossValidator()
+        .setEstimator(pipeline)
+        .setEvaluator(getEvaluator(p))
+        .setEstimatorParamMaps(paramGrid)
+        .setNumFolds(p.folds)
+        .setParallelism(p.parallel)
+      val cm=cv.fit(trainDF)
+        (cm.bestModel.asInstanceOf[PipelineModel],cm.getEstimator)
+    }else{ //训练验证分割
+      val trainValidationSplit = new TrainValidationSplit()
+        .setEstimator(pipeline)
+        .setEvaluator(getEvaluator(p))
+        .setEstimatorParamMaps(paramGrid)
+        .setTrainRatio(p.trainRatio)
+        .setParallelism(p.parallel)
+      val tm=trainValidationSplit.fit(trainDF)
+      (tm.bestModel.asInstanceOf[PipelineModel],tm.getEvaluator)
+    }
+
+    //查看预测结果
+    val prediction = trainModel.transform(testDF)
+
+    //val multiMetrics=EvaluatorUtils.getMulticlassMetrics(prediction,evaluator)
+    //保存模型
+    if(!"".equals(p.modelSavePath))
+      trainModel.save(p.modelSavePath)
+    //导出pmml
+    if(!"".equals(p.outputPmml))
+      PmmlUtils.save(df.schema,trainModel,p.outputPmml)
+  }
+
+  /**
+    * 获取RFormula
+    *
+    * @param p
+    * @return
+    */
+  def getRFormula(p:Params):RFormula={
+    val rFormula = new RFormula
+    rFormula.setFormula(s"${p.targetCol} ~ ${p.featureCols.mkString(" + ")}")
+    rFormula
+  }
+
+  /**
+    * 获取模型
+    *
+    * @param p
+    * @return
+    */
+  def getModel(p:Params)={
+    val model=p.modelName match {
+      case "DTCls" => ModelUtils.getDecisionTreeClassifier(p)
+      case "DTRgr" => ModelUtils.getDecisionTreeRegressor(p)
+
+      case "RFCls" => ModelUtils.getRandomForestClassifier(p)
+      case "RFRgr" => ModelUtils.getRandomForestRegressor(p)
+
+      case "GBTCls" => ModelUtils.getGBTClassifier(p)
+      case "GBTRgr" => ModelUtils.getGBTRegressor(p)
+
+      case "XGBCls" => ModelUtils.getXGBoostClassifier(p)
+      case "XGBRgr" => ModelUtils.getXGBoostRegressor(p)
+    }
+    model
+  }
+  def getEvaluator(p:Params):Evaluator={
+    if(p.modelName.endsWith("Rgr"))
+      new RegressionEvaluator()
+    else
+      new MulticlassClassificationEvaluator()
   }
 
 }
