@@ -1,7 +1,7 @@
 package com.es.analyze.train
 
 import com.es.analyze.utils.{EvaluatorUtils, PmmlUtils, ModelUtils}
-import org.apache.spark.ml.evaluation.{MulticlassClassificationEvaluator, RegressionEvaluator, Evaluator}
+import org.apache.spark.ml.evaluation.{BinaryClassificationEvaluator, MulticlassClassificationEvaluator, RegressionEvaluator, Evaluator}
 import org.apache.spark.ml.tuning.{ParamGridBuilder, CrossValidator, TrainValidationSplit}
 import org.apache.spark.ml.{PipelineModel, PipelineStage, Pipeline, Predictor}
 import org.apache.spark.ml.feature.RFormula
@@ -22,11 +22,12 @@ object TrainMain {
                     filters: String = "", //过滤条件
                     outputPmml: String = "", //pmml输出路径
                     modelSavePath: String = "", //模型保存路径
+                    evaluator: String = "multi", //评估器类型
                     crossValid: Boolean = false, //是否交叉验证
                     folds: Int = 3, //交叉验证数据分为多少折
                     splitRatio: Seq[Double] = Seq(3, 1), //训练测试分割比例
-                   trainRatio:Double=0.8, //训练验证比例
-                   parallel:Int=1, //并行度
+                    trainRatio: Double = 0.8, //训练验证比例
+                    parallel: Int = 1, //并行度
                     kwargs: Map[String, String] = Map.empty, //其它个性化参数
                     appName: String = "TrainMain"
                    )
@@ -62,8 +63,21 @@ object TrainMain {
     //训练参数
     opt[Seq[Double]]("splitRatio")
       .valueName("<trainweight,testweight>")
-      .text("分割比例,如:3,1")
+      .text("训练分割比例,如:3,1")
       .action((x, c) => c.copy(splitRatio = x))
+
+    opt[Double]("trainRatio")
+      .text("训练验证中，训练集占比,如:0.8")
+      .action((x, c) => c.copy(trainRatio = x))
+
+    opt[String]("evaluator")
+      .text("评估器类型,默认:multi")
+      .valueName("[multi|bin|rgr]")
+      .action((x, c) => c.copy(evaluator = x))
+      .validate(x => {
+        if (Array("multi", "bin", "rgr").contains(x)) success
+        else failure("Option --模型名称必须是multi,bin,rgr中一个")
+      })
 
     //输出参数
     opt[String]("pmml")
@@ -98,19 +112,20 @@ object TrainMain {
     val mpgData = spark.read.option("header", "true").option("delimiter", " ").csv("")
 
     parser.parse(args, new Params()).map(p => {
-      run(p,mpgData)
+      run(p, mpgData)
     }) getOrElse {
       System.exit(1)
     }
   }
-  def run(p: Params,df:DataFrame): Unit = {
+
+  def run(p: Params, df: DataFrame): Unit = {
     //分割数据集
     val Array(trainDF, testDF) = df.randomSplit(p.splitRatio.toArray)
 
 
     //配置pipeline
-    val rFormual=getRFormula(p)
-    val model=getModel(p).
+    val rFormual = getRFormula(p)
+    val model = getModel(p).
       setLabelCol(rFormual.getLabelCol).
       setFeaturesCol(rFormual.getFeaturesCol)
     val pipeline = new Pipeline()
@@ -119,36 +134,44 @@ object TrainMain {
     //训练评估
     val paramGrid = new ParamGridBuilder()
       .build()
-    val (trainModel,evaluator)=if(p.crossValid){ //交叉验证
+    val (trainModel, eval) = if (p.crossValid) {
+      //交叉验证
       val cv = new CrossValidator()
         .setEstimator(pipeline)
         .setEvaluator(getEvaluator(p))
         .setEstimatorParamMaps(paramGrid)
         .setNumFolds(p.folds)
         .setParallelism(p.parallel)
-      val cm=cv.fit(trainDF)
-        (cm.bestModel.asInstanceOf[PipelineModel],cm.getEstimator)
-    }else{ //训练验证分割
+      val cm = cv.fit(trainDF)
+      (cm.bestModel.asInstanceOf[PipelineModel], cm.getEvaluator)
+    } else {
+      //训练验证分割
       val trainValidationSplit = new TrainValidationSplit()
         .setEstimator(pipeline)
         .setEvaluator(getEvaluator(p))
         .setEstimatorParamMaps(paramGrid)
         .setTrainRatio(p.trainRatio)
         .setParallelism(p.parallel)
-      val tm=trainValidationSplit.fit(trainDF)
-      (tm.bestModel.asInstanceOf[PipelineModel],tm.getEvaluator)
+      val tm = trainValidationSplit.fit(trainDF)
+      (tm.bestModel.asInstanceOf[PipelineModel], tm.getEvaluator)
     }
 
     //查看预测结果
     val prediction = trainModel.transform(testDF)
 
-    //val multiMetrics=EvaluatorUtils.getMulticlassMetrics(prediction,evaluator)
+    val metricsObj=EvaluatorUtils.getMetrics(prediction,eval)
+
+    val meticsValue=EvaluatorUtils.getMetricsValue(metricsObj)
+
+    //打印评估指标
+    println(meticsValue)
+
     //保存模型
-    if(!"".equals(p.modelSavePath))
+    if (!"".equals(p.modelSavePath))
       trainModel.save(p.modelSavePath)
     //导出pmml
-    if(!"".equals(p.outputPmml))
-      PmmlUtils.save(df.schema,trainModel,p.outputPmml)
+    if (!"".equals(p.outputPmml))
+      PmmlUtils.save(df.schema, trainModel, p.outputPmml)
   }
 
   /**
@@ -157,7 +180,7 @@ object TrainMain {
     * @param p
     * @return
     */
-  def getRFormula(p:Params):RFormula={
+  def getRFormula(p: Params): RFormula = {
     val rFormula = new RFormula
     rFormula.setFormula(s"${p.targetCol} ~ ${p.featureCols.mkString(" + ")}")
     rFormula
@@ -169,8 +192,8 @@ object TrainMain {
     * @param p
     * @return
     */
-  def getModel(p:Params)={
-    val model=p.modelName match {
+  def getModel(p: Params) = {
+    val model = p.modelName match {
       case "DTCls" => ModelUtils.getDecisionTreeClassifier(p)
       case "DTRgr" => ModelUtils.getDecisionTreeRegressor(p)
 
@@ -185,11 +208,14 @@ object TrainMain {
     }
     model
   }
-  def getEvaluator(p:Params):Evaluator={
-    if(p.modelName.endsWith("Rgr"))
+
+  def getEvaluator(p: Params): Evaluator = {
+    if ("rgr".equals(p.evaluator))
       new RegressionEvaluator()
-    else
+    else if ("multi".equals(p.evaluator))
       new MulticlassClassificationEvaluator()
+    else
+      new BinaryClassificationEvaluator()
   }
 
 }
